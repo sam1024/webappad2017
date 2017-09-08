@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAQ,iCAAyB;AACzB,6BAAqB;AAE7B,IAAK;EACJ,WAAW,EAAE,SAAS;EACtB,SAAS,EAAE,IAAI;EACf,KAAK,EAAE,OAAO;;AAGf,IAAK;EACJ,gBAAgB,EAAE,IAAI",
+"sources": ["../scss/mensajes.scss"],
+"names": [],
+"file": "mensajes.css"
+}

@@ -1,0 +1,406 @@
+/* Created on: 2/05/2017, 04:47:50 PM Author: sam */
+
+@font-face {
+    font-family: aguafina;
+    src: url(fonts/aguafina.ttf);
+}
+
+@font-face {
+    font-family: eaglelake;
+    src: url(fonts/eaglelake.ttf);
+}
+
+@font-face {
+    font-family: elmessiri;
+    src: url(fonts/elmessiri.ttf);
+}
+
+@font-face {
+    font-family: elmessiri-bold;
+    src: url(fonts/elmessiri-bold.ttf);
+}
+
+@font-face {
+    font-family: elmessiri-medium;
+    src: url(fonts/elmessiri-medium.ttf);
+}
+
+@font-face {
+    font-family: elmessiri-semibold;
+    src: url(fonts/elmessiri-semibold.ttf);
+}
+
+@font-face {
+    font-family: firasansextracondensed-black;
+    src: url(fonts/firasansextracondensed-black.ttf);
+}
+
+@font-face {
+    font-family: firasansextracondensed-blackitalic;
+    src: url(fonts/firasansextracondensed-blackitalic.ttf);
+}
+
+@font-face {
+    font-family: firasansextracondensed-bold;
+    src: url(fonts/firasansextracondensed-bold.ttf);
+}
+
+@font-face {
+    font-family: firasansextracondensed-bolditalic;
+    src: url(fonts/firasansextracondensed-bolditalic.ttf);
+}
+
+@font-face {
+    font-family: firasansextracondensed-extrabold;
+    src: url(fonts/firasansextracondensed-extrabold.ttf);
+}
+
+@font-face {
+    font-family: firasansextracondensed-extrabolditalic;
+    src: url(fonts/firasansextracondensed-extrabolditalic.ttf);
+}
+
+@font-face {
+    font-family: firasansextracondensed-extralight;
+    src: url(fonts/firasansextracondensed-extralight.ttf);
+}
+
+@font-face {
+    font-family: firasansextracondensed-extralightitalic;
+    src: url(fonts/firasansextracondensed-extralightitalic.ttf);
+}
+
+@font-face {
+    font-family: firasansextracondensed-italic;
+    src: url(fonts/firasansextracondensed-italic.ttf);
+}
+
+@font-face {
+    font-family: firasansextracondensed-light;
+    src: url(fonts/firasansextracondensed-light.ttf);
+}
+
+@font-face {
+    font-family: firasansextracondensed-lightitalic;
+    src: url(fonts/firasansextracondensed-lightitalic.ttf);
+}
+
+@font-face {
+    font-family: firasansextracondensed-medium;
+    src: url(fonts/firasansextracondensed-medium.ttf);
+}
+
+@font-face {
+    font-family: firasansextracondensed-mediumitalic;
+    src: url(fonts/firasansextracondensed-mediumitalic.ttf);
+}
+
+@font-face {
+    font-family: firasansextracondensed;
+    src: url(fonts/firasansextracondensed.ttf);
+}
+
+@font-face {
+    font-family: firasansextracondensed-semibold;
+    src: url(fonts/firasansextracondensed-semibold.ttf);
+}
+
+@font-face {
+    font-family: firasansextracondensed-semibolditalic;
+    src: url(fonts/firasansextracondensed-semibolditalic.ttf);
+}
+
+@font-face {
+    font-family: firasansextracondensed-thin;
+    src: url(fonts/firasansextracondensed-thin.ttf);
+}
+
+@font-face {
+    font-family: firasansextracondensed-thinitalic;
+    src: url(fonts/firasansextracondensed-thinitalic.ttf);
+}
+
+@font-face {
+    font-family: oswald;
+    src: url(fonts/oswald.ttf);
+}
+
+@font-face {
+    font-family: oswald-bold;
+    src: url(fonts/oswald-bold.ttf);
+}
+
+@font-face {
+    font-family: oswald-light;
+    src: url(fonts/oswald-light.ttf);
+}
+
+@font-face {
+    font-family: overpassmono;
+    src: url(fonts/overpassmono.ttf);
+}
+
+@font-face {
+    font-family: overpassmono-bold;
+    src: url(fonts/overpassmono-bold.ttf);
+}
+
+@font-face {
+    font-family: overpassmono-light;
+    src: url(fonts/overpassmono-light.ttf);
+}
+
+@font-face {
+    font-family: overpassmono-semibold;
+    src: url(fonts/overpassmono-semibold.ttf);
+}
+
+@font-face {
+    font-family: playfairdisplay;
+    src: url(fonts/playfairdisplay.ttf);
+}
+
+@font-face {
+    font-family: playfairdisplay-black;
+    src: url(fonts/playfairdisplay-black.ttf);
+}
+
+@font-face {
+    font-family: playfairdisplay-blackitalic;
+    src: url(fonts/playfairdisplay-blackitalic.ttf);
+}
+
+@font-face {
+    font-family: playfairdisplay-bold;
+    src: url(fonts/playfairdisplay-bold.ttf);
+}
+
+@font-face {
+    font-family: playfairdisplay-bolditalic;
+    src: url(fonts/playfairdisplay-bolditalic.ttf);
+}
+
+@font-face {
+    font-family: playfairdisplay-italic;
+    src: url(fonts/playfairdisplay-italic.ttf);
+}
+
+@font-face {
+    font-family: robotocondensed;
+    src: url(fonts/robotocondensed.ttf);
+}
+
+@font-face {
+    font-family: robotocondensed-bold;
+    src: url(fonts/robotocondensed-bold.ttf);
+}
+
+@font-face {
+    font-family: robotocondensed-bolditalic;
+    src: url(fonts/robotocondensed-bolditalic.ttf);
+}
+
+@font-face {
+    font-family: robotocondensed-italic;
+    src: url(fonts/robotocondensed-italic.ttf);
+}
+
+@font-face {
+    font-family: robotocondensed-light;
+    src: url(fonts/robotocondensed-light.ttf);
+}
+
+@font-face {
+    font-family: robotocondensed-lightitalic;
+    src: url(fonts/robotocondensed-lightitalic.ttf);
+}
+
+@font-face {
+    font-family: slabo;
+    src: url(fonts/slabo.ttf);
+}
+
+@font-face {
+    font-family: taviraj;
+    src: url(fonts/taviraj.ttf);
+}
+
+@font-face {
+    font-family: taviraj-black;
+    src: url(fonts/taviraj-black.ttf);
+}
+
+@font-face {
+    font-family: taviraj-blackitalic;
+    src: url(fonts/taviraj-blackitalic.ttf);
+}
+
+@font-face {
+    font-family: taviraj-bold;
+    src: url(fonts/taviraj-bold.ttf);
+}
+
+@font-face {
+    font-family: taviraj-bolditalic;
+    src: url(fonts/taviraj-bolditalic.ttf);
+}
+
+@font-face {
+    font-family: taviraj-extrabold;
+    src: url(fonts/taviraj-extrabold.ttf);
+}
+
+@font-face {
+    font-family: taviraj-extrabolditalic;
+    src: url(fonts/taviraj-extrabolditalic.ttf);
+}
+
+@font-face {
+    font-family: taviraj-extralight;
+    src: url(fonts/taviraj-extralight.ttf);
+}
+
+@font-face {
+    font-family: taviraj-extralightitalic;
+    src: url(fonts/taviraj-extralightitalic.ttf);
+}
+
+@font-face {
+    font-family: taviraj-medium;
+    src: url(fonts/taviraj-medium.ttf);
+}
+
+@font-face {
+    font-family: taviraj-mediumitalic;
+    src: url(fonts/taviraj-mediumitalic.ttf);
+}
+
+@font-face {
+    font-family: taviraj-semibold;
+    src: url(fonts/taviraj-semibold.ttf);
+}
+
+@font-face {
+    font-family: taviraj-semibolditalic;
+    src: url(fonts/taviraj-semibolditalic.ttf);
+}
+
+@font-face {
+    font-family: taviraj-thin;
+    src: url(fonts/taviraj-thin.ttf);
+}
+
+@font-face {
+    font-family: taviraj-thinitalic;
+    src: url(fonts/taviraj-thinitalic.ttf);
+}
+
+@font-face {
+    font-family: trirong;
+    src: url(fonts/trirong.ttf);
+}
+
+@font-face {
+    font-family: trirong-black;
+    src: url(fonts/trirong-black.ttf);
+}
+
+@font-face {
+    font-family: trirong-blackitalic;
+    src: url(fonts/trirong-blackitalic.ttf);
+}
+
+@font-face {
+    font-family: trirong-bold;
+    src: url(fonts/trirong-bold.ttf);
+}
+
+@font-face {
+    font-family: trirong-bolditalic;
+    src: url(fonts/trirong-bolditalic.ttf);
+}
+
+@font-face {
+    font-family: trirong-extrabold;
+    src: url(fonts/trirong-extrabold.ttf);
+}
+
+@font-face {
+    font-family: trirong-extrabolditalic;
+    src: url(fonts/trirong-extrabolditalic.ttf);
+}
+
+@font-face {
+    font-family: trirong-extralight;
+    src: url(fonts/trirong-extralight.ttf);
+}
+
+@font-face {
+    font-family: trirong-extralightitalic;
+    src: url(fonts/trirong-extralightitalic.ttf);
+}
+
+@font-face {
+    font-family: trirong-italic;
+    src: url(fonts/trirong-italic.ttf);
+}
+
+@font-face {
+    font-family: trirong-light;
+    src: url(fonts/trirong-light.ttf);
+}
+
+@font-face {
+    font-family: trirong-lightitalic;
+    src: url(fonts/trirong-lightitalic.ttf);
+}
+
+@font-face {
+    font-family: trirong-medium;
+    src: url(fonts/trirong-medium.ttf);
+}
+
+@font-face {
+    font-family: trirong-mediumitalic;
+    src: url(fonts/trirong-mediumitalic.ttf);
+}
+
+@font-face {
+    font-family: trirong-semibold;
+    src: url(fonts/trirong-semibold.ttf);
+}
+
+@font-face {
+    font-family: trirong-semibolditalic;
+    src: url(fonts/trirong-semibolditalic.ttf);
+}
+
+@font-face {
+    font-family: trirong-thin;
+    src: url(fonts/trirong-thin.ttf);
+}
+
+@font-face {
+    font-family: trirong-thinitalic;
+    src: url(fonts/trirong-thinitalic.ttf);
+}
+
+@font-face {
+    font-family: yanonekaffeesatz;
+    src: url(fonts/yanonekaffeesatz.ttf);
+}
+
+@font-face {
+    font-family: yanonekaffeesatz-bold;
+    src: url(fonts/yanonekaffeesatz-bold.ttf);
+}
+
+@font-face {
+    font-family: yanonekaffeesatz-extralight;
+    src: url(fonts/yanonekaffeesatz-extralight.ttf);
+}
+
+@font-face {
+    font-family: yanonekaffeesatz-light;
+    src: url(fonts/yanonekaffeesatz-light.ttf);
+}

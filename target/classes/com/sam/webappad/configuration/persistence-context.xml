@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ES ARCHIVO TENDRA TODAS LAS CONFIGURACIONES QUE TENGAN QUE VER CON BD'S -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+                           http://www.springframework.org/schema/jee 
+                           http://www.springframework.org/schema/jee/spring-jee-4.3.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context-4.3.xsd
+                           http://www.springframework.org/schema/tx
+                           http://www.springframework.org/schema/tx/spring-tx-4.3.xsd ">
+    
+    <!--ESTAS LINEAS INDICAN QUE VAMOS A ACCESAR A LA DB MEDIANTE JDNI NO POR JDBC-->
+    <jee:jndi-lookup jndi-name="jdbc/spring" id="dataSource" expected-type="javax.sql.DataSource" />
+    <!--FIN-->
+    
+    <!--property name="hibernate.enable_lazy_load_no_trans">true</property-->
+    
+    <context:annotation-config /> <!--ESTO HABILITA LAS ANOTACIONES DE INYECCION DE DEPENDENCIAS-->
+    <!--INDICAMOS QUE LAS CLASES QUE TIENEN LA ANOTACION @AUTOWIRED ESTAN EN EL PAQUETE com.sam.mvnwebapp.hibernate.dao-->
+    <context:component-scan base-package="com.sam.webappad.model" />
+    <context:component-scan base-package="com.sam.webappad.model_impl" />
+    <!--FIN-->
+    
+    <!--ESTAS LINEAS CREAN LA FABRICA DE SESIONES HIBERNATE YA QUE ESTE TRABAJA ASÍ-->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <!--ESTA PROPIEDAD HACE REFERENCIA AL dataSource DE JNDI QUE ESTA ARRIBA-->
+        <property name="dataSource"  ref="dataSource"/>
+        <!--ESTA LINEA HACE REFERENCIA AL PAQUETE QUE TIENE EL MAPPING RELACIONAL DE OBJETOS (CLASES POJO O ENTITIES)-->
+        <property name="packagesToScan" value="com.sam.webappad.entity" />
+        <!--FIN-->
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.Oracle12cDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                
+                <!--ESTO LE INDICA A HIBERNATE QUE CUANDO HAGA LAS OPERECIONES DE SAVE, DELETE UPDATE, ETC., TIENE QUE APLICAR SOLO LAS VALIDACIONES QUE PERTENCEN A ESTE GRUPO-->
+                <!--prop key="javax.persistence.validation.group.pre-persist">
+                    com.sam.mvnwebapp.hibernate.validation.PersistenceGroupValidation
+                </prop>
+                <prop key="javax.persistence.validation.group.pre-update">
+                    com.sam.mvnwebapp.hibernate.validation.PersistenceGroupValidation
+                </prop>
+                <prop key="javax.persistence.validation.group.pre-remove">
+                    com.sam.mvnwebapp.hibernate.validation.PersistenceGroupValidation
+                </prop-->
+                <!--FIN VALIDACIONES-->
+                
+            </props>
+        </property>        
+    </bean>
+    <!--FIN-->
+    
+    <!--ESTE BEAN TRADUCE LAS EXCEPCIONES DE HIBERNATE A EXCEPCIONES DE SPRING-->
+    <bean id="exceptionTranslator" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor">        
+    </bean>
+    <!--FIN-->
+    
+    <!--ESTE BEAN HABILITA LA TRANSACCIONALIDAD EN HIBERNATE-->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />        
+    </bean>
+    <!--FIN-->
+    <!--ESTO HABILITA LAS ANOTACIONES DE TRANSACCIONALIDAD DE HIBERNATE, Y HACE REFERENCIA AL transactionManager DE ARRIBA-->
+    <tx:annotation-driven transaction-manager="transactionManager" />
+</beans>

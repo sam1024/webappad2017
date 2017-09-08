@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAQ,6BAAqB;AACrB,iCAAyB;AAEjC,MAAO;EACH,WAAW,EAAE,SAAS;EACtB,SAAS,EAAE,IAAI;EACf,KAAK,EAAE,OAAO;;AAGlB,IAAK;EACD,gBAAgB,EAAE,IAAI",
+"sources": ["../scss/inventory.scss"],
+"names": [],
+"file": "inventory.css"
+}

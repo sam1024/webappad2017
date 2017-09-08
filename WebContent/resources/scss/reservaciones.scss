@@ -1,0 +1,344 @@
+/* Created on: 9/05/2017, 02:08:15 PM Author: sam */
+@import url(fonts.css);
+@import url(reset-css.css);
+
+/***** ESTILOS GENERALES *******/
+html {
+    font-size: 15px;
+    font-family: firasansextracondensed;
+    color: #d0d3d4;
+}
+
+body {
+    background: #111;
+}
+
+a {
+    color: #fff;
+}
+/***** FIN ESTILOS GENERALES *******/
+
+/************* SECTION HEADER ******************/
+#section_encabezado header {
+    width: 100vw;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    right: 0;    
+    height: 3rem;
+    background: #212121;
+}
+
+#icon_calendar {
+	font-size: 1.7rem;
+    margin: .5rem;
+}
+
+#p_app_name {
+	position: relative;
+    top: -2rem;
+    font-size: 1.8rem;
+    margin: auto;
+    width: 8.5rem;
+}
+
+/************* SECTION MENU **********************/
+.abrir_cerrar {
+    transform: translateX(0%) !important;
+}
+
+#nav_menu {
+    transform: translateX(-100%);
+    transition: all 0.3s;
+    top: 3.4rem;
+    background-color: #A93226;
+    width: 15rem;
+}
+
+#icon_menu {
+    display: block;
+    position: absolute;
+    top: .1rem;
+    right: -.3rem;
+    padding: .3rem 1rem;
+    background-color: transparent;
+    font-size: 1.8rem;
+}
+
+#icon_menu:active {
+    background-color: #424242;
+}
+
+#ul_menu {
+	margin: -1.5rem 0;
+}
+
+.li_menu {
+    padding: .5rem .5rem;
+}
+
+#ul_menu .li_menu .icon-home, #ul_menu .li_menu .fa-pencil {
+    margin-right: -.7rem;
+}
+
+#ul_menu .li_menu .icons_menu {
+    font-size: 1.5rem !important;
+}
+
+#ul_menu .li_menu a .icons_menu {
+    padding: .3rem;
+    border-radius: 50%;
+}
+
+#ul_menu .li_menu a .fa:hover {
+    background-color: #A93226;
+}
+
+#ul_menu .li_menu a .fa-home, #ul_menu .li_menu a .fa-calendar {
+    margin-right: -.7rem;    
+}
+
+#ul_menu .li_menu a .fa-sign-out {
+    margin-right: .5rem;    
+}
+
+.p_menu {
+	display: inline;
+	margin-left: .3rem;
+	font-size: 1.3rem;
+}
+/************* FIN SECTION MENU ******************/
+
+
+/************* FIN SECTION HEADER **************/
+
+/************* SECTION CALENDAR **************/
+#section_calendar {
+    margin-top: 4rem;
+    left: -100vw;
+    position: relative;
+    transition: all 0.5s;
+    z-index: 1000;
+    background: #222;
+}
+
+.abrir {
+    left: 0 !important;
+}
+
+#navegacion_meses {
+    display: flex;
+    background-color: #212121;
+    font-size: 1.5rem;
+    /*width: 18.5rem;*/
+    padding: 0 .1rem 0 .1rem;
+}
+
+#link_back {    
+    font-size: 1.5rem;
+}
+
+#link_next {
+    font-size: 1.5rem;
+}
+
+#mes_year {
+    display: flex;
+    margin: auto;
+}
+
+#year {
+    margin-left: .5rem;
+}
+
+#section_calendar .container {
+    margin: -.7rem auto 0 auto;    
+    height: auto;
+}
+
+#table_calendar {
+    width: 100vw;
+}
+
+thead {
+    background: #212121;
+    font-weight: bold;
+}
+
+#table_calendar th, #table_calendar tr, #table_calendar td {
+    text-align: center;
+    width: 2rem;
+    padding: .5rem;
+}
+
+.diames:hover {
+    background: #A93226;
+    border-radius: .5em;
+}
+
+.link_day {
+    font-size: 1.3rem;
+}
+/************* FIN SECTION CALENDAR **************/
+
+
+
+/************* SECTION RESERVACIONES *************/
+#section_reservaciones_x_dia {
+    position: absolute;
+    width: 100vw;    
+    top: 3.5rem;
+}
+/*********** FIN SECTION RESERVACIONES ************/
+
+/*********** BOTON NUEVA RESERVACIÓN **************/
+#new_reservacion {
+    position: absolute;
+    right: .5rem;
+    bottom: 1rem;
+}
+
+#icon_new_reservacion {
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+
+#icon_new_reservacion:hover {
+    color: #A93226;
+}
+
+#new_reservacion:hover {
+    color: #fff;
+    cursor: pointer;
+}
+/*********** FIN BOTON NUEVA RESERVACIÓN **********/
+
+/***************************************** MEDIAS QUERYS *************************************************************/
+@media (min-width: 992px) {
+    /***** SECTION HEADER *****/    
+    #icon_calendar {
+        display: none;
+    }
+    
+    #p_app_name {
+    	top: .5rem;
+    	font-size: 2rem;
+    }
+    
+    /************** MENU RESPONSIVO     ******************/
+    #icon_menu {
+        display: none;
+    }
+    
+    #nav_menu { 
+    	position: absolute;  	
+    	right: -9.9rem;    
+        background-color: transparent;
+        top: 1.5rem;
+        width: 10rem;
+    }
+    
+    #ul_menu {
+        display: flex;
+        justify-content: flex-end;
+    }
+    
+    .fa-print {
+    	margin-right: .5rem;
+    }
+    
+    .p_menu {
+    	display: none;
+    }    
+    /************** FIN MENU RESPONSIVO ******************/
+    
+    /***** FIN SECTION HEADER *****/
+    
+    /***** SECTION CALENDAR *****/    
+    #section_calendar {
+        left: .5rem !important;
+        float: left;
+        z-index: 0;
+    }    
+    
+    #calendar {
+        width: 18.5rem;
+    }
+    
+    #table_calendar {
+        width: auto;
+    }
+    
+    .p_mes_year {
+    	font-size: 1.5rem;
+    }
+    /***** FIN SECTION CALENDAR *****/
+    
+    /***** SECTION RESERVACIONES X DIA *****/
+    #section_reservaciones_x_dia {
+        width: auto;
+        left: 19rem;
+        height: auto;
+    }
+    /***** FIN SECTION RESERVACIONES X DIA *****/
+}
+
+
+
+
+
+
+
+
+/**** ESTILOS RESERVACIONES X DIA *****/
+/*#reservaciones_x_dia {    
+    margin: 1.5rem auto;
+}
+
+#table_reservaciones_local, #table_reservaciones_local thead, #table_reservaciones_local tbody, 
+#table_reservaciones_local th, #table_reservaciones_local td {
+    display: block;
+}
+
+#table_reservaciones_local {
+    width: 100vw;
+    position: relative;
+}
+
+#table_reservaciones_local thead {
+    float: left;
+    width: 5.7rem;
+    text-align: left;
+    padding: 0 .3rem 0 0;
+    border-right: .01rem solid aliceblue;
+}
+
+#table_reservaciones_local thead th {
+    padding: .5rem 0 .5rem .2rem;
+}
+
+#table_reservaciones_local tbody {
+    white-space: nowrap;
+    overflow-x: auto;
+    padding: 0 0 0 .5rem;
+}
+
+#table_reservaciones_local tbody tr {
+    display: inline-block;
+    vertical-align: top;
+    white-space: nowrap;
+    border-right: .01rem solid aliceblue;
+}
+
+#table_reservaciones_local tbody td .fa {
+    padding: .2rem 1rem;
+    font-size: 1.3rem;
+    background-color: #212121;
+    border-radius: .3rem;
+}
+
+#table_reservaciones_local tbody tr td {
+    padding: .5rem 0 .5rem 0;
+}
+/**** FIN ESTILOS RESERVACIONES X DIA *****/

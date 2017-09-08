@@ -1,0 +1,282 @@
+@import url(../css/reset-css.css);
+@import url(../css/fonts.css);
+@import url(../css/ligature.css);
+
+html {
+    font-size: 15px;
+    color: #d0d3d4;
+    font-family: firasansextracondensed;
+}
+
+body {
+    background: #111;
+}
+
+header {
+    background: #424242;
+    height: 3rem;
+}
+
+header .container {
+    text-align: center;
+    padding: 1rem;
+}
+
+header .container p {
+    font-size: 1.1rem;
+}
+
+#section_cuerpo {
+    margin: 1rem 0 0 0;
+    width: 100vw;
+}
+
+#section_cuerpo .container table, th, tr, td {
+    border: 1px solid #fff;
+}
+
+/**** BORRAR ******/
+.card_personalizada {
+    background-color: #222;
+    margin: 1rem 0 0 .3rem;
+    padding: .3rem;
+    box-shadow: -0.05rem 0.3rem 0.5rem grey;
+}
+.icons {
+    bottom: .1rem;
+    position: absolute;
+    padding: .3rem;
+    font-size: 1.3rem;
+    border-radius: 50%;
+}
+
+#pencil {
+    right: 2.4rem;
+}
+
+#trash {
+    right: .3rem;
+}
+
+/*******FIN BORRAR ******/
+
+/*** ESTILOS VENTANA MODAL ***/
+.modal {
+    background: rgba(0, 0, 0, 1);
+    position: fixed;
+    z-index: 101;
+    left: 0;
+    top: -117vh;
+    border: .3rem solid white;
+    border-radius: .5rem;
+    height: 18rem;
+    pointer-events: none;
+    transition: all 1s;
+    right: 0;
+    padding: 3rem 0 0 0;
+    overflow: auto;
+}
+
+#section_add_users .fa {
+    position: absolute;
+    right: .5rem;
+    top: .5rem;
+    font-size: 1.7rem;
+    cursor: default;
+}
+
+#section_add_users .fa:hover {
+    color: #fff;
+    cursor: pointer;
+}
+
+#section_add_users .container {
+    margin: auto;
+    height: auto;    
+    width: auto;    
+}
+
+#section_add_users .container p {
+    font-size: 1.2rem;
+    text-align: center;
+    margin: -1.2rem 0 .7rem 0;
+}
+
+.element_form {
+    width: 98%;
+    margin: auto;
+}
+
+input {
+    width: 99%;
+    height: 1.8rem;
+    border: 1px solid white;
+    border-radius: .2rem;
+    margin: 0 0 .5rem 0;
+}
+
+#box_select {
+    overflow: hidden;
+    position: relative;
+    background: white;
+    margin: 0 0 .5rem .2rem;
+    border-radius: .2rem;
+    height: 2.2rem;
+    width: 98%;
+}
+
+#box_select:after {
+    content: "\025be";
+    display: table-cell;
+    pointer-events: none;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2rem;
+    height: 2.5rem;
+    color: black;
+    background-color: #d9d9d9;
+    font-size: 1.5rem;
+    padding-top: .40rem;
+}
+
+#role {
+    background: transparent;
+    border: none;
+    width: 100%;
+    height: 2.2rem;
+    color: dimgray;
+}
+
+#accept {
+    background: #111;
+    color: #d0d3d4;
+    margin: .5rem 0 0 0;
+    height: 2.3rem;
+    width: 100%;
+    font-size: 1.2rem;
+    border: .1rem solid white;
+    border-radius: .3rem;
+}
+
+#accept:hover {
+    color: #fff;
+}
+/*** FIN ESTILOS VENTANA MODAL ***/
+
+#section_footer {
+    position: absolute;
+    bottom: 1.4rem;
+    right: 1.4rem;
+    border-radius: 50%;
+    height: 3rem;
+    width: 3rem;
+    font-size: 2rem;
+    text-align: center;
+    background: #424242;
+}
+
+#section_footer .container {
+    position: absolute;
+    /*border: 1px solid red;
+    height: 2rem;*/
+    width: 2rem;
+    /*margin: auto;*/
+    right: .55rem;
+    bottom: -.30rem;
+}
+
+#section_footer footer .container:after {
+    content: "\02b";
+    font-size: 3.5rem;
+}
+
+/*#add_user {
+    margin: .5rem;
+}*/
+
+#add_user:hover {
+    color: #fff;
+}
+
+/******************** COMIENZAN LOS MEDIA QUERY ***********************/
+@media(min-width: 577px) {
+    
+    /***** ESTILOS HEADER ******/
+    header .container p {
+        font-size: 1.5rem;
+    }
+    /***** FIN ESTILOS HEADER ******/
+    
+    /*** ESTILOS SECTION_ADD_USERS ***/
+    #section_add_users {
+        width: 90%;
+        margin: auto;
+    }
+    
+    #section_add_users .container {
+        width: auto;
+    }
+    
+    input {
+        width: 99%;
+    }
+    
+    #box_select {
+        width: 98%;
+    }
+    
+    #role {
+        width: 100%;
+    }
+    
+    #accept {
+        width: 100%;
+    }
+    /*** FIN ESTILOS SECTION_ADD_USERS ***/
+    
+}
+
+@media(min-width: 768px) {
+    
+    /*** ESTILOS SECTION_CUERPO ***/
+    #section_cuerpo .container {
+        width: 80%;
+        margin: auto;
+    }
+    /*** FIN ESTILOS SECTION_CUERPO ***/
+    
+    /*** ESTILOS SECTION_ADD_USERS***/
+    #box_select {
+        width: 97.5%;
+        margin-left: .6rem;
+    }
+    
+    #role {
+        
+    }
+    /**** FIN ESTILOS SECTION_ADD_USERS***/
+    
+}
+
+@media(min-width: 992px) {
+    
+    /*** ESTILOS SECTION_CUERPO ***/
+    #section_cuerpo .container {
+        width: 70%;
+    }
+    /*** FIN ESTILOS SECTION_CUERPO ***/
+    
+}
+
+@media(min-width: 1200px) {
+    
+    /*** ESTILOS SECTION_ADD_USERS ***/
+    #box_select {
+        width: 97.3%;
+        margin-left: .8rem;
+    }
+    /*** FIN ESTILOS SECTION_ADD_USERS ***/
+    
+}

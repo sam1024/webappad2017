@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context-4.3.xsd
+                           http://www.springframework.org/schema/jee 
+                           http://www.springframework.org/schema/jee/spring-jee-4.3.xsd
+                           http://www.springframework.org/schema/security 
+                           http://www.springframework.org/schema/security/spring-security-4.2.xsd ">
+    
+    <security:http use-expressions="true">
+        <security:intercept-url pattern="/" access="permitAll" /><!--ESTE ELEMENTO VA A INTERCEPTAR TODAS LAS PETICIONES QUE CONTENGAN /, CON permitAll ESPECIFICAMOS QUE CUALQUIER USUARIO TENGAN ACCESO-->
+        <security:intercept-url pattern="/inventario" access="permitAll" />
+        <security:intercept-url pattern="/login" access="permitAll" />
+        <security:intercept-url pattern="/logout" access="permitAll" />
+        <security:intercept-url pattern="/mensajes" access="isAuthenticated()" />        
+        <security:intercept-url pattern="/reservaciones/**" access="permitAll" />
+        <security:intercept-url pattern="/reservacion_new" access="hasAnyRole({'ROLE_ADMIN', 'ROLE_ALMACEN'})" /><!--ESTA ES UNA COLECCION DE ROLES-->
+        <security:intercept-url pattern="/reservacion/**" access="hasAnyRole({'ROLE_ADMIN', 'ROLE_ALMACEN'})" />
+        <security:intercept-url pattern="/xdia" access="permitAll" />
+        <security:intercept-url pattern="/repetir" access="hasAnyRole({'ROLE_ADMIN', 'ROLE_ALMACEN'})" />
+        <security:intercept-url pattern="/res/**" access="permitAll" />
+        <security:intercept-url pattern="/usuarios/**" access="hasRole('ROLE_ADMIN')" /><!--ESTE ELEMENTO VA A INTERCEPTAR TODAS LAS PETICIONES QUE CONTENGAN /admin/, CON hasRole('ADMIN') ESPECIFICAMOS QUE SOLO LOS USUARIOS CON ROL ADMIN TENGAN PERMISOS-->        
+        <security:intercept-url pattern="/**" access="denyAll" /><!--ES UNA BUEN PRACTICA PONER QUE TODAS LAS PETICIONES QUE NO ESTEN CONTEMPLADAS ARRIBA SEAN DENEGADAS, ESTO ES PORQUE DE ESTA MANERA AVITAMOS CIERTO TIPO DE ATAQUES, ADEMAS DE EL NO PONERLA SE CONVIERTE EN UN BUG-->
+        
+        <security:form-login login-page="/login" authentication-failure-url="/login?error=true" /><!--CON ESTA LINEA SPRING GENERA UN FORMULARIO DE AUTENTICACION DE MANERA AUTOMATICA-->
+        <security:csrf disabled="true" />   
+        <security:remember-me token-validity-seconds="28800" user-service-ref="customDetailsService" />
+        <security:logout invalidate-session="true" logout-url="/logout" />
+    </security:http>
+    
+    <security:authentication-manager>
+        <security:authentication-provider ref="customAuthenticationProvider" /><!--EL ref HACE REFERENCIA AL BEAN QUE ES EL PROVEEDOR DE AUTENTICACION-->                    
+    </security:authentication-manager>    
+    
+    <!--bean id="success" class="com.sam.mvnwebapp.hibernate.configuration.CustomSuccessHandler" /-->
+    
+    <!--ESTE BEAN ES UN PROVEEDOR DE AUTENTICACION PERSONALIZADO-->
+    <bean id="customAuthenticationProvider" class="com.sam.webappad.configuration.CustomAuthenticationProvider" />
+    
+    <!--ESTE BEAN ES UN SERVICIO PARA ENCONTRAR LOS USUARIOS PERSONALIZADO-->
+    <bean id="customDetailsService" class="com.sam.webappad.configuration.CustomUserDetailsService" />    
+    
+    <!--ESTE BEAN ES PARA ENCRIPTAR LA CONTRASEÑA-->
+    <bean id="bcryptEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />    
+
+</beans>

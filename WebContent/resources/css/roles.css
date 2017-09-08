@@ -1,0 +1,39 @@
+@import url(../css/reset-css.css);
+@import url(../css/fonst.css);
+html {
+  font-size: 15px;
+  font-family: elmessiri;
+  color: #d0d3d4; }
+
+body {
+  background: #111; }
+
+#header_roles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 2rem;
+  background: #424242;
+  padding: 1rem 0 0 0; }
+
+#header_roles .container {
+  text-align: center; }
+
+h2 {
+  font-size: 1.2rem; }
+
+#section_main {
+  margin-top: 3.5rem; }
+
+table {
+  width: 100%;
+  text-align: center; }
+
+thead {
+  background-color: #424242; }
+
+th, td {
+  border: 1px solid #fff; }
+
+/*# sourceMappingURL=roles.css.map */

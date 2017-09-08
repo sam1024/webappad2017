@@ -1,0 +1,83 @@
+/* Created on: 8/05/2017, 04:54:32 PM Author: sam */
+@import url(fonts.css);
+html * {
+  font-family: elmessiri;
+  font-size: 15px;
+  color: #d0d3d4; }
+
+#th_hora {
+  width: 4.5rem; }
+
+.acciones {
+  text-align: center;
+  width: 4.5rem; }
+
+.th {
+  padding: .2rem; }
+
+td .fa {
+  padding: 0 .5rem 0 .5rem;
+  font-size: 1.3rem; }
+
+#fecha_reservacion {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+
+#print {
+  font-size: 2rem;
+  margin-left: 1rem; }
+
+#show_fecha {
+  margin: 0 0 0 .3rem;
+  font-size: 1.3rem; }
+
+#print {
+  display: none; }
+
+.card_personalizada {
+  position: relative;
+  background-color: #222;
+  margin-bottom: .7rem !important;
+  padding: .3rem .3rem .5rem .3rem;
+  /*box-shadow: -0.05rem 0.3rem 0.5rem grey;*/ }
+
+#div_icons {
+  position: absolute;
+  bottom: .3rem;
+  right: .3rem;
+  height: 2rem;
+  width: 4.5rem; }
+
+.icons {
+  bottom: -.1rem;
+  position: absolute;
+  border-radius: 50%; }
+
+#pencil {
+  right: 2.4rem;
+  padding: .1rem;
+  font-size: 1.5rem; }
+
+#trash {
+  right: .3rem;
+  padding: .3rem;
+  font-size: 1.3rem; }
+
+.icons:hover {
+  background-color: #A93226; }
+
+/******************* MEDIAS QUERY ***********************/
+@media (min-width: 992px) {
+  #fecha_reservacion {
+    margin: 0 0 .3rem .5rem; }
+
+  .card_personalizada {
+    margin: .3rem .3rem .7rem .8rem;
+    min-width: 45rem; }
+
+  .p_card_personalizada {
+    font-size: 1.3rem; } }
+/***************** FIN MEDIAS QUERY *********************/
+
+/*# sourceMappingURL=reservaciones_x_dia.css.map */

@@ -1,0 +1,108 @@
+/******** SECTION HEADER **************/
+#section_header header {
+    position: fixed;
+    height: 2.5rem;
+    background: #212121;
+    width: 100%;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1024;
+    padding-bottom: .5rem;
+}
+
+#section_header header h1 {
+    font-size: 2.2rem;
+    margin: .5rem auto auto auto;
+    width: 10.5rem;
+}
+
+/******** MENU RESPONSIVO *************/
+.abrir_cerrar {
+    transform: translateX(0%) !important;
+}
+
+#nav_menu {
+    transform: translateX(-105%);
+    transition: all 0.3s;
+    top: 3.4rem;
+    background-color: #A93226;
+    width: 13rem;
+}
+
+#icon_menu {
+    display: block;
+    position: absolute;
+    top: .2rem;
+    right: .2rem;
+    border: .1rem solid #d0d3d4;
+    padding: .4rem 1.1rem;
+    border-radius: .2rem;
+    background-color: transparent;
+    font-size: 1.5rem;
+}
+
+#icon_menu:active {
+    background-color: #424242;
+}
+
+.li_menu {
+    padding: .5rem .5rem;
+}
+
+#ul_menu .li_menu a {
+    font-size: 1.5rem;
+}
+
+#ul_menu .li_menu a .fa {
+    margin: 0 .1rem 0 0;
+    padding: .3rem;
+    border-radius: 50%;
+}
+
+#ul_menu .li_menu a .fa:hover {
+    background-color: #A93226;
+}
+
+#ul_menu .li_menu a .fa-home, #ul_menu .li_menu a .fa-calendar {
+    margin-right: -.7rem;    
+}
+
+#ul_menu .li_menu a .fa-sign-out {
+    margin-right: .5rem;    
+}
+
+.p_menu {
+	display: inline;
+	margin-left: .3rem;
+	font-size: 1.3rem;
+}
+/******** FIN MENU RESPONSIVO *********/
+
+/******** FIN SECTION HEADER **********/
+
+/********** MEDIAS QUERY **************/
+@media (min-width: 992px) {
+    /************** MENU RESPONSIVO     ******************/
+    #icon_menu {
+        display: none;
+    }
+    
+    #nav_menu { 
+    	position: absolute;  	
+    	top: 0;
+    	right: -7.5rem;    	
+        background-color: transparent;
+        width: 7rem;
+    }
+    
+    #ul_menu {
+        display: flex;
+        justify-content: flex-end;
+    }
+    
+    .p_menu {
+    	display: none;
+    }    
+    /************** FIN MENU RESPONSIVO ******************/
+}

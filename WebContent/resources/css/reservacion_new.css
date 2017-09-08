@@ -1,0 +1,258 @@
+@import url(../css/fonts.css);
+@import url(../css/reset-css.css);
+html * {
+  font-family: elmessiri;
+  font-size: 15px;
+  color: #d0d3d4; }
+
+body {
+  background-color: #111; }
+
+a {
+  color: #d0d3d4; }
+
+option {
+  background-color: #111; }
+
+/******** SECTION HEADER **************/
+#section_header header {
+  position: fixed;
+  height: 2.5rem;
+  background: #212121;
+  width: 100%;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1024;
+  padding-bottom: .5rem; }
+
+#section_header header h1 {
+  font-size: 2.2rem;
+  margin: .5rem auto auto auto;
+  width: 10.5rem; }
+
+/******** MENU RESPONSIVO *************/
+.abrir_cerrar {
+  -webkit-transform: translateX(0%) !important;
+          transform: translateX(0%) !important; }
+
+#nav_menu {
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  top: 3.4rem;
+  background-color: #A93226;
+  width: 13rem; }
+
+#icon_menu {
+  display: block;
+  position: absolute;
+  top: .2rem;
+  right: .2rem;
+  border: .1rem solid #d0d3d4;
+  padding: .4rem 1.1rem;
+  border-radius: .2rem;
+  background-color: transparent;
+  font-size: 1.5rem; }
+
+#icon_menu:active {
+  background-color: #424242; }
+
+.li_menu {
+  padding: .5rem .5rem; }
+
+#ul_menu .li_menu a {
+  font-size: 1.5rem; }
+
+#ul_menu .li_menu a .fa {
+  margin: 0 .1rem 0 0;
+  padding: .3rem;
+  border-radius: 50%; }
+
+#ul_menu .li_menu a .fa:hover {
+  background-color: #A93226; }
+
+#ul_menu .li_menu a .fa-home, #ul_menu .li_menu a .fa-calendar {
+  margin-right: -.7rem; }
+
+#ul_menu .li_menu a .fa-sign-out {
+  margin-right: .5rem; }
+
+.p_menu {
+  display: inline;
+  margin-left: .3rem;
+  font-size: 1.3rem; }
+
+/******** FIN MENU RESPONSIVO *********/
+/******** FIN SECTION HEADER **********/
+/********* SECTION MAIN ***************/
+#section_main {
+  margin-top: 4rem; }
+
+#section_main main p {
+  font-size: 1.5rem;
+  margin: auto;
+  width: 12rem; }
+
+form {
+  padding: .5rem;
+  color: #d0d3d4; }
+
+#section_main main form .container .input_field {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #9e9e9e;
+  border-radius: 0;
+  outline: none;
+  height: 3rem;
+  width: 100%;
+  font-size: 1rem;
+  margin: 0 0 20px 0;
+  padding: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  color: #d0d3d4; }
+
+#section_main main form .container .textarea {
+  overflow-y: hidden;
+  padding: .8rem 0 1.6rem 0;
+  resize: none;
+  min-height: 3rem; }
+
+#fechas {
+  display: none; }
+
+#btn_save, #btn_repeat {
+  margin: 0 0 .3rem 0; }
+
+.btns {
+  padding: .5rem .7rem;
+  background-color: transparent;
+  border: .1rem solid #d0d3d4;
+  border-radius: .3rem;
+  color: #d0d3d4;
+  font-size: 1.1rem;
+  width: 100%; }
+
+#btn_repeat > p {
+  width: 6rem !important;
+  font-size: 1.1rem !important;
+  margin-top: .4rem !important; }
+
+#section_main main form .container .btns:hover {
+  color: #fff;
+  background-color: #222; }
+
+/********* FIN SECTION MAIN ************/
+/********* SECTION MODAL ************/
+.modal {
+  background: rgba(0, 0, 0, 0.9);
+  position: fixed;
+  z-index: 101;
+  left: 0;
+  top: -117vh;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+  overflow: auto; }
+
+#navegacion_meses {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 1.5rem;
+  padding: 0 .1rem 0 .1rem;
+  margin-top: 3.3rem; }
+
+#link_back {
+  font-size: 1.5rem; }
+
+#link_next {
+  font-size: 1.5rem; }
+
+#mes_year {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: auto; }
+
+#year {
+  margin-left: .5rem; }
+
+.p_mes_year {
+  margin-top: .1rem; }
+
+#actividades-modal > table {
+  margin-top: .3rem;
+  width: 100%; }
+
+table, th, td {
+  text-align: center;
+  border-collapse: collapse;
+  border: 1px solid aliceblue;
+  margin: auto; }
+
+.diames {
+  width: 2.5rem;
+  height: 2.5rem;
+  vertical-align: middle; }
+
+#btn_acp_repeat, #btn_can_repeat {
+  margin-top: .5rem; }
+
+/********* FIN SECTION MODAL ************/
+/********** MEDIAS QUERY **************/
+@media (min-width: 992px) {
+  /************** MENU RESPONSIVO     ******************/
+  #icon_menu {
+    display: none; }
+
+  #nav_menu {
+    position: absolute;
+    top: 0;
+    right: -7.5rem;
+    /*left: 62.5rem; */
+    background-color: transparent;
+    /*transform: translateX(0);
+    top: 1.5rem;*/
+    width: 7rem; }
+
+  #ul_menu {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end; }
+
+  .p_menu {
+    display: none; }
+
+  /************** FIN MENU RESPONSIVO ******************/
+  main {
+    border: .3rem solid #d0d3d4;
+    border-radius: .5rem;
+    width: 55rem;
+    margin: 5rem auto auto auto;
+    padding: 1rem; }
+
+  .btns {
+    width: 15rem !important; }
+
+  .modal {
+    width: 40rem;
+    margin: 3.5rem auto;
+    right: 1rem;
+    height: 20rem; }
+
+  #navegacion_meses {
+    margin-top: 0; } }
+
+/*# sourceMappingURL=reservacion_new.css.map */
