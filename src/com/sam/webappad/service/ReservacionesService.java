@@ -70,70 +70,76 @@ public class ReservacionesService {
 				
 				System.out.println("\nENTRO AL IF PADRE YA QUE EL SALÓN SI APARECE EN LA LISTA DE OCUPADOS\n");
 				
-				/**** PRIMERA CONDICION  QUE LA NUEVA RESERVACION SEA EXACTAMENTE A L MISMA HORA DE INICIO Y FIN DE UNA EXISTENTE ****/
-				if((lst.getHoras_entity_id_horaini().getId_horas() == reservaciones_entity.getHoras_entity_id_horaini().getId_horas())
-				   && (lst.getHoras_entity_id_horafin().getId_horas() == reservaciones_entity.getHoras_entity_id_horafin().getId_horas())) {
-					System.out.println("ID RECURSO OCUPADO: " + lst.getRecursos_entity().getId_recursos());
+				/****** PRIMERA CONDICION *****/
+				if(lst.getHoras_entity_id_horaini().getId_horas() == reservaciones_entity.getHoras_entity_id_horaini().getId_horas()) {
+					res = "YA EXISTE UNA RESERVACION QUE INICIA A LAS " + lst.getHoras_entity_id_horaini().getHora();
+					System.out.println("\nID RECURSO OCUPADO: " + lst.getRecursos_entity().getId_recursos());
 					System.out.println("ID RECURSO NUEVA: " + reservaciones_entity.getRecursos_entity().getId_recursos());
 					System.out.println("ID INICIO OCUPADO: " + lst.getHoras_entity_id_horaini().getId_horas());
 					System.out.println("ID INICIO NUEVO: " + reservaciones_entity.getHoras_entity_id_horaini().getId_horas());
 					System.out.println("ID FIN OCUPADO: " + lst.getHoras_entity_id_horafin().getId_horas());
 					System.out.println("ID FIN NUEVO: " + reservaciones_entity.getHoras_entity_id_horafin().getId_horas());
 					System.out.println("LA PRIMERA CONDICION SE CUMPLE!!");
-					res = "PARA EL " + reservaciones_entity.getFecha() + " EL: " + reservaciones_entity.getRecursos_entity().getNombre() +
-					      " ESTÁ OCUPADO DE: " + lst.getHoras_entity_id_horaini().getHora() + " A: " +
-						  lst.getHoras_entity_id_horafin().getHora();
-				}
-				/**** SEGUNDA CONDICION QUE LA NUEVA RESERVACION EMPIEZE EXACTAMENTE CUANDO UNA EXISTENTE TERMINE
-				 *    O TERMINE EXACTAMENTE CUANDO UN EXISTENTE EMPIEZE (DEJAR 1/2 HORA ENTRE EVENTOS)  ****/
-//				else if((lst.getHoras_entity_id_horaini().getId_horas() == reservaciones_entity.getHoras_entity_id_horaini().getId_horas())
-//				   || (lst.getHoras_entity_id_horafin().getId_horas() == reservaciones_entity.getHoras_entity_id_horafin().getId_horas())
-//				   || (lst.getHoras_entity_id_horafin().getId_horas() == reservaciones_entity.getHoras_entity_id_horaini().getId_horas())
-//				   || (lst.getHoras_entity_id_horaini().getId_horas() == reservaciones_entity.getHoras_entity_id_horafin().getId_horas())) {
-				else if((lst.getRecursos_entity().getId_recursos() == reservaciones_entity.getRecursos_entity().getId_recursos())
-						  && (lst.getHoras_entity_id_horaini().getId_horas() < reservaciones_entity.getHoras_entity_id_horaini().getId_horas())
-						  && (lst.getHoras_entity_id_horafin().getId_horas() < reservaciones_entity.getHoras_entity_id_horafin().getId_horas()) ) {
-					System.out.println("ID RECURSO OCUPADO: " + lst.getRecursos_entity().getId_recursos());
-					System.out.println("ID RECURSO NUEVA: " + reservaciones_entity.getRecursos_entity().getId_recursos());
-					System.out.println("ID INICIO OCUPADO: " + lst.getHoras_entity_id_horaini().getId_horas());
-					System.out.println("ID INICIO NUEVO: " + reservaciones_entity.getHoras_entity_id_horaini().getId_horas());
-					System.out.println("ID FIN OCUPADO: " + lst.getHoras_entity_id_horafin().getId_horas());
-					System.out.println("ID FIN NUEVO: " + reservaciones_entity.getHoras_entity_id_horafin().getId_horas());
-					System.out.println("LA SEGUNDA CONDICION SE CUMPLE!!");
-					res = "PARA EL " + reservaciones_entity.getFecha() + " EL: " + reservaciones_entity.getRecursos_entity().getNombre() +
-					      " ESTÁ OCUPADO DE: " + lst.getHoras_entity_id_horaini().getHora() + " A: " +
-						  lst.getHoras_entity_id_horafin().getHora() + "\n DEBES DEJAR MEDIA HORA ENTRE EVENTOS";
-				
-								/**** TERCERA CONDICION  ****/
-				} else if((lst.getRecursos_entity().getId_recursos() == reservaciones_entity.getRecursos_entity().getId_recursos())
-						  && (lst.getHoras_entity_id_horaini().getId_horas() > reservaciones_entity.getHoras_entity_id_horaini().getId_horas())
-						  && (lst.getHoras_entity_id_horafin().getId_horas() > reservaciones_entity.getHoras_entity_id_horafin().getId_horas())) {
-					System.out.println("ID RECURSO OCUPADO: " + lst.getRecursos_entity().getId_recursos());
-					System.out.println("ID RECURSO NUEVA: " + reservaciones_entity.getRecursos_entity().getId_recursos());
-					System.out.println("ID INICIO OCUPADO: " + lst.getHoras_entity_id_horaini().getId_horas());
-					System.out.println("ID INICIO NUEVO: " + reservaciones_entity.getHoras_entity_id_horaini().getId_horas());
-					System.out.println("ID FIN OCUPADO: " + lst.getHoras_entity_id_horafin().getId_horas());
-					System.out.println("ID FIN NUEVO: " + reservaciones_entity.getHoras_entity_id_horafin().getId_horas());
-					System.out.println("LA TERCERA CONDICION SE CUMPLE!!");
-					System.out.println("HACER RESERVACION");
-					res = "";				
-				}		/**** CUARTA CONDICION  ****/ 
-				else if((lst.getHoras_entity_id_horaini().getId_horas() < reservaciones_entity.getHoras_entity_id_horaini().getId_horas())
-						&& (lst.getHoras_entity_id_horafin().getId_horas() > reservaciones_entity.getHoras_entity_id_horaini().getId_horas())
-						&& (lst.getHoras_entity_id_horafin().getId_horas() < reservaciones_entity.getHoras_entity_id_horafin().getId_horas()) ) {
-					System.out.println("ID RECURSO OCUPADO: " + lst.getRecursos_entity().getId_recursos());
-					System.out.println("ID RECURSO NUEVA: " + reservaciones_entity.getRecursos_entity().getId_recursos());
-					System.out.println("ID INICIO OCUPADO: " + lst.getHoras_entity_id_horaini().getId_horas());
-					System.out.println("ID INICIO NUEVO: " + reservaciones_entity.getHoras_entity_id_horaini().getId_horas());
-					System.out.println("ID FIN OCUPADO: " + lst.getHoras_entity_id_horafin().getId_horas());
-					System.out.println("ID FIN NUEVO: " + reservaciones_entity.getHoras_entity_id_horafin().getId_horas());
-					System.out.println("LA CUARTA CONDICION SE CUMPLE!!");
-					System.out.println("HACER RESERVACION");
-					res = "YA EXISTE UNA DE: " + lst.getHoras_entity_id_horaini().getHora() + " A: " + lst.getHoras_entity_id_horafin().getHora();				
-				}
-				
+				} else { /****** SEGUNDA CONDICION *****/
+					if(lst.getHoras_entity_id_horaini().getId_horas() == reservaciones_entity.getHoras_entity_id_horafin().getId_horas()) {
+						res = "EXISTE UNA RESERVACION QUE INICIA A LAS " + lst.getHoras_entity_id_horaini().getHora() + 
+							  "DEBES DEJAR MEDIA HORA ENTRE ENVENTOS";
+						System.out.println("\nID RECURSO OCUPADO: " + lst.getRecursos_entity().getId_recursos());
+						System.out.println("ID RECURSO NUEVA: " + reservaciones_entity.getRecursos_entity().getId_recursos());
+						System.out.println("ID INICIO OCUPADO: " + lst.getHoras_entity_id_horaini().getId_horas());
+						System.out.println("ID INICIO NUEVO: " + reservaciones_entity.getHoras_entity_id_horaini().getId_horas());
+						System.out.println("ID FIN OCUPADO: " + lst.getHoras_entity_id_horafin().getId_horas());
+						System.out.println("ID FIN NUEVO: " + reservaciones_entity.getHoras_entity_id_horafin().getId_horas());
+						System.out.println("LA SEGUNDA CONDICION SE CUMPLE!!");
+					} /****** TERCERA CONDICION *****/ 
+					else if(lst.getHoras_entity_id_horafin().getId_horas() == reservaciones_entity.getHoras_entity_id_horaini().getId_horas()) {
+						res = "EXISTE UNA RESERVACION QUE TERMINA A LAS " + lst.getHoras_entity_id_horaini().getHora() + 
+							  "DEBES DEJAR MEDIA HORA ENTRE ENVENTOS";
+						System.out.println("\nID RECURSO OCUPADO: " + lst.getRecursos_entity().getId_recursos());
+						System.out.println("ID RECURSO NUEVA: " + reservaciones_entity.getRecursos_entity().getId_recursos());
+						System.out.println("ID INICIO OCUPADO: " + lst.getHoras_entity_id_horaini().getId_horas());
+						System.out.println("ID INICIO NUEVO: " + reservaciones_entity.getHoras_entity_id_horaini().getId_horas());
+						System.out.println("ID FIN OCUPADO: " + lst.getHoras_entity_id_horafin().getId_horas());
+						System.out.println("ID FIN NUEVO: " + reservaciones_entity.getHoras_entity_id_horafin().getId_horas());
+						System.out.println("LA TERCERA CONDICION SE CUMPLE!!");
+					}  /****** CUARTA CONDICION *****/ 
+					else if ((reservaciones_entity.getHoras_entity_id_horafin().getId_horas() > lst.getHoras_entity_id_horaini().getId_horas())
+							   && (reservaciones_entity.getHoras_entity_id_horafin().getId_horas() <= lst.getHoras_entity_id_horafin().getId_horas())) {
+						res = "EXISTE UNA RESERVACION DE " + lst.getHoras_entity_id_horaini().getHora() + " A " + 
+							  lst.getHoras_entity_id_horafin().getHora();
+						System.out.println("\nID RECURSO OCUPADO: " + lst.getRecursos_entity().getId_recursos());
+						System.out.println("ID RECURSO NUEVA: " + reservaciones_entity.getRecursos_entity().getId_recursos());
+						System.out.println("ID INICIO OCUPADO: " + lst.getHoras_entity_id_horaini().getId_horas());
+						System.out.println("ID INICIO NUEVO: " + reservaciones_entity.getHoras_entity_id_horaini().getId_horas());
+						System.out.println("ID FIN OCUPADO: " + lst.getHoras_entity_id_horafin().getId_horas());
+						System.out.println("ID FIN NUEVO: " + reservaciones_entity.getHoras_entity_id_horafin().getId_horas());
+						System.out.println("LA CUARTA CONDICION SE CUMPLE!!");
+					}   /****** QUINTA CONDICION *****/
+					else if ((reservaciones_entity.getHoras_entity_id_horaini().getId_horas() >= lst.getHoras_entity_id_horaini().getId_horas())
+							   && (reservaciones_entity.getHoras_entity_id_horaini().getId_horas() <= lst.getHoras_entity_id_horafin().getId_horas())) {
+						res = "EXISTE UNA RESERVACION DE " + lst.getHoras_entity_id_horaini().getHora() + " A " + 
+							  lst.getHoras_entity_id_horafin().getHora();
+						System.out.println("\nID RECURSO OCUPADO: " + lst.getRecursos_entity().getId_recursos());
+						System.out.println("ID RECURSO NUEVA: " + reservaciones_entity.getRecursos_entity().getId_recursos());
+						System.out.println("ID INICIO OCUPADO: " + lst.getHoras_entity_id_horaini().getId_horas());
+						System.out.println("ID INICIO NUEVO: " + reservaciones_entity.getHoras_entity_id_horaini().getId_horas());
+						System.out.println("ID FIN OCUPADO: " + lst.getHoras_entity_id_horafin().getId_horas());
+						System.out.println("ID FIN NUEVO: " + reservaciones_entity.getHoras_entity_id_horafin().getId_horas());
+						System.out.println("LA QUINTA CONDICION SE CUMPLE!!");
+					} else {
+						System.out.println("HACER LA RESERVACION");
+						System.out.println("\nID RECURSO OCUPADO: " + lst.getRecursos_entity().getId_recursos());
+						System.out.println("ID RECURSO NUEVA: " + reservaciones_entity.getRecursos_entity().getId_recursos());
+						System.out.println("ID INICIO OCUPADO: " + lst.getHoras_entity_id_horaini().getId_horas());
+						System.out.println("ID INICIO NUEVO: " + reservaciones_entity.getHoras_entity_id_horaini().getId_horas());
+						System.out.println("ID FIN OCUPADO: " + lst.getHoras_entity_id_horafin().getId_horas());
+						System.out.println("ID FIN NUEVO: " + reservaciones_entity.getHoras_entity_id_horafin().getId_horas());
+						//System.out.println("LA SEGUNDA CONDICION SE CUMPLE!!");
+						res = "HICE RESERVACION";
+					}
+				}	
 			}
-									/**** ELSE FINAL  ****/ 		
+			/**** ELSE FINAL  ****/ 		
 			else {
 				System.out.println("ID RECURSO OCUPADO: " + lst.getRecursos_entity().getId_recursos());
 				System.out.println("ID RECURSO NUEVA: " + reservaciones_entity.getRecursos_entity().getId_recursos());
@@ -142,11 +148,74 @@ public class ReservacionesService {
 				System.out.println("ID FIN OCUPADO: " + lst.getHoras_entity_id_horafin().getId_horas());
 				System.out.println("ID FIN NUEVO: " + reservaciones_entity.getHoras_entity_id_horafin().getId_horas());					
 				System.out.println("ELSE FINAL SE CUMPLE!!");
-				System.out.println("NO OCUPADO!!");				
+				System.out.println("NO OCUPADO!!");
+				res = "HICE RESERVACION";
 			}    			
 		}
     	return res;
     }
     
 }
+
+///**** PRIMERA CONDICION  QUE LA NUEVA RESERVACION SEA EXACTAMENTE A L MISMA HORA DE INICIO Y FIN DE UNA EXISTENTE ****/
+/////*if((lst.getHoras_entity_id_horaini().getId_horas() == reservaciones_entity.getHoras_entity_id_horaini().getId_horas())
+////  && (lst.getHoras_entity_id_horafin().getId_horas() == reservaciones_entity.getHoras_entity_id_horafin().getId_horas())) { 
+//			System.out.println("ID RECURSO OCUPADO: " + lst.getRecursos_entity().getId_recursos());
+//			System.out.println("ID RECURSO NUEVA: " + reservaciones_entity.getRecursos_entity().getId_recursos());
+//			System.out.println("ID INICIO OCUPADO: " + lst.getHoras_entity_id_horaini().getId_horas());
+//			System.out.println("ID INICIO NUEVO: " + reservaciones_entity.getHoras_entity_id_horaini().getId_horas());
+//			System.out.println("ID FIN OCUPADO: " + lst.getHoras_entity_id_horafin().getId_horas());
+//			System.out.println("ID FIN NUEVO: " + reservaciones_entity.getHoras_entity_id_horafin().getId_horas());
+//			System.out.println("LA PRIMERA CONDICION SE CUMPLE!!");
+//			res = "PARA EL " + reservaciones_entity.getFecha() + " EL: " + reservaciones_entity.getRecursos_entity().getNombre() +
+//			      " ESTÁ OCUPADO DE: " + lst.getHoras_entity_id_horaini().getHora() + " A: " +
+//				  lst.getHoras_entity_id_horafin().getHora();
+//		//}
+//		/**** SEGUNDA CONDICION QUE LA NUEVA RESERVACION EMPIEZE EXACTAMENTE CUANDO UNA EXISTENTE TERMINE
+//		 *    O TERMINE EXACTAMENTE CUANDO UN EXISTENTE EMPIEZE (DEJAR 1/2 HORA ENTRE EVENTOS)  ****/
+////		else if((lst.getHoras_entity_id_horaini().getId_horas() == reservaciones_entity.getHoras_entity_id_horaini().getId_horas())
+////		   || (lst.getHoras_entity_id_horafin().getId_horas() == reservaciones_entity.getHoras_entity_id_horafin().getId_horas())
+////		   || (lst.getHoras_entity_id_horafin().getId_horas() == reservaciones_entity.getHoras_entity_id_horaini().getId_horas())
+////		   || (lst.getHoras_entity_id_horaini().getId_horas() == reservaciones_entity.getHoras_entity_id_horafin().getId_horas())) {
+//		else if((lst.getRecursos_entity().getId_recursos() == reservaciones_entity.getRecursos_entity().getId_recursos())
+//				  && (lst.getHoras_entity_id_horaini().getId_horas() < reservaciones_entity.getHoras_entity_id_horaini().getId_horas())
+//				  && (lst.getHoras_entity_id_horafin().getId_horas() < reservaciones_entity.getHoras_entity_id_horafin().getId_horas()) ) {
+//			System.out.println("ID RECURSO OCUPADO: " + lst.getRecursos_entity().getId_recursos());
+//			System.out.println("ID RECURSO NUEVA: " + reservaciones_entity.getRecursos_entity().getId_recursos());
+//			System.out.println("ID INICIO OCUPADO: " + lst.getHoras_entity_id_horaini().getId_horas());
+//			System.out.println("ID INICIO NUEVO: " + reservaciones_entity.getHoras_entity_id_horaini().getId_horas());
+//			System.out.println("ID FIN OCUPADO: " + lst.getHoras_entity_id_horafin().getId_horas());
+//			System.out.println("ID FIN NUEVO: " + reservaciones_entity.getHoras_entity_id_horafin().getId_horas());
+//			System.out.println("LA SEGUNDA CONDICION SE CUMPLE!!");
+//			res = "PARA EL " + reservaciones_entity.getFecha() + " EL: " + reservaciones_entity.getRecursos_entity().getNombre() +
+//			      " ESTÁ OCUPADO DE: " + lst.getHoras_entity_id_horaini().getHora() + " A: " +
+//				  lst.getHoras_entity_id_horafin().getHora() + "\n DEBES DEJAR MEDIA HORA ENTRE EVENTOS";
+//		
+//						/**** TERCERA CONDICION  ****/
+//		} else if((lst.getRecursos_entity().getId_recursos() == reservaciones_entity.getRecursos_entity().getId_recursos())
+//				  && (lst.getHoras_entity_id_horaini().getId_horas() > reservaciones_entity.getHoras_entity_id_horaini().getId_horas())
+//				  && (lst.getHoras_entity_id_horafin().getId_horas() > reservaciones_entity.getHoras_entity_id_horafin().getId_horas())) {
+//			System.out.println("ID RECURSO OCUPADO: " + lst.getRecursos_entity().getId_recursos());
+//			System.out.println("ID RECURSO NUEVA: " + reservaciones_entity.getRecursos_entity().getId_recursos());
+//			System.out.println("ID INICIO OCUPADO: " + lst.getHoras_entity_id_horaini().getId_horas());
+//			System.out.println("ID INICIO NUEVO: " + reservaciones_entity.getHoras_entity_id_horaini().getId_horas());
+//			System.out.println("ID FIN OCUPADO: " + lst.getHoras_entity_id_horafin().getId_horas());
+//			System.out.println("ID FIN NUEVO: " + reservaciones_entity.getHoras_entity_id_horafin().getId_horas());
+//			System.out.println("LA TERCERA CONDICION SE CUMPLE!!");
+//			System.out.println("HACER RESERVACION");
+//			res = "";				
+//		}		/**** CUARTA CONDICION  ****/ 
+//		else if((lst.getHoras_entity_id_horaini().getId_horas() < reservaciones_entity.getHoras_entity_id_horaini().getId_horas())
+//				&& (lst.getHoras_entity_id_horafin().getId_horas() > reservaciones_entity.getHoras_entity_id_horaini().getId_horas())
+//				&& (lst.getHoras_entity_id_horafin().getId_horas() < reservaciones_entity.getHoras_entity_id_horafin().getId_horas()) ) {
+//			System.out.println("ID RECURSO OCUPADO: " + lst.getRecursos_entity().getId_recursos());
+//			System.out.println("ID RECURSO NUEVA: " + reservaciones_entity.getRecursos_entity().getId_recursos());
+//			System.out.println("ID INICIO OCUPADO: " + lst.getHoras_entity_id_horaini().getId_horas());
+//			System.out.println("ID INICIO NUEVO: " + reservaciones_entity.getHoras_entity_id_horaini().getId_horas());
+//			System.out.println("ID FIN OCUPADO: " + lst.getHoras_entity_id_horafin().getId_horas());
+//			System.out.println("ID FIN NUEVO: " + reservaciones_entity.getHoras_entity_id_horafin().getId_horas());
+//			System.out.println("LA CUARTA CONDICION SE CUMPLE!!");
+//			System.out.println("HACER RESERVACION");
+//			res = "YA EXISTE UNA DE: " + lst.getHoras_entity_id_horaini().getHora() + " A: " + lst.getHoras_entity_id_horafin().getHora();				
+//		}
 
