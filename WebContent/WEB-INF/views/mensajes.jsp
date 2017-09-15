@@ -16,7 +16,7 @@
 		<script type="text/javascript" src="<c:url value='/res/js/mensajes.js' />" ></script>
 		<c:if test="${sessionScope.msj != null}">
 			<input type="hidden" value="${sessionScope.msj}" id="inp_msj" />
-			<script type="text/javascript">showAlert()</script>
+			<script type="text/javascript">main()</script>
 		</c:if>
 	</body>
 </html>

@@ -1,4 +1,5 @@
-date = new Date();
+date = new Date(), expresion = /[\<\>\{\}\[\]]/; /*CON ESTO INDICAMOS QUE SI EN EL TEXTO EXISTE CUALQUIER DE LOS CARACTERES (<, >, {, }, [, ]) MANDARA UN
+MENSAJE DE QUE NO SE PERMITEN CARACTERES ESPECIALES*/;
 
 $("#icon_menu").on("click", function() {
     $("#nav_menu").toggleClass("abrir_cerrar");
@@ -25,6 +26,10 @@ $("#btn_clean").on("click", function() {
 });
 
 $("#fecha_creacion").val(date.getFullYear() + "-" + monthLessTen((date.getMonth() + 1)) + "-" + dayLessTen(date.getDate()));
+
+$("#participantes").focus(function() {
+	$(this).val("");
+});
 
 function validaCampos(e) {
 	if($("#fecha").val() === "") {
@@ -59,10 +64,19 @@ function validaCampos(e) {
 			} else if($("#evento").val() === "") {
 				showAlert("El campo evento no puede ser vacio");
 				e.preventDefault();
-			} else if($("#responsable").val() === "") {
-				showAlert("El campo responsable no puede ser vacio");
-				e.preventDefault();
-			}
+			} else {
+				if (expresion.test($("#evento").val())) {
+				    showAlert("LOS CARACTERES (<, >, {, }, [, ]) NO ESTAN PERMITIDOS");
+				    e.preventDefault();
+				} else if($("#responsable").val() === "") {
+					showAlert("El campo responsable no puede ser vacio");
+					e.preventDefault();
+				} if (expresion.test($("#responsable").val())) {
+				    showAlert("LOS CARACTERES (<, >, {, }, [, ]) NO ESTAN PERMITIDOS");
+				    e.preventDefault();
+				}
+			} 
+			
 		}		
 	} 
 }
@@ -91,7 +105,6 @@ function showMsjDialog(id) {
 			 "El salon está ocupado a esa hora " + id,
 			 "error");
 	}
-	//$(location).attr('href', history.back());
 	
 }
 

@@ -10,6 +10,9 @@
 		<config>WebContent/WEB-INF/Dispatcher-servlet.xml</config>
 	</configs>
 	<autoconfigs>
+		<config>src/com/sam/webappad/configuration/security-context.xml</config>
+		<config>src/com/sam/webappad/configuration/persistence-context.xml</config>
+		<config>src/com/sam/webappad/configuration/service-context.xml</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>

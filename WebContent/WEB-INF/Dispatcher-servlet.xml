@@ -22,6 +22,23 @@
     <mvc:annotation-driven />
     <!-- FIN LINEA DE ESCANEO DE CONTROLADORES -->
     
+	<!-- ENVIO DE CORREO -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="reservaciones.ulp@gmail.com" />
+		<property name="password" value="Reservaciones.1024" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.debug">true</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- FIN ENVIO DE CORREO -->
+    
     <!--CON ESTO LE INDICAMOS QUE LA CARPETA resources ES DE RECURSOS (JS, CSS, JPG, ETC)-->
     <mvc:resources mapping="/res/**" location="/resources/" />
     <!-- FIN INDICACION CARPETA DE RECURSOS -->

@@ -67,6 +67,7 @@
                                 <option value="${acomodo.id}">${acomodo.acomodos}</option>
                             </c:forEach>
                         </select>
+                        <input class="input_field" type="text" name="no_participantes" id="participantes" placeholder="No. Participantes" value="0" />
                         <sf:textarea path="evento" name="evento" id="evento" placeholder="Evento" class="input_field textarea"></sf:textarea>
                         <sf:input path="responsable" type="text" name="responsable" id="responsable" class="input_field" placeholder="Responsable"/>
                         

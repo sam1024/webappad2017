@@ -91,6 +91,14 @@
 		<artifactId>spring-security-taglibs</artifactId>
 		<version>4.2.2.RELEASE</version>
 	</dependency>
+	
+	<!-- MANDAR MAIL -->
+	<dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-context-support</artifactId>
+    	<version>4.3.11.RELEASE</version>
+	</dependency>
+	
 	<!-- FIN DEPENDECIAS SPRINGFRAMEWORK -->
 
 	<!-- DEPENDENCIAS HIBERNATE -->
@@ -139,6 +147,17 @@
 		<version>10.2.0.2.0</version>
 	</dependency>
 	<!-- FIN DEPENDECIA ORACLE -->
-        
-    </dependencies>
+	
+<!-- 	<dependency> -->
+<!-- 		<groupId>com.sun.mail</groupId> -->
+<!-- 		<artifactId>javax.mail</artifactId> -->
+<!-- 		<version>1.6.0</version> -->
+<!-- 	</dependency> -->
+	<dependency>
+		<groupId>javax.mail</groupId>
+		<artifactId>mail</artifactId>
+		<version>1.5.0-b01</version>
+	</dependency>
+	
+</dependencies>
 </project>
