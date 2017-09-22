@@ -1,0 +1,87 @@
+@import url(../css/fonts.css);
+@import url(../css/reset-css.css);
+html * {
+  font-family: elmessiri;
+  font-size: 15px;
+  color: #d0d3d4; }
+
+body {
+  background-color: #111; }
+
+a {
+  color: #d0d3d4; }
+
+option {
+  background-color: #111; }
+
+/***** ESTILOS PARA EL FORMULARIO *****/
+#section_main {
+  margin-top: 4rem; }
+
+#section_main main p {
+  font-size: 1.5rem;
+  margin: auto;
+  width: 15rem; }
+
+form {
+  padding: .5rem;
+  color: #d0d3d4; }
+
+#section_main main form .container .input_field {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #9e9e9e;
+  border-radius: 0;
+  outline: none;
+  height: 3rem;
+  width: 100%;
+  font-size: 1rem;
+  margin: 0 0 20px 0;
+  padding: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  color: #d0d3d4; }
+
+#section_main main form .container .textarea {
+  overflow-y: hidden;
+  padding: .8rem 0 1.6rem 0;
+  resize: none;
+  min-height: 3rem; }
+
+#fechas {
+  display: none; }
+
+#btn_save, #btn_repeat {
+  margin: 0 0 .3rem 0; }
+
+.btns {
+  padding: .5rem .7rem;
+  background-color: transparent;
+  border: .1rem solid #d0d3d4;
+  border-radius: .3rem;
+  color: #d0d3d4;
+  font-size: 1.1rem;
+  width: 100%; }
+
+#section_main main form .container .btns:hover {
+  color: #fff;
+  background-color: #222; }
+
+/***** FIN ESTILOS PARA EL FORMULARIO *****/
+/********** MEDIAS QUERY **************/
+@media (min-width: 992px) {
+  main {
+    border: .3rem solid #d0d3d4;
+    border-radius: .5rem;
+    width: 55rem;
+    margin: -4rem auto auto 1rem;
+    padding: 1rem; }
+
+  .btns {
+    width: 15rem !important; } }
+
+/*# sourceMappingURL=modificar.css.map */

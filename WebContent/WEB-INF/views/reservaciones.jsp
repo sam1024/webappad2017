@@ -1,6 +1,8 @@
 <%-- Document: reservaciones Created on: 4/05/2017, 03:55:33 PM Author: sam --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -62,11 +64,7 @@
         </section>
         <section id="section_reservaciones_x_dia">
             <div class="container" id="reservaciones_x_dia"></div>
-        </section>
-        
-        <!-- EN ESTE DIV SE PONDE EL ICON DE + PARA LA NUEVA RESERVACIÓN -->
-<!--         <div id="new_reservacion"><span class="icon-circle-with-plus" id="icon_new_reservacion" title="Nueva"></span></div> -->
-        
+        </section>	
         <input id="path" type="hidden" value="${pageContext.request.contextPath}" />
         <script type="text/javascript" src='<c:url value="/res/js/jquery-3.2.1.min.js" />' ></script>
         <script type="text/javascript" src='<c:url value="/res/js/reservaciones.js" />' ></script>        

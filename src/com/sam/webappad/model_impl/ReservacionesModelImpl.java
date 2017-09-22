@@ -41,15 +41,15 @@ public class ReservacionesModelImpl implements ReservacionesModelInterface {
     	getSession().saveOrUpdate(reservaciones_entity);		
 	}
 
-//    @Override
-//    public ReservacionesEntity findReservacion(int id_horaini, int id_horafin, Date fecha, int id_salon) {
-//        CriteriaBuilder criteria_builder = getSession().getCriteriaBuilder();
-//        CriteriaQuery<ReservacionesEntity> criteria_query = criteria_builder.createQuery(ReservacionesEntity.class);
-//        Root<ReservacionesEntity> root = criteria_query.from(ReservacionesEntity.class);
-//        criteria_query.select(root).where(criteria_builder.equal(root.get(ReservacionesEntity_.horas_entity_id_horaini), id_horaini));
-//        ReservacionesEntity reservaciones_entity = getSession().createQuery(criteria_query).uniqueResult();        
-//        return null;
-//    }
+    @Override
+    public ReservacionesEntity findReservacionById(int id) {
+        CriteriaBuilder criteria_builder = getSession().getCriteriaBuilder();
+        CriteriaQuery<ReservacionesEntity> criteria_query = criteria_builder.createQuery(ReservacionesEntity.class);
+        Root<ReservacionesEntity> root = criteria_query.from(ReservacionesEntity.class);
+        criteria_query.select(root).where(criteria_builder.equal(root.get(ReservacionesEntity_.id), id));
+        ReservacionesEntity reservaciones_entity = getSession().createQuery(criteria_query).uniqueResult();        
+        return reservaciones_entity;
+    }
 
 	@Override
 	public List<ReservacionesEntity> findByFecha(Date fecha) {

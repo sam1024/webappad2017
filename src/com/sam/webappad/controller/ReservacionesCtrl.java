@@ -12,6 +12,8 @@ import com.sam.webappad.service.ReservacionesService;
 import com.sam.webappad.service.UsuariosService;
 
 import java.sql.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
@@ -47,6 +49,12 @@ public class ReservacionesCtrl {
     
     @Autowired
     private AcomodosService acomodos_service;
+    
+    private RecursosEntity recursos_entity;
+	private UsuariosEntity usuarios_entity;
+	private HorasEntity horas_entity_ini;
+	private HorasEntity horas_entity_fin;
+	private AcomodosEntity acomodos_entity;
     
     @RequestMapping("/reservaciones")
     public String showReservaciones() {
@@ -85,13 +93,11 @@ public class ReservacionesCtrl {
     			reservaciones_entity.setEvento(evento);
     		}
     	}
-    	RecursosEntity recursos_entity = recursos_service.findById(id_recurso);
-    	UsuariosEntity usuarios_entity = usuarios_service.findByUsuario(user_name);
-    	HorasEntity horas_entity_ini = horas_service.findById(id_hora_ini);
-    	HorasEntity horas_entity_fin = horas_service.findById(id_hora_fin);
-    	System.out.println("ID_ACOMODO: " + id_acomodo + "\nPARTICIPANTES: " + no_participantes);
-    	AcomodosEntity acomodos_entity = acomodos_service.findById(id_acomodo);
-    	System.out.println("ACOMODOS ENTITY: " + acomodos_entity);
+    	recursos_entity = recursos_service.findById(id_recurso);
+    	usuarios_entity = usuarios_service.findByUsuario(user_name);
+    	horas_entity_ini = horas_service.findById(id_hora_ini);
+    	horas_entity_fin = horas_service.findById(id_hora_fin);
+    	acomodos_entity = acomodos_service.findById(id_acomodo);
     	reservaciones_entity.setRecursos_entity(recursos_entity);
     	reservaciones_entity.setUsuarios_entity(usuarios_entity);
     	reservaciones_entity.setHoras_entity_id_horaini(horas_entity_ini);
@@ -132,6 +138,18 @@ public class ReservacionesCtrl {
       @RequestMapping("/mensajes")
       public String mensajes() {
     	  return "mensajes";
+      }
+      
+      @RequestMapping(value = "/reservacion/modificar", method = RequestMethod.POST)
+      public String Modificar(@ModelAttribute("id") int id, Model model) {
+    	  model.addAttribute("reservacion_new", new ReservacionesEntity());/*SI NO SE MANDA UNA INSTACIA DE LA CLASE
+      	  MARCA EL ERROR Neither BindingResult nor plain target object*/
+    	  System.out.println("RESERVACION: " + reservaciones_service.findReservacionById(id));
+    	  model.addAttribute("reservacion", reservaciones_service.findReservacionById(id));
+    	  model.addAttribute("lst_horas", horas_service.findAll());
+          model.addAttribute("lst_recursos", recursos_service.findAll());
+          model.addAttribute("lst_acomodos", acomodos_service.findAll());
+    	  return "modificar";
       }
 }
 

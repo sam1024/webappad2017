@@ -7,6 +7,7 @@ function sam() {
     listen();
 }
 
+/*** ESTA FUNCION "CARGA" LAS RESERVACIONES AL MOMENTO DE ABRIR LA PAGINA ***/
 $(function() {
     fecha = date.getFullYear() + "-" + mesLessTen((date.getMonth() + 1)) + "-" + dayLessTen(date.getDate());
     callAjax(fecha);
@@ -180,11 +181,14 @@ function showMenu() {
 
 function callAjax(fecha) {
     $.ajax({
+    	async: true,
         type: "POST",
         url: $("#path").val() + "/xdia",
         data: {"fecha": fecha}
     })
     .done(function(resers) {
         success: $("#reservaciones_x_dia").html(resers);
+    	//$("#reservaciones_x_dia").css("transition", "all 0.3s")
     });
 }
+

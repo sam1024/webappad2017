@@ -9,7 +9,7 @@
 		<link type="text/css" rel="stylesheet" href='<c:url value="/res/css/inventory.css" />' />
 	</head>
 	<body>
-	<%@include file="plantillas/header.jsp" %>
+		<%@include file="plantillas/header.jsp" %>
 		<h1>PAGINA DE INVENTARIO</h1>
 		<script type="text/javascript" src='<c:url value="/res/js/jquery-3.2.1.min.js" />' ></script>
 		<script type="text/javascript" src='<c:url value="/res/js/inventory.js" />' ></script>	

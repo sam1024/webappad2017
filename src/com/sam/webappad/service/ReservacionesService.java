@@ -68,28 +68,18 @@ public class ReservacionesService {
             			lst_fechas_ocupadas.add(reservaciones_entity.getFecha().toString());
             			System.out.println("EL: " + reservaciones_entity.getFecha() + "EL SALON ESTÁ OCUPADO");
             		}
-        		}        		
-                /*System.out.println("Reservaciones entity: " + reservaciones_entity);
-                res = validadDisponibilidad(reservaciones_entity);
-        		if(res.equals("")) {
-        			/**** ENTRA A ESTE IF SOLO CUANDO EL RECURSO ESTÁ DISPONIBLE ****/
-        			/*reservaciones_model_interface.save(reservaciones_entity);
-        			System.out.println("EL: " + reservaciones_entity.getFecha() + "GUARDE LA RESERVACIÓN");
-        		} else {
-        			lst_fechas_ocupadas.add(reservaciones_entity.getFecha().toString());					
-        		}*/
+        		}
         		if(!lst_fechas_ocupadas.isEmpty()) {
         			res = "";
+        			String[] fecha_ocupada;
         			for(String fecha : lst_fechas_ocupadas) {
         				System.out.println(fecha);
-    					//res = res + "\n" + fecha;
-        				res += fecha + "\n" ;
+    					fecha_ocupada = fecha.split("-");
+        				res += fecha_ocupada[2] + "/" + fecha_ocupada[1] + "/" + fecha_ocupada[0]  + ", " ;
     				}
-        			//System.out.println("NO PUEDE GUARDAR LAS RESERVACIONES");
         			res = "PARA LAS FECHAS: " + res + " EL RECURSO QUE SOLICITASTE ESTÁ OCUPADO Y NO SE PUEDE RESERVAR";
         			System.out.println(res);
         		}
-//        		reservaciones_model_interface.save(reservaciones_entity);
         		System.out.println("EN SERVICE: " + reservaciones_entity);
         	}        	       	   		
     	} else {
@@ -112,6 +102,10 @@ public class ReservacionesService {
     
     public List<ReservacionesEntity> findReservacion(Date fecha) {
     	return reservaciones_model_interface.findReservacion(fecha);
+    }
+    
+    public ReservacionesEntity findReservacionById(int id) {
+    	return reservaciones_model_interface.findReservacionById(id);
     }
     
     private String validadDisponibilidad(ReservacionesEntity reservaciones_entity) {
