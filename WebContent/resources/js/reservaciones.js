@@ -11,6 +11,7 @@ function sam() {
 $(function() {
     fecha = date.getFullYear() + "-" + mesLessTen((date.getMonth() + 1)) + "-" + dayLessTen(date.getDate());
     callAjax(fecha);
+    showFecha(fecha);
 });
 
 $("#back").on("click", function() {
@@ -180,15 +181,26 @@ function showMenu() {
 }
 
 function callAjax(fecha) {
+	showFecha(fecha);
     $.ajax({
     	async: true,
         type: "POST",
         url: $("#path").val() + "/xdia",
-        data: {"fecha": fecha}
-    })
-    .done(function(resers) {
-        success: $("#reservaciones_x_dia").html(resers);
+        data: {"fecha": fecha},
+    /*})
+    .done(function(resers) {*/
+        success: function(resers) {
+        	$("#reservaciones_x_dia").html(resers);
+        }
     	//$("#reservaciones_x_dia").css("transition", "all 0.3s")
     });
 }
+
+/**** RESERVACIONES X DIA ****/
+function showFecha(fecha) {
+	array_xdia = fecha.split("-");
+    $("#show_fecha").html(numDayToName(new Date(array_xdia[0] + "/" + array_xdia[1] + "/" + array_xdia[2]).getDay()) + 
+    		" " + array_xdia[2] + "/" + array_xdia[1] + "/" + array_xdia[0]);
+}
+
 

@@ -27,9 +27,12 @@ $("#btn_clean").on("click", function() {
 
 $("#fecha_creacion").val(date.getFullYear() + "-" + monthLessTen((date.getMonth() + 1)) + "-" + dayLessTen(date.getDate()));
 
-$("#participantes").focus(function() {
-	$(this).val("");
+/***************** ESTE EVENTO ES PARA EL ARCHIVO DE MODIFICAR UNA RESEREVACIÓN ****************************/
+$("#btn_cancel").on("click", function() {
+	console.log("FECHA: " + $("#fecha").val());
+	callAjax($("#fecha").val());
 });
+/***************** FIN EVENTO PARA EL ARCHIVO DE MODIFICAR UNA RESEREVACIÓN ****************************/
 
 function validaCampos(e) {
 	if($("#fecha").val() === "") {
@@ -101,42 +104,10 @@ function monthLessTen(mes) {
 function showMsjDialog(id) {
 	if(id === 1) {
 		swal(
-			 "ERROR",
-			 "El salon está ocupado a esa hora " + id,
-			 "error");
+			"ERROR",
+			"El salon está ocupado a esa hora " + id,
+			"error");
 	}
 	
 }
 
-//function repetir(fecha, evento, responsable, cancelada, tipo, id_recurso, id_hora_ini, id_hora_fin, usuario,
-//		         fecha_creacion) {
-//	console.log("fecha" + fecha +
-//        	   " evento" + evento +
-//        	   " responsable" + responsable +
-//        	   " cancelada" + cancelada +
-//        	   " tipo" + tipo +
-//        	   " id_recurso" + id_recurso +
-//        	   " id_hora_ini" + id_hora_ini +
-//        	   " id_hora_fin" + id_hora_fin +
-//        	   " usuario" + usuario +
-//        	   " fecha_creacion" + fecha_creacion);
-//	$.ajax({
-//        type: "POST",
-//        url: $("#path").val() + "/repetir",
-//        data: {
-//        	   "fecha": fecha,
-//        	   "evento": evento,
-//        	   "responsable": responsable,
-//        	   "cancelada": cancelada,
-//        	   "tipo": tipo,
-//        	   "id_recurso": id_recurso,
-//        	   "id_hora_ini": id_hora_ini,
-//        	   "id_hora_fin": id_hora_fin,
-//        	   "usuario": usuario,
-//        	   "fecha_creacion": fecha_creacion
-//        	  }
-//    });
-////    .done(function(resers) {
-////        success: $("#reservaciones_x_dia").html(resers);
-////    });
-//}

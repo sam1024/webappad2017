@@ -1,3 +1,4 @@
+var day;
 $("#print").on("click", function() {
     print(); 
 });
@@ -6,8 +7,8 @@ $("button").on("click", function() {
 	if($(this).attr('name') === 'del') {
 		console.log("LA RESERVACIÓN CON EL ID: " + $(this).val() + " SERÁ BORRADA!!");
 		swal({
-			  title: '¿ESTAS SEGURO DE CANCELAR LA RESERVACIÓN?',
-			  //text: "You won't be able to revert this!",
+			  title: 'AVISO!!!',
+			  text: "¿ESTAS SEGURO DE CANCELAR LA RESERVACIÓN?",
 			  type: 'warning',
 			  showCancelButton: true,
 			  confirmButtonColor: '#3085d6',
@@ -15,24 +16,12 @@ $("button").on("click", function() {
 			  confirmButtonText: 'Aceptar',
 			  cancelButtonText: 'Cancelar'
 			}).then(function () {
-			  swal(
-			    'Deleted!',
-			    'Your file has been deleted.',
-			    'success'
-			  )
+				callAjax("2017-09-26");
 		});
 	} else {
-		console.log("LA RESERVACIÓN PARA EL: " + $("#fechaxdia").val() + " CON EL ID: " + $(this).val() + " SERÁ MODIFICADA!!");
-		modificar($(this).val(), $("#fechaxdia").val());		
+		modificar($(this).val());		
 	}
 });
-
-function showFecha() {
-    array = $("#fechaxdia").val().split("-");
-    fecha_split = array[0] + "/" + array[1] + "/" + array[2];    
-    dia = numDayToName(new Date(fecha_split).getDay());
-    $("#show_fecha").html( dia + " " + array[2] + "/" + array[1] + "/" + array[0]);
-}
 
 function numDayToName(number_day) {
     switch(number_day) {
@@ -61,13 +50,12 @@ function numDayToName(number_day) {
     return day;
 }
 
-function modificar(id){ //, fecha) {
-	console.log("A LA FUNCION modificar LE LLEGO EL ID: " + id + " Y LA FECHA: " + fecha);
+function modificar(id){
 	$.ajax({
 		async: true,		
 		type: "POST",
 		url: $("#path").val() + "/reservacion/modificar",
-		data: {"id": id,}// "fecha": fecha}
+		data: {"id": id,}
 	})
 	.done(function(resers) {
 		success: $("#reservaciones_x_dia").html(resers);

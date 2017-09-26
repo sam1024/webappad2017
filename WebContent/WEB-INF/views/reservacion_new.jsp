@@ -42,14 +42,14 @@
                 <sf:form id="form_new_reservacion" action="${pageContext.request.contextPath}/reservacion/save" 
                          method="POST" commandName="reservacion_new">
                     <div class="container">
-                        <sf:input path="fecha" type="text" name="fecha" id="fecha" class="input_field" placeholder="Fecha"/>
-                        <select class="input_field" name="hora_inicio" id="hora_inicio">
+                        <sf:input path="fecha" type="text" name="fecha" id="fecha" class="input_field inputs_small" placeholder="Fecha"/>
+                        <select class="input_field inputs_small inputs_horas" name="hora_inicio" id="hora_inicio">
                             <option value="">Inicia</option>
                             <c:forEach var="horas" items="${lst_horas}">
                                 <option value="${horas.id_horas}">${horas.hora}</option>
                             </c:forEach>
                         </select>
-                        <select class="input_field" name="hora_fin" id="hora_fin">
+                        <select class="input_field inputs_small inputs_horas" name="hora_fin" id="hora_fin">
                             <option value="">Termina</option>
                             <c:forEach var="horas" items="${lst_horas}">
                                 <option value="${horas.id_horas}">${horas.hora}</option>
@@ -61,14 +61,15 @@
                                 <option value="${salon.id_recursos}">${salon.nombre}</option>
                             </c:forEach>
                         </select>
-                        <select class="input_field" name="id_acomodo" id="acomodo">
+                        <select class="input_field acomodo_participantes" name="id_acomodo" id="acomodo">
                             <option value="">Acomodo</option>
                             <c:forEach var="acomodo" items="${lst_acomodos}">
                                 <option value="${acomodo.id}">${acomodo.acomodos}</option>
                             </c:forEach>
                         </select>
-                        <input class="input_field" type="text" name="no_participantes" id="participantes" placeholder="No. Participantes" value="0" />
-                        <sf:textarea path="evento" name="evento" id="evento" placeholder="Evento" class="input_field textarea"></sf:textarea>
+                        <sf:input path="no_participantes" type="text" name="no_participantes" id="no_participantes" placeholder="No. Participantes" class="input_field acomodo_participantes" />
+                        <sf:textarea path="evento" name="evento" id="evento" placeholder="Evento (Reunion, Proyeccion de pelicula, Toma de protesta, etc.)" class="input_field textarea"></sf:textarea>
+                        <sf:textarea path="requerimientos" name="requerimientos" id="requerimientos" placeholder="Requerimientos (Mesa para coffee, microfono, podium, galletas, etc.)" class="input_field textarea"></sf:textarea>
                         <sf:input path="responsable" type="text" name="responsable" id="responsable" class="input_field" placeholder="Responsable"/>
                         
                         <textarea class="input_field textarea" name="fechas" id="fechas" placeholder="Se repite"></textarea>
@@ -77,7 +78,6 @@
                         <sf:input path="id_repetir" type="hidden" name="inp_repeat" id="repeat" value="" />
                         <sf:input path="cancelada" type="hidden" name="inp_cancelada" id="cancel" value="0" />
                         <sf:input path="tipo" type="hidden" name="inp_tipo" id="tipo" value="1" />
-<!--                         <input type="hidden" name="fechas" id="fechas" value="" > -->
                         
                         <sec:authorize access="isFullyAuthenticated()">
                         	<sec:authentication property="principal" var="principal" />

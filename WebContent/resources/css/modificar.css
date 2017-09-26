@@ -58,7 +58,7 @@ form {
 #btn_save, #btn_repeat {
   margin: 0 0 .3rem 0; }
 
-.btns {
+.btns_upd {
   padding: .5rem .7rem;
   background-color: transparent;
   border: .1rem solid #d0d3d4;
@@ -81,7 +81,10 @@ form {
     margin: -4rem auto auto 1rem;
     padding: 1rem; }
 
-  .btns {
+  .inputs_small {
+    width: 6rem; }
+
+  .btns_upd {
     width: 15rem !important; } }
 
 /*# sourceMappingURL=modificar.css.map */

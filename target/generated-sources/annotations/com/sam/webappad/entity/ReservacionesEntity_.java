@@ -12,6 +12,7 @@ public abstract class ReservacionesEntity_ {
 	public static volatile SingularAttribute<ReservacionesEntity, Integer> tipo;
 	public static volatile SingularAttribute<ReservacionesEntity, String> responsable;
 	public static volatile SingularAttribute<ReservacionesEntity, Integer> cancelada;
+	public static volatile SingularAttribute<ReservacionesEntity, String> requerimientos;
 	public static volatile SingularAttribute<ReservacionesEntity, Date> fecha_creacion;
 	public static volatile SingularAttribute<ReservacionesEntity, UsuariosEntity> usuarios_entity;
 	public static volatile SingularAttribute<ReservacionesEntity, RecursosEntity> recursos_entity;
@@ -21,6 +22,7 @@ public abstract class ReservacionesEntity_ {
 	public static volatile SingularAttribute<ReservacionesEntity, Integer> id_repetir;
 	public static volatile SingularAttribute<ReservacionesEntity, Integer> id;
 	public static volatile SingularAttribute<ReservacionesEntity, HorasEntity> horas_entity_id_horaini;
+	public static volatile SingularAttribute<ReservacionesEntity, String> no_participantes;
 	public static volatile SingularAttribute<ReservacionesEntity, AcomodosEntity> acomodos_entity;
 
 }

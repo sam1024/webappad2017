@@ -21,8 +21,9 @@
   </servlet-mapping>
   
   <session-config>
+<!-- ********** CON session-timeout SE ESPECIFICA POR CUANTO TIEMPO VA ASER VALIDA LA SESION DEL USUARIO ********   -->
         <session-timeout>
-            30
+            480
         </session-timeout>
     </session-config>
     

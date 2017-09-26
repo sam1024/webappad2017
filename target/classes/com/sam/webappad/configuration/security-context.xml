@@ -21,6 +21,7 @@
         <security:intercept-url pattern="/mensajes" access="isAuthenticated()" />        
         <security:intercept-url pattern="/reservaciones/**" access="permitAll" />
         <security:intercept-url pattern="/reservacion_new" access="hasAnyRole({'ROLE_ADMIN', 'ROLE_ALMACEN'})" /><!--ESTA ES UNA COLECCION DE ROLES-->
+        <security:intercept-url pattern="/reservacion/modificar" access="hasAnyRole({'ROLE_ADMIN', 'ROLE_ALMACEN'})" />
         <security:intercept-url pattern="/reservacion/**" access="hasAnyRole({'ROLE_ADMIN', 'ROLE_ALMACEN'})" />
         <security:intercept-url pattern="/xdia" access="permitAll" />
         <security:intercept-url pattern="/repetir" access="hasAnyRole({'ROLE_ADMIN', 'ROLE_ALMACEN'})" />

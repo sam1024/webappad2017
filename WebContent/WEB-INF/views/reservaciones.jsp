@@ -7,12 +7,15 @@
 <html lang="es">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, user-scalable=no" />
         <link rel="icon" type="image/png" href='<c:url value="/res/images/kernel.png" />' />
         <link type="text/css" rel="stylesheet" href='<c:url value="/res/css/font-awesome.min.css" />' />
         <link type="text/css" rel="stylesheet" href='<c:url value="/res/css/reservaciones.css" />' />
         <link type="text/css" rel="stylesheet" href='<c:url value="/res/css/iconmoon_entypo.css" />' />
         <link rel="stylesheet" type="text/css" href='<c:url value="/res/css/iconmoon_free.css" />' />
+        <link type="text/css" rel="stylesheet" href='<c:url value="/res/css/sweetalert.css" />' />
+        <link type="text/css" rel="stylesheet" href='<c:url value="/res/css/default.date.css" />' />
+        <link type="text/css" rel="stylesheet" href='<c:url value="/res/css/default.css" />' />
         <title>Webappad - Reservaciones de salones</title>
     </head>
     <body>
@@ -20,20 +23,28 @@
             <header>
             	<span id="icon_calendar" class="fa fa-calendar"></span>
                 <p id="p_app_name">WebappAD</p>
-                <span id="icon_menu" class="fa fa-bars"></span>                
+                <span id="icon_menu" class="fa fa-bars"></span> 
+                <div id="fecha_reservacion">
+    	            <h1 id="show_fecha"></h1>        	        
+            	</div>               
                 <nav id="nav_menu">
                 	<ul id="ul_menu">
+                		<sec:authorize access="!isAuthenticated()">
+                			<li class="li_menu">
+                        		<a href="<c:url value='/login' />"><i class="icon-enter icons_menu" title="Iniciar sesión"><p class="p_menu">Inicio</p></i></a>
+                        	</li>
+                		</sec:authorize>
                 		<li class="li_menu">
-                        	<a href="<c:url value='/' />"><i class="fa icon-home icons_menu" title="Inicio"><p class="p_menu">Inicio</p></i></a>
+							<a href="<c:url value='/' />"><i class="icon-home icons_menu" title="Inicio"><p class="p_menu">Inicio</p></i></a>
                         </li>
                         <li class="li_menu">
-                         	<a href="<c:url value='/reservacion_new' />"><i class="fa fa-pencil icons_menu" title="Nueva Reservación"><p class="p_menu">Nueva Reservación</p></i></a>
+							<a href="<c:url value='/reservacion_new' />"><i class="icon-pencil icons_menu" title="Nueva Reservación"><p class="p_menu">Nueva Reservación</p></i></a>
                         </li>
                         <li class="li_menu">
-                        	<a href="<c:url value='#' />"><i class="fa icon-search icons_menu" title="Buscar"><p class="p_menu">Buscar</p></i></a>
+							<a href="<c:url value='#' />"><i class="icon-search icons_menu" title="Buscar"><p class="p_menu">Buscar</p></i></a>
                         </li>
                         <li class="li_menu" id="li_print">
-                        	<a href="<c:url value='/reservaciones' />"><i class="fa fa-print icons_menu" title="Imprimir"><p class="p_menu">Imprimir</p></i></a>
+							<a href="<c:url value='/reservaciones' />"><i class="icon-printer icons_menu" title="Imprimir"><p class="p_menu">Imprimir</p></i></a>			
                         </li>                         
                     </ul>
                 </nav>
@@ -67,7 +78,11 @@
         </section>	
         <input id="path" type="hidden" value="${pageContext.request.contextPath}" />
         <script type="text/javascript" src='<c:url value="/res/js/jquery-3.2.1.min.js" />' ></script>
-        <script type="text/javascript" src='<c:url value="/res/js/reservaciones.js" />' ></script>        
-        <script type='text/javascript'>showCalendar();</script>
+        <script type="text/javascript" src='<c:url value="/res/js/picker.js" />' ></script>
+        <script type="text/javascript" src='<c:url value="/res/js/picker.date.js" />' ></script>
+        <script type="text/javascript" src='<c:url value="/res/js/legacy.js" />' ></script>
+        <script type="text/javascript" src='<c:url value="/res/js/reservaciones.js" />' ></script>
+        <script type="text/javascript" src='<c:url value="/res/js/reservaciones_x_dia.js" />' ></script>
+        <script type='text/javascript'>showCalendar()</script>
     </body>
 </html>

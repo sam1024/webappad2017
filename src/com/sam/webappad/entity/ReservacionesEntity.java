@@ -33,6 +33,8 @@ public class ReservacionesEntity {
     private int tipo;
     private Date fecha_creacion;
     private int id_repetir;
+    private String no_participantes;
+    private String requerimientos;
     
     @ManyToOne
     /*SE DEBE PONER insertable = true, updatable = true, SI NO SE HACE ASÍ LA INFORMACIÓN NO SE GUARDARA EN DB*/
@@ -61,17 +63,22 @@ public class ReservacionesEntity {
 
     public ReservacionesEntity() { }
 
-    public ReservacionesEntity(Date fecha, String evento, String responsable, int cancelada, int tipo, Date fecha_creacion, int id_repetir) {
-        this.fecha = fecha;
-        this.evento = evento;
-        this.responsable = responsable;
-        this.cancelada = cancelada;
-        this.tipo = tipo;
-        this.fecha_creacion = fecha_creacion;
-        this.id_repetir = id_repetir;
-    }
+    public ReservacionesEntity(int id, Date fecha, String evento, String responsable, int cancelada, int tipo,
+			Date fecha_creacion, int id_repetir, String no_participantes, String requerimientos) {
+		super();
+		this.id = id;
+		this.fecha = fecha;
+		this.evento = evento;
+		this.responsable = responsable;
+		this.cancelada = cancelada;
+		this.tipo = tipo;
+		this.fecha_creacion = fecha_creacion;
+		this.id_repetir = id_repetir;
+		this.no_participantes = no_participantes;
+		this.requerimientos = requerimientos;
+	}
 
-    public int getId() {
+	public int getId() {
         return id;
     }
 
@@ -174,15 +181,34 @@ public class ReservacionesEntity {
 	public void setAcomodos_entity(AcomodosEntity acomodos_entity) {
 		this.acomodos_entity = acomodos_entity;
 	}
+	
+	public String getNo_participantes() {
+		return no_participantes;
+	}
+
+	public void setNo_participantes(String no_participantes) {
+		this.no_participantes = no_participantes;
+	}
+
+	public String getRequerimientos() {
+		return requerimientos;
+	}
+
+	public void setRequerimientos(String requerimientos) {
+		this.requerimientos = requerimientos;
+	}
 
 	@Override
 	public String toString() {
 		return "ReservacionesEntity [id=" + id + ", fecha=" + fecha + ", evento=" + evento + ", responsable="
 				+ responsable + ", cancelada=" + cancelada + ", tipo=" + tipo + ", fecha_creacion=" + fecha_creacion
-				+ ", id_repetir=" + id_repetir + ", recursos_entity=" + recursos_entity + ", horas_entity_id_horaini="
+				+ ", id_repetir=" + id_repetir + ", no_participantes=" + no_participantes + ", requerimientos="
+				+ requerimientos + ", recursos_entity=" + recursos_entity + ", horas_entity_id_horaini="
 				+ horas_entity_id_horaini + ", horas_entity_id_horafin=" + horas_entity_id_horafin
 				+ ", usuarios_entity=" + usuarios_entity + ", acomodos_entity=" + acomodos_entity + "]";
-	}	
+	}
+
+		
 
 }
 

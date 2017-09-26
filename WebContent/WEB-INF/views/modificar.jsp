@@ -6,10 +6,10 @@
 <html lang="es">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"> 
-		<link rel="icon" type="image/png" href='<c:url value="/res/images/kernel.png" />' />
-		<title>WebappAD - Modificar reservación</title>
-		<link type="text/css" rel="stylesheet" href='<c:url value="/res/css/modificar.css" />' />
+<!-- 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">  -->
+<%-- 		<link rel="icon" type="image/png" href='<c:url value="/res/images/kernel.png" />' /> --%>
+<!-- 		<title>WebappAD - Modificar reservación</title> -->
+<%-- 		<link type="text/css" rel="stylesheet" href='<c:url value="/res/css/modificar.css" />' /> --%>
 	</head>
 	<body>
 		<section id="section_main">
@@ -17,15 +17,16 @@
                 <p>Modificar reservación</p>
                 <sf:form id="form_new_reservacion" action="${pageContext.request.contextPath}/reservacion/save" 
                          method="POST" commandName="reservacion_new">
+                    <sf:input path="id" type="hidden" name="id" value="${reservacion.getId()}" />
                     <div class="container">
-                        <sf:input path="fecha" value="${reservacion.getFecha()}" type="text" name="fecha" id="fecha" class="input_field" placeholder="Fecha"/>
-                        <select class="input_field" name="hora_inicio" id="hora_inicio">
+                        <sf:input path="fecha" value="${reservacion.getFecha()}" type="text" name="fecha" id="fecha" class="input_field inputs_small" placeholder="Fecha"/>
+                        <select class="input_field inputs_small horas" name="hora_inicio" id="hora_inicio">
                             <option value="${reservacion.getHoras_entity_id_horaini().getId_horas()}">${reservacion.getHoras_entity_id_horaini().getHora()}</option>
                             <c:forEach var="horas" items="${lst_horas}">
                                 <option value="${horas.id_horas}">${horas.hora}</option>
                             </c:forEach>
                         </select>
-                        <select class="input_field" name="hora_fin" id="hora_fin">
+                        <select class="input_field inputs_small horas" name="hora_fin" id="hora_fin">
                             <option value="${reservacion.getHoras_entity_id_horafin().getId_horas()}">${reservacion.getHoras_entity_id_horafin().getHora()}</option>
                             <c:forEach var="horas" items="${lst_horas}">
                                 <option value="${horas.id_horas}">${horas.hora}</option>
@@ -43,9 +44,11 @@
                                 <option value="${acomodo.id}">${acomodo.acomodos}</option>
                             </c:forEach>
                         </select>
-                        <input class="input_field" type="text" name="no_participantes" id="participantes" placeholder="No. Participantes" value="0" />
+                        <input class="input_field" type="text" name="no_participantes" id="no_participantes" placeholder="No. Participantes" value="${reservacion.getNo_participantes()}" />
 <%--                         <sf:textarea path="evento" value="" name="evento" id="evento" placeholder="Evento" class="input_field textarea">${reservacion.getEvento()}</sf:textarea> --%>
 						<textarea name="evento" id="evento" placeholder="Evento" class="input_field textarea">${reservacion.getEvento()}</textarea>
+<%--                         <sf:textarea path="requerimientos" name="requerimientos" id="requerimientos" placeholder="Requerimientos (Mesa para coffee, microfono, podium, galletas, etc.)" class="input_field textarea"></sf:textarea> --%>
+						<textarea path="requerimientos" name="requerimientos" id="requerimientos" placeholder="Requerimientos (Mesa para coffee, microfono, podium, galletas, etc.)" class="input_field textarea">${reservacion.getRequerimientos()}</textarea>
                         <sf:input path="responsable" value="${reservacion.getResponsable()}" type="text" name="responsable" id="responsable" class="input_field" placeholder="Responsable"/>
                         
                         <textarea class="input_field textarea" name="fechas" id="fechas" placeholder="Se repite"></textarea>
@@ -61,13 +64,18 @@
                             <input type="hidden" name="username" id="username" value="${username}" />
                         </sec:authorize>                        
                         
-                        <button type="submit" id="btn_save" class="btns">Guardar</button>
-                        <button type="reset" id="btn_clean" class="btns">Cancelar</button>
+                        <button type="submit" id="btn_save" class="btns_upd">Guardar</button>
+                        <button type="reset" id="btn_cancel" class="btns_upd">Cancelar</button>
                     </diV>
                 </sf:form>
                 <input id="path" type="hidden" value="${pageContext.request.contextPath}" />
             </main>
         </section>
+        <script type="text/javascript" src='<c:url value="/res/js/jquery-3.2.1.min.js" />' ></script>
+		<script type="text/javascript" src='<c:url value="/res/js/picker.js" />' ></script>
+        <script type="text/javascript" src='<c:url value="/res/js/picker.date.js" />' ></script>
+        <script type="text/javascript" src='<c:url value="/res/js/sweetalert2.min-6.6.5.js" />' ></script>
+        <script type="text/javascript" src='<c:url value="/res/js/reservacion_new.js" />' ></script>
 	</body>
 </html>
 

@@ -19,7 +19,8 @@ public class ReservacionesService {
     private ReservacionesModelInterface reservaciones_model_interface;
     
     public String save(ReservacionesEntity reservaciones_entity, String fechas) {
-    	String res = "";   	
+    	String res = "";
+    	int id_reservacion = reservaciones_entity.getId();
     	if(!fechas.equals("")) {
     	/**** ENTRA A ESTE IF SOLO CUANDO LA RESERVACIÓN SE REPITE ****/
     	    System.out.println("Reservaciones entity: " + reservaciones_entity);
@@ -30,10 +31,12 @@ public class ReservacionesService {
     			reservaciones_model_interface.save(reservaciones_entity);
         		System.out.println("GUARDE LA PRIMERA FECHA: " + reservaciones_entity.getFecha());
         		id = reservaciones_entity.getId();
+        		
         		/********* ACTUALIZO EL ID_REPETIR EN LA PRIMERA RESERVACION QUE GUARDE  *********/
         		reservaciones_entity.setId_repetir(id);
         		reservaciones_model_interface.saveOrUpd(reservaciones_entity);
         		/********* FIN ACTUALIZO EL ID_REPETIR EN LA PRIMERA RESERVACION QUE GUARDE  *********/
+        		
     		} else {
     			lst_fechas_ocupadas.add(reservaciones_entity.getFecha().toString());
     			System.out.println("EL: " + reservaciones_entity.getFecha() + "EL SALON ESTÁ OCUPADO");
@@ -86,7 +89,11 @@ public class ReservacionesService {
     		/**** LA RESERVACIÓN NO SE REPITE ****/
         		res = validadDisponibilidad(reservaciones_entity);
         		if(res.equals("")) {
-        			reservaciones_model_interface.save(reservaciones_entity);
+        			if(id_reservacion != 0) {
+        				reservaciones_model_interface.saveOrUpd(reservaciones_entity);
+        	    	} else {
+        	    		reservaciones_model_interface.save(reservaciones_entity);
+        	    	}
         			System.out.println("HICE RESERVACION");
         		} else {
         			System.out.println("EL: " + reservaciones_entity.getFecha() + "EL SALON ESTÁ OCUPADO");

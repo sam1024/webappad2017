@@ -12,11 +12,8 @@ import com.sam.webappad.service.ReservacionesService;
 import com.sam.webappad.service.UsuariosService;
 
 import java.sql.Date;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -84,49 +81,50 @@ public class ReservacionesCtrl {
     							 @ModelAttribute("id_acomodo") int id_acomodo, @ModelAttribute("hora_inicio") int id_hora_ini,
     							 @ModelAttribute("hora_fin") int id_hora_fin, @ModelAttribute("no_participantes") String no_participantes, Model model,
     							 RedirectAttributes redirect_attributes, @ModelAttribute("fechas") String fechas) {
-    	String pagina = "", res, evento;
-    	if(!no_participantes.equals("")) {
-    		int numero = Integer.parseInt(no_participantes);
-    		if(numero > 0) {
-    			evento  = no_participantes + " PARTICIPANTES<br />" + reservaciones_entity.getEvento();
-    			System.out.println("EVENTO: " + evento);
-    			reservaciones_entity.setEvento(evento);
-    		}
-    	}
-    	recursos_entity = recursos_service.findById(id_recurso);
-    	usuarios_entity = usuarios_service.findByUsuario(user_name);
-    	horas_entity_ini = horas_service.findById(id_hora_ini);
-    	horas_entity_fin = horas_service.findById(id_hora_fin);
-    	acomodos_entity = acomodos_service.findById(id_acomodo);
-    	reservaciones_entity.setRecursos_entity(recursos_entity);
-    	reservaciones_entity.setUsuarios_entity(usuarios_entity);
-    	reservaciones_entity.setHoras_entity_id_horaini(horas_entity_ini);
-    	reservaciones_entity.setHoras_entity_id_horafin(horas_entity_fin);
-    	reservaciones_entity.setAcomodos_entity(acomodos_entity);
-    	res = reservaciones_service.save(reservaciones_entity, fechas); 
+    	String pagina = "", res;
+    	int id_reservacion = reservaciones_entity.getId();
+    	System.out.println("RESERVACION: " + reservaciones_entity);
+    	//recursos_entity = recursos_service.findById(id_recurso);
+//    	usuarios_entity = usuarios_service.findByUsuario(user_name);
+//    	horas_entity_ini = horas_service.findById(id_hora_ini);
+//    	horas_entity_fin = horas_service.findById(id_hora_fin);
+//    	acomodos_entity = acomodos_service.findById(id_acomodo);
+    	//reservaciones_entity.setRecursos_entity(recursos_entity);
+    	reservaciones_entity.setRecursos_entity(recursos_service.findById(id_recurso));
+//    	reservaciones_entity.setUsuarios_entity(usuarios_entity);
+    	reservaciones_entity.setUsuarios_entity(usuarios_service.findByUsuario(user_name));
+//    	reservaciones_entity.setHoras_entity_id_horaini(horas_entity_ini);
+    	reservaciones_entity.setHoras_entity_id_horaini(horas_service.findById(id_hora_ini));
+    	reservaciones_entity.setHoras_entity_id_horafin(horas_service.findById(id_hora_fin));
+    	reservaciones_entity.setAcomodos_entity(acomodos_service.findById(id_acomodo));
+    	res = reservaciones_service.save(reservaciones_entity, fechas);
+    	System.out.println("DESPUES DE LOS SETTER A LA RESERVACION: " + reservaciones_entity);
     	if(res.equals("")) {
     		System.out.println("HECHA!!!");
+    		if(id_reservacion != 0) {
     		
-    		/**** ENVIAR CORREO ****/
-//    		SimpleMailMessage simple_mail_message = new SimpleMailMessage();
-//    		simple_mail_message.setTo("samuel.arizmendi@loyola.edu.mx");
-//    		simple_mail_message.setSubject("Nueva Reservacion");
-//    		simple_mail_message.setText("EL USUARIO: " + usuarios_entity.getNombre_completo() + " REALIZO LA RESERVACIÓN:\n" + 
-//    				"SALÓN: " + reservaciones_entity.getRecursos_entity().getNombre() + "\n" + "HORA: " +
-//    				reservaciones_entity.getHoras_entity_id_horaini().getHora() + "-" + reservaciones_entity.getHoras_entity_id_horafin().getHora() +
-//    				"\nACOMODO: " + reservaciones_entity.getAcomodos_entity().getAcomodos() + "\nPARTICIPANTES: " +
-//    				"\nEVENTO: " + reservaciones_entity.getEvento());
-//    		try {
-//    			java_mail_sender.send(simple_mail_message);
-//    			System.out.println("ENVIE CORREO");
-//    			/**** FIN ENVIAR CORREO ****/
-    			pagina = "reservacion_new";
-//    		} catch (Exception e) {
-//    			System.out.println("ERROR: " + e);
-//    			model.addAttribute("msj", "1$AL INTENTAR ENVIAR EL CORREO A LOS RESPONSABLES SE PRODUJO EL ERROR: " + e + 
-//    					"\nFAVOR DE CONTACTAR AL AREA DE APOYO DIDÁCTICO");
-//				pagina = "mensajes";
-//			}
+    			/**** ENVIAR CORREO ****/
+    			//    		SimpleMailMessage simple_mail_message = new SimpleMailMessage();
+    			//    		simple_mail_message.setTo("samuel.arizmendi@loyola.edu.mx");
+    			//    		simple_mail_message.setSubject("Nueva Reservacion");
+    			//    		simple_mail_message.setText("EL USUARIO: " + usuarios_entity.getNombre_completo() + " REALIZO LA RESERVACIÓN:\n" + 
+    			//    				"SALÓN: " + reservaciones_entity.getRecursos_entity().getNombre() + "\n" + "HORA: " +
+    			//    				reservaciones_entity.getHoras_entity_id_horaini().getHora() + "-" + reservaciones_entity.getHoras_entity_id_horafin().getHora() +
+    			//    				"\nACOMODO: " + reservaciones_entity.getAcomodos_entity().getAcomodos() + "\nPARTICIPANTES: " +
+    			//    				"\nEVENTO: " + reservaciones_entity.getEvento());
+    			//    		try {
+    			//    			java_mail_sender.send(simple_mail_message);
+    			//    			System.out.println("ENVIE CORREO");
+    			/**** FIN ENVIAR CORREO ****/
+    			
+    			//    		} catch (Exception e) {
+    			//    				System.out.println("ERROR: " + e);
+    			//    			model.addAttribute("msj", "1$AL INTENTAR ENVIAR EL CORREO A LOS RESPONSABLES SE PRODUJO EL ERROR: " + e + 
+    			//    					"\nFAVOR DE CONTACTAR AL AREA DE APOYO DIDÁCTICO");
+    			//	pagina = "mensajes";
+    			//			}    			
+    		}
+    		pagina = "reservacion_new";
     	} else {
     		model.addAttribute("msj", "2$"  + res);
     		System.out.println("[ReservacionesCtrl]\nERROR!!!\n" + res);

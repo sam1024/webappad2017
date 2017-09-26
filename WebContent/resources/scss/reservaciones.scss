@@ -16,6 +16,10 @@ body {
 a {
     color: #fff;
 }
+
+option {
+  background-color: #111;
+}
 /***** FIN ESTILOS GENERALES *******/
 
 /************* SECTION HEADER ******************/
@@ -26,7 +30,7 @@ a {
     top: 0;
     left: 0;
     right: 0;    
-    height: 3rem;
+    height: 3.8rem;
     background: #212121;
 }
 
@@ -43,15 +47,23 @@ a {
     width: 8.5rem;
 }
 
+#show_fecha {
+	position: absolute;
+    top: 2.4rem;
+    left: .2rem;
+	font-size: 1.3rem;	
+}
+
 /************* SECTION MENU **********************/
 .abrir_cerrar {
     transform: translateX(0%) !important;
 }
 
 #nav_menu {
+	position: absolute;
     transform: translateX(-100%);
     transition: all 0.3s;
-    top: 3.4rem;
+    top: 4rem;
     background-color: #A93226;
     width: 15rem;
 }
@@ -70,16 +82,8 @@ a {
     background-color: #424242;
 }
 
-#ul_menu {
-	margin: -1.5rem 0;
-}
-
 .li_menu {
     padding: .5rem .5rem;
-}
-
-#ul_menu .li_menu .icon-home, #ul_menu .li_menu .fa-pencil {
-    margin-right: -.7rem;
 }
 
 #ul_menu .li_menu .icons_menu {
@@ -91,7 +95,7 @@ a {
     border-radius: 50%;
 }
 
-#ul_menu .li_menu a .fa:hover {
+#ul_menu .li_menu a .icons_menu:hover {
     background-color: #A93226;
 }
 
@@ -110,14 +114,13 @@ a {
 }
 /************* FIN SECTION MENU ******************/
 
-
 /************* FIN SECTION HEADER **************/
 
 /************* SECTION CALENDAR **************/
 #section_calendar {
-    margin-top: 4rem;
-    left: -100vw;
-    position: relative;
+	position: relative;
+	margin-top: 4.6rem;
+    left: -100vw;    
     transition: all 0.5s;
     z-index: 1000;
     background: #222;
@@ -131,7 +134,6 @@ a {
     display: flex;
     background-color: #212121;
     font-size: 1.5rem;
-    /*width: 18.5rem;*/
     padding: 0 .1rem 0 .1rem;
 }
 
@@ -183,11 +185,131 @@ thead {
 /************* FIN SECTION CALENDAR **************/
 
 /************* SECTION RESERVACIONES *************/
+
+/**** RESERVACIONES X DIA ****/
 #section_reservaciones_x_dia {
     position: absolute;
     width: 100vw;    
-    top: 3.5rem;
+    top: 4.2rem;
+    overflow: auto;
 }
+
+.card_personalizada {
+	position: relative;
+    background-color: #222;
+    margin-bottom: .7rem !important;
+    padding: .3rem .3rem .5rem .3rem;
+    font-family: elmessiri;
+    /*box-shadow: -0.05rem 0.3rem 0.5rem grey;*/
+}
+
+.btns {
+	background-color: transparent;
+    position: absolute;
+	bottom: -.2rem;
+	border: none;
+    border-radius: 3rem;
+    height: 2.3rem;
+    width: 2.3rem;    
+}
+
+#btn_del {	
+    right: .3rem;
+}
+
+#btn_edit {
+    right: 2.9rem;    
+}
+
+.btns:hover {
+    background-color: #A93226;
+}
+
+.icons {
+    bottom: .2rem;
+    position: absolute;
+    border-radius: 50%;
+    right: .1rem;
+    color: #d0d3d4;
+}
+
+#pencil {
+    padding: .1rem;
+    font-size: 1.5rem;
+}
+
+#trash {
+    padding: .3rem;
+    font-size: 1.3rem;
+}
+/**** FIN RESERVACIONES X DIA ****/
+
+/**** MODIFICAR RESERVACION ****/
+
+/***** ESTILOS PARA EL FORMULARIO *****/
+#section_main {
+    margin-top: 4rem;
+}
+#section_main main p {
+    font-size: 1.5rem;
+    margin: auto;
+    width: 15rem;
+}
+
+form {
+    padding: .5rem;
+    color: #d0d3d4;
+}
+
+#section_main main form .container .input_field {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #9e9e9e;
+    border-radius: 0;
+    outline: none;
+    height: 3rem;
+    width: 100%;
+    font-size: 1rem;
+    margin: 0 0 20px 0;
+    padding: 0;
+    box-shadow: none;
+    box-sizing: content-box;
+    transition: all 0.3s;
+    color: #d0d3d4;
+}
+
+#section_main main form .container .textarea {
+    overflow-y: hidden;
+    padding: .8rem 0 1.6rem 0;
+    resize: none;
+    min-height: 3rem;
+}
+
+#fechas {
+	display: none;
+}
+
+#btn_save, #btn_repeat {
+    margin: 0 0 .3rem 0;
+}
+
+.btns_upd {
+    padding: .5rem .7rem;
+    background-color: transparent;
+    border: .1rem solid #d0d3d4;
+    border-radius: .3rem;
+    color: #d0d3d4;
+    font-size: 1.1rem;
+    width: 100%;
+}
+
+#section_main main form .container .btns_upd:hover {
+    color: #fff;
+    background-color: #222;
+}
+/***** FIN ESTILOS PARA EL FORMULARIO *****/
+
+/**** FIN MODIFICAR RESERVACION ****/
 /*********** FIN SECTION RESERVACIONES ************/
 
 /*********** BOTON NUEVA RESERVACIÓN **************/
@@ -214,7 +336,10 @@ thead {
 
 /***************************************** MEDIAS QUERYS *************************************************************/
 @media (min-width: 992px) {
-    /***** SECTION HEADER *****/    
+    /***** SECTION HEADER *****/
+    #section_encabezado header {
+    	height: 3rem;
+    }  
     #icon_calendar {
         display: none;
     }
@@ -224,26 +349,36 @@ thead {
     	font-size: 2rem;
     }
     
+    #show_fecha {
+    	top: 1.5rem;
+    }
+    
     /************** MENU RESPONSIVO     ******************/
     #icon_menu {
         display: none;
     }
     
-    #nav_menu { 
-    	position: absolute;  	
-    	right: -9.9rem;    
-        background-color: transparent;
-        top: 1.5rem;
-        width: 10rem;
+    #nav_menu {
+    	right: -16rem;
+    	background-color: transparent;
+    	top: .1rem;
+    	width: 16rem;
+    	height: 2.5rem;
     }
     
     #ul_menu {
+    	position: relative;
+    	top: .6rem;
         display: flex;
         justify-content: flex-end;
     }
     
-    .fa-print {
-    	margin-right: .5rem;
+    .icons_menu {
+    	margin-right: -0.5rem;
+    }
+    
+    .icon-printer {
+    	margin-right: .5rem !important;
     }
     
     .p_menu {
@@ -278,65 +413,59 @@ thead {
         width: auto;
         left: 19rem;
         height: auto;
+        top: 3.5rem;
     }
+    
+    .card_personalizada {
+    	margin: .3rem .3rem .7rem .8rem;
+    	min-width: 45rem;
+    }
+    
+    .p_card_personalizada {
+    	font-size: 1.3rem;
+    }
+    /***** FIN SECTION RESERVACIONES X DIA *****/
+    
+    /**** MODIFICAR RESERVACION ****/
+
+	/***** ESTILOS PARA EL FORMULARIO *****/
+	main {
+		border: .3rem solid #d0d3d4;
+        border-radius: .5rem;
+        max-width: 55rem;
+        margin: -4rem auto auto 1rem;;
+        padding: 1rem;
+    }
+    
+    .inputs_small {
+    	width: 6rem !important;
+    }
+    
+    .horas {
+    	margin-left: 1rem !important;
+    }
+    
+    #recurso {
+    	width: 32rem !important;
+    	margin-left: 1rem !important;
+    }
+    
+    #acomodo {
+    	width: 10rem !important;
+    }
+    
+    #no_participantes {
+    	width: 12rem !important;
+    	margin-left: 1rem !important;
+    }
+    
+    .btns_upd {
+        width: 15rem !important;
+    }
+    /***** FIN ESTILOS PARA EL FORMULARIO *****/
+    
+	/**** FIN MODIFICAR RESERVACION ****/
+	
     /***** FIN SECTION RESERVACIONES X DIA *****/
 }
 
-
-
-
-
-
-
-
-/**** ESTILOS RESERVACIONES X DIA *****/
-/*#reservaciones_x_dia {    
-    margin: 1.5rem auto;
-}
-
-#table_reservaciones_local, #table_reservaciones_local thead, #table_reservaciones_local tbody, 
-#table_reservaciones_local th, #table_reservaciones_local td {
-    display: block;
-}
-
-#table_reservaciones_local {
-    width: 100vw;
-    position: relative;
-}
-
-#table_reservaciones_local thead {
-    float: left;
-    width: 5.7rem;
-    text-align: left;
-    padding: 0 .3rem 0 0;
-    border-right: .01rem solid aliceblue;
-}
-
-#table_reservaciones_local thead th {
-    padding: .5rem 0 .5rem .2rem;
-}
-
-#table_reservaciones_local tbody {
-    white-space: nowrap;
-    overflow-x: auto;
-    padding: 0 0 0 .5rem;
-}
-
-#table_reservaciones_local tbody tr {
-    display: inline-block;
-    vertical-align: top;
-    white-space: nowrap;
-    border-right: .01rem solid aliceblue;
-}
-
-#table_reservaciones_local tbody td .fa {
-    padding: .2rem 1rem;
-    font-size: 1.3rem;
-    background-color: #212121;
-    border-radius: .3rem;
-}
-
-#table_reservaciones_local tbody tr td {
-    padding: .5rem 0 .5rem 0;
-}
-/**** FIN ESTILOS RESERVACIONES X DIA *****/
