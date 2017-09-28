@@ -7,7 +7,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">        
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-<%--         <link type="text/css" rel="stylesheet" href='<c:url value="/res/css/reservaciones_x_dia.css" />' /> --%>
     </head>
     <body>
         <section id="section_table">
@@ -26,7 +25,8 @@
                     <p class="p_card_personalizada">${temp.responsable}</p>
                     <sec:authorize access="hasAnyRole({'ROLE_ADMIN', 'ROLE_ALMACEN'})">
                     	<button id="btn_edit" value="${temp.id}" class="btns" name="edit">
-							<span id="pencil" title="Editar" class="fa fa-pencil-square-o icons"></span>
+<!-- 							<span id="pencil" title="Editar" class="fa fa-pencil-square-o icons"></span> -->
+							<span id="pencil" title="Modificar" class="fa icon-pencil2 icons"></span>
 						</button>
 						<button id="btn_del" value="${temp.id}" class="btns" name="del">
 							<span id="trash" title="Cancelar" class="icon-bin2 icons"></span>

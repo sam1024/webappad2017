@@ -9,9 +9,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, user-scalable=no" />
         <link rel="icon" type="image/png" href='<c:url value="/res/images/kernel.png" />' />
-        <link type="text/css" rel="stylesheet" href='<c:url value="/res/css/font-awesome.min.css" />' />
+<%--         <link type="text/css" rel="stylesheet" href='<c:url value="/res/css/font-awesome.min.css" />' /> --%>
         <link type="text/css" rel="stylesheet" href='<c:url value="/res/css/reservaciones.css" />' />
-        <link type="text/css" rel="stylesheet" href='<c:url value="/res/css/iconmoon_entypo.css" />' />
         <link rel="stylesheet" type="text/css" href='<c:url value="/res/css/iconmoon_free.css" />' />
         <link type="text/css" rel="stylesheet" href='<c:url value="/res/css/sweetalert.css" />' />
         <link type="text/css" rel="stylesheet" href='<c:url value="/res/css/default.date.css" />' />
@@ -33,19 +32,26 @@
                 			<li class="li_menu">
                         		<a href="<c:url value='/login' />"><i class="icon-enter icons_menu" title="Iniciar sesión"><p class="p_menu">Inicio</p></i></a>
                         	</li>
-                		</sec:authorize>
+                		</sec:authorize>                		
                 		<li class="li_menu">
 							<a href="<c:url value='/' />"><i class="icon-home icons_menu" title="Inicio"><p class="p_menu">Inicio</p></i></a>
                         </li>
-                        <li class="li_menu">
-							<a href="<c:url value='/reservacion_new' />"><i class="icon-pencil icons_menu" title="Nueva Reservación"><p class="p_menu">Nueva Reservación</p></i></a>
-                        </li>
+                        <sec:authorize access="hasAnyRole({'ROLE_ADMIN', 'ROLE_ALMACEN'})">
+                        	<li class="li_menu">
+								<a href="<c:url value='/reservacion_new' />"><i class="icon-pencil icons_menu" title="Nueva Reservación"><p class="p_menu">Nueva Reservación</p></i></a>
+                        	</li>
+                        </sec:authorize>
                         <li class="li_menu">
 							<a href="<c:url value='#' />"><i class="icon-search icons_menu" title="Buscar"><p class="p_menu">Buscar</p></i></a>
                         </li>
                         <li class="li_menu" id="li_print">
 							<a href="<c:url value='/reservaciones' />"><i class="icon-printer icons_menu" title="Imprimir"><p class="p_menu">Imprimir</p></i></a>			
-                        </li>                         
+                        </li>
+                        <sec:authorize access="isAuthenticated()">
+                			<li class="li_menu">
+                        		<a href="<c:url value='/logout' />"><i class="icon-exit icons_menu" title="Cerrar sesión"><p class="p_menu">Inicio</p></i></a>
+                        	</li>
+                		</sec:authorize>              
                     </ul>
                 </nav>
             </header>
@@ -53,12 +59,14 @@
         <section id="section_calendar">
             <div class="container">
                 <div id="navegacion_meses">
-                    <a id="link_back" href="javascript:void(0)"><span id="back" class="fa fa-chevron-circle-left" /></a>
+<!--                     <a id="link_back" href="javascript:void(0)"><span id="back" class="fa fa-chevron-circle-left" /></a> -->
+						<a id="link_back" href="javascript:void(0)"><span id="back" class="icon-circle-left next_back" /></a>
                     <div id="mes_year">
                         <p id="mes" class="p_mes_year"></p>
                         <p id="year" class="p_mes_year"></p>
                     </div>
-                    <a id="link_next" href="javascript:void(0)"><span id="next" class="fa fa-chevron-circle-right" /></a>
+<!--                     <a id="link_next" href="javascript:void(0)"><span id="next" class="fa fa-chevron-circle-right" /></a> -->
+                    <a id="link_next" href="javascript:void(0)"><span id="next" class="icon-circle-right next_back" /></a>
                 </div>               
                 <div id="calendar">
                     <table id="table_calendar">

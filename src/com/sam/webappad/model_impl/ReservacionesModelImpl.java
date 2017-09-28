@@ -52,12 +52,13 @@ public class ReservacionesModelImpl implements ReservacionesModelInterface {
     }
 
 	@Override
-	public List<ReservacionesEntity> findByFecha(Date fecha) {
+	public List<ReservacionesEntity> findReservacionByFecha(Date fecha, int id_reservacion) {
 		CriteriaBuilder criteria_builder = getSession().getCriteriaBuilder();
 		CriteriaQuery<ReservacionesEntity> criteria_query = criteria_builder.createQuery(ReservacionesEntity.class);
 		Root<ReservacionesEntity> root = criteria_query.from(ReservacionesEntity.class);
 		criteria_query.select(root).where(
 				criteria_builder.equal(root.get(ReservacionesEntity_.fecha), fecha),
+				criteria_builder.and(criteria_builder.notEqual(root.get(ReservacionesEntity_.id), id_reservacion)),
 				criteria_builder.and(criteria_builder.equal(root.get(ReservacionesEntity_.tipo), 1)),
 				criteria_builder.and(criteria_builder.equal(root.get(ReservacionesEntity_.cancelada), 0)));
 		criteria_query.orderBy(criteria_builder.asc(root.get(ReservacionesEntity_.horas_entity_id_horaini)));
@@ -66,12 +67,13 @@ public class ReservacionesModelImpl implements ReservacionesModelInterface {
 	}
 
 	@Override
-	public List<ReservacionesEntity> findReservacion(Date fecha) {
+	public List<ReservacionesEntity> findReservacionByFecha(Date fecha) {
 		CriteriaBuilder criteria_builder = getSession().getCriteriaBuilder();
         CriteriaQuery<ReservacionesEntity> criteria_query = criteria_builder.createQuery(ReservacionesEntity.class);
         Root<ReservacionesEntity> root = criteria_query.from(ReservacionesEntity.class);
         criteria_query.select(root).where(
         		criteria_builder.equal(root.get(ReservacionesEntity_.fecha), fecha),
+        		criteria_builder.and(criteria_builder.equal(root.get(ReservacionesEntity_.tipo), 1)),
         		criteria_builder.and(criteria_builder.equal(root.get(ReservacionesEntity_.cancelada), 0)));
         criteria_query.orderBy(criteria_builder.asc(root.get(ReservacionesEntity_.horas_entity_id_horaini)));
         List<ReservacionesEntity> lst_reservaciones_entity = getSession().createQuery(criteria_query).getResultList();        
