@@ -9,7 +9,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, user-scalable=no" />
         <link rel="icon" type="image/png" href='<c:url value="/res/images/kernel.png" />' />
-<%--         <link type="text/css" rel="stylesheet" href='<c:url value="/res/css/font-awesome.min.css" />' /> --%>
         <link type="text/css" rel="stylesheet" href='<c:url value="/res/css/reservaciones.css" />' />
         <link rel="stylesheet" type="text/css" href='<c:url value="/res/css/iconmoon_free.css" />' />
         <link type="text/css" rel="stylesheet" href='<c:url value="/res/css/sweetalert.css" />' />
@@ -20,9 +19,9 @@
     <body>
         <section id="section_encabezado">
             <header>
-            	<span id="icon_calendar" class="fa fa-calendar"></span>
+            	<span id="icon_calendar" class="fa icon-calendar"></span>
                 <p id="p_app_name">WebappAD</p>
-                <span id="icon_menu" class="fa fa-bars"></span> 
+                <span id="icon_menu" class="fa icon-menu"></span> 
                 <div id="fecha_reservacion">
     	            <h1 id="show_fecha"></h1>        	        
             	</div>               
@@ -35,6 +34,9 @@
                 		</sec:authorize>                		
                 		<li class="li_menu">
 							<a href="<c:url value='/' />"><i class="icon-home icons_menu" title="Inicio"><p class="p_menu">Inicio</p></i></a>
+                        </li>
+                        <li class="li_menu">
+							<a href="javascript:void(0)" id="refresh"><i class="icon-spinner11 icons_menu" title="Volver a carga"><p class="p_menu">Volver a Cargar</p></i></a>
                         </li>
                         <sec:authorize access="hasAnyRole({'ROLE_ADMIN', 'ROLE_ALMACEN'})">
                         	<li class="li_menu">
@@ -49,7 +51,7 @@
                         </li>
                         <sec:authorize access="isAuthenticated()">
                 			<li class="li_menu">
-                        		<a href="<c:url value='/logout' />"><i class="icon-exit icons_menu" title="Cerrar sesión"><p class="p_menu">Inicio</p></i></a>
+                        		<a href="<c:url value='/logout' />"><i id="close_sesion" class="icon-exit icons_menu" title="Cerrar sesión"><p class="p_menu">Cerrar Sesión</p></i></a>
                         	</li>
                 		</sec:authorize>              
                     </ul>
@@ -59,13 +61,11 @@
         <section id="section_calendar">
             <div class="container">
                 <div id="navegacion_meses">
-<!--                     <a id="link_back" href="javascript:void(0)"><span id="back" class="fa fa-chevron-circle-left" /></a> -->
 						<a id="link_back" href="javascript:void(0)"><span id="back" class="icon-circle-left next_back" /></a>
                     <div id="mes_year">
                         <p id="mes" class="p_mes_year"></p>
                         <p id="year" class="p_mes_year"></p>
                     </div>
-<!--                     <a id="link_next" href="javascript:void(0)"><span id="next" class="fa fa-chevron-circle-right" /></a> -->
                     <a id="link_next" href="javascript:void(0)"><span id="next" class="icon-circle-right next_back" /></a>
                 </div>               
                 <div id="calendar">

@@ -16,7 +16,8 @@ $("button").on("click", function() {
 			  confirmButtonText: 'Aceptar',
 			  cancelButtonText: 'Cancelar'
 			}).then(function () {
-				callAjax("2017-09-26");
+				callAjax("2017-09-29");
+				console.log("FECHA X DIA: " + fecha_x_dia);
 		});
 	} else {
 		modificar($(this).val());		

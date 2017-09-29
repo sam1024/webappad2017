@@ -30,12 +30,13 @@ option {
   background: #212121; }
 
 #icon_calendar {
+  position: absolute;
   font-size: 1.7rem;
   margin: .5rem; }
 
 #p_app_name {
   position: relative;
-  top: -2rem;
+  top: .3rem;
   font-size: 1.8rem;
   margin: auto;
   width: 8.5rem; }
@@ -64,7 +65,7 @@ option {
 #icon_menu {
   display: block;
   position: absolute;
-  top: .1rem;
+  top: -0.1rem;
   right: -.3rem;
   padding: .3rem 1rem;
   background-color: transparent;
@@ -215,13 +216,11 @@ thead {
 /**** FIN RESERVACIONES X DIA ****/
 /**** MODIFICAR RESERVACION ****/
 /***** ESTILOS PARA EL FORMULARIO *****/
-#section_main {
-  margin-top: 4rem; }
-
 #section_main main p {
+  font-family: elmessiri;
   font-size: 1.5rem;
   margin: auto;
-  width: 15rem; }
+  width: 14rem; }
 
 form {
   padding: .5rem;
@@ -309,6 +308,10 @@ form {
     top: 1.5rem; }
 
   /************** MENU RESPONSIVO     ******************/
+  .abrir_cerrar {
+    -webkit-transform: translateX(100%) !important;
+            transform: translateX(100%) !important; }
+
   #icon_menu {
     display: none; }
 

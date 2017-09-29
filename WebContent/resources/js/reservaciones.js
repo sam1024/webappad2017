@@ -1,4 +1,4 @@
-var date = new Date(), mes, year, number_dias_mes, array = [];
+var date = new Date(), mes, year, number_dias_mes, array = [], fecha_x_dia;
 function sam() {
     array = [];
     for(i = 1; i <= number_dias_mes; i++) {
@@ -39,7 +39,7 @@ $("#icon_calendar").on("click", function() {
 });
 
 $("#icon_menu").on("click", function() {
-    $("#nav_menu").toggleClass("abrir_cerrar");
+	showHideMenu();
 });
 
 $("#li_print").on("click", function() {
@@ -48,6 +48,12 @@ $("#li_print").on("click", function() {
 
 $("#new_reservacion").on("click", function() {
    $(location).attr("href", $("#path").val() + "/reservacion_new") ;
+});
+
+$("#refresh").on("click", function() {
+	console.log(fecha_x_dia);
+	callAjax(fecha_x_dia);
+	//showHideMenu();
 });
 
 function showCalendar() {
@@ -180,19 +186,21 @@ function showMenu() {
     $("#section_calendar").toggleClass("abrir");
 }
 
+function showHideMenu() {
+	$("#nav_menu").toggleClass("abrir_cerrar");
+}
+
 function callAjax(fecha) {
+	fecha_x_dia = fecha;
 	showFecha(fecha);
     $.ajax({
     	async: true,
         type: "POST",
         url: $("#path").val() + "/xdia",
         data: {"fecha": fecha},
-    /*})
-    .done(function(resers) {*/
         success: function(resers) {
         	$("#reservaciones_x_dia").html(resers);
         }
-    	//$("#reservaciones_x_dia").css("transition", "all 0.3s")
     });
 }
 

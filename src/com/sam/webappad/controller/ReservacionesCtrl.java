@@ -72,7 +72,7 @@ public class ReservacionesCtrl {
     							 @ModelAttribute("hora_fin") int id_hora_fin, @ModelAttribute("no_participantes") String no_participantes, Model model,
     							 RedirectAttributes redirect_attributes, @ModelAttribute("fechas") String fechas) {
     	String pagina = "", res;
-    	//int id_reservacion = reservaciones_entity.getId();
+    	int id_reservacion = reservaciones_entity.getId();
     	reservaciones_entity.setRecursos_entity(recursos_service.findById(id_recurso));
     	reservaciones_entity.setUsuarios_entity(usuarios_service.findByUsuario(user_name));
     	reservaciones_entity.setHoras_entity_id_horaini(horas_service.findById(id_hora_ini));
@@ -82,7 +82,7 @@ public class ReservacionesCtrl {
     	System.out.println("DESPUES DE LOS SETTER A LA RESERVACION: " + reservaciones_entity);
     	if(res.equals("")) {
     		System.out.println("HECHA!!!");
-    		if(reservaciones_entity.getId() == 0) {
+    		if(id_reservacion == 0) {
     			System.out.println("ENTRO AL IF ID_RESERVACION == 0 ID: " + reservaciones_entity.getId());
     			/**** ENVIAR CORREO ****/
     			//    		SimpleMailMessage simple_mail_message = new SimpleMailMessage();
@@ -107,7 +107,7 @@ public class ReservacionesCtrl {
     			pagina = "reservacion_new";
     		} else {
     			System.out.println("EL ID_RESERVACION NO ES IGUAL A 0, ID: " + reservaciones_entity.getId());
-    			pagina = "reservaciones";
+    			//pagina = "reservaciones";
     		}
     	} else {
     		model.addAttribute("msj", "2$"  + res);
@@ -125,13 +125,18 @@ public class ReservacionesCtrl {
       @RequestMapping(value = "/reservacion/modificar", method = RequestMethod.POST)
       public String Modificar(@ModelAttribute("id") int id, Model model) {
     	  model.addAttribute("reservacion_new", new ReservacionesEntity());/*SI NO SE MANDA UNA INSTACIA DE LA CLASE
-      	  MARCA EL ERROR Neither BindingResult nor plain target object*/
-    	  
+      	  MARCA EL ERROR Neither BindingResult nor plain target object*/    	  
     	  model.addAttribute("reservacion", reservaciones_service.findReservacionById(id));
     	  model.addAttribute("lst_horas", horas_service.findAll());
           model.addAttribute("lst_recursos", recursos_service.findAll());
           model.addAttribute("lst_acomodos", acomodos_service.findAll());
     	  return "modificar";
+      }
+      
+      @RequestMapping(value = "/reservacion/cancelar", method = RequestMethod.POST)
+      public void cancelar(@ModelAttribute("id") int id) {
+    	  reservaciones_service.findReservacionById(id);
+    	  //return "";
       }
 }
 
