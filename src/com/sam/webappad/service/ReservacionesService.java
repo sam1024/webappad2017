@@ -113,6 +113,16 @@ public class ReservacionesService {
     	return reservaciones_model_interface.findReservacionById(id);
     }
     
+    public List<ReservacionesEntity> findReservacionByIdRepetir(int id_repetir) {
+    	return reservaciones_model_interface.findReservacionByIdRepetir(id_repetir);
+    }
+    
+    public void CancelarReservacion(int id) {
+    	ReservacionesEntity reservacion_entity = findReservacionById(id);    	  
+  	  	reservacion_entity.setCancelada(1);
+    	reservaciones_model_interface.saveOrUpd(reservacion_entity);
+    }
+    
     private String validadDisponibilidad(ReservacionesEntity reservaciones_entity) {
     	List<ReservacionesEntity> lst_reservaciones = new ArrayList<>();
     	String res = ""; int pos = 0;

@@ -10,6 +10,7 @@
         <meta name="viewport" content="width=device-width, user-scalable=no" />
         <link rel="icon" type="image/png" href='<c:url value="/res/images/kernel.png" />' />
         <link type="text/css" rel="stylesheet" href='<c:url value="/res/css/reservaciones.css" />' />
+        <link type="text/css" rel="stylesheet" media="print" href='<c:url value="/res/css/reservaciones_print.css" />' />
         <link rel="stylesheet" type="text/css" href='<c:url value="/res/css/iconmoon_free.css" />' />
         <link type="text/css" rel="stylesheet" href='<c:url value="/res/css/sweetalert.css" />' />
         <link type="text/css" rel="stylesheet" href='<c:url value="/res/css/default.date.css" />' />

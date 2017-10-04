@@ -104,7 +104,7 @@ option {
     margin-right: -.7rem;    
 }
 
-#ul_menu .li_menu a .fa-sign-out {
+#ul_menu .li_menu a .icon-exit {
     margin-right: .5rem;    
 }
 
@@ -125,6 +125,11 @@ option {
     transition: all 0.5s;
     z-index: 1000;
     background: #222;
+}
+
+#section_calendar > .container {
+	position: fixed;
+    background-color: #212121;
 }
 
 .abrir {
@@ -441,7 +446,7 @@ form {
 		border: .3rem solid #d0d3d4;
         border-radius: .5rem;
         max-width: 55rem;
-        margin: -4rem auto auto 1rem;;
+        margin: .5rem auto auto 1rem;;
         padding: 1rem;
     }
     

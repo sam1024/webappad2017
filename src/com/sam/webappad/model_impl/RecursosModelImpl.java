@@ -1,6 +1,7 @@
 package com.sam.webappad.model_impl;
 
 import com.sam.webappad.entity.RecursosEntity;
+import com.sam.webappad.entity.RecursosEntity_;
 import com.sam.webappad.model.RecursosModelInterface;
 import java.util.List;
 
@@ -29,7 +30,13 @@ public class RecursosModelImpl implements RecursosModelInterface {
     
     @Override
     public List<RecursosEntity> findAll() {
-        return getSession().createQuery("FROM RecursosEntity").list();
+    	CriteriaBuilder criteria_builder = getSession().getCriteriaBuilder();
+    	CriteriaQuery<RecursosEntity> criteria_query = criteria_builder.createQuery(RecursosEntity.class);
+    	Root<RecursosEntity> root = criteria_query.from(RecursosEntity.class);
+    	criteria_query.select(root);
+    	criteria_query.orderBy(criteria_builder.asc(root.get(RecursosEntity_.id)));
+    	return getSession().createQuery(criteria_query).list();
+        //return getSession().createQuery("FROM RecursosEntity").list();
     }
 
 	@Override
@@ -37,7 +44,7 @@ public class RecursosModelImpl implements RecursosModelInterface {
 		CriteriaBuilder criteria_builder = getSession().getCriteriaBuilder();
 		CriteriaQuery<RecursosEntity> criteria_query = criteria_builder.createQuery(RecursosEntity.class);
 		Root<RecursosEntity> root = criteria_query.from(RecursosEntity.class);
-		criteria_query.select(root).where(criteria_builder.equal(root.get("id"), id));
+		criteria_query.select(root).where(criteria_builder.equal(root.get(RecursosEntity_.id), id));
 		RecursosEntity recursos_entity = getSession().createQuery(criteria_query).uniqueResult();
 		return recursos_entity;
 	}

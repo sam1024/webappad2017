@@ -1,0 +1,14 @@
+#p_app_name, #icon_menu, #icon_calendar, .icons {
+  display: none; }
+
+#show_fecha {
+  color: black; }
+
+.card_personalizada {
+  border: 1px solid black; }
+
+.p_card_personalizada {
+  font-size: 1.2rem;
+  color: black; }
+
+/*# sourceMappingURL=reservaciones_print.css.map */

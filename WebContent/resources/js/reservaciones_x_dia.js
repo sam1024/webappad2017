@@ -5,7 +5,7 @@ $("#print").on("click", function() {
 
 $("button").on("click", function() {
 	if($(this).attr('name') === 'del') {
-		console.log("LA RESERVACIÓN CON EL ID: " + $(this).val() + " SERÁ BORRADA!!");
+		id = $(this).val();	
 		swal({
 			  title: 'AVISO!!!',
 			  text: "¿ESTAS SEGURO DE CANCELAR LA RESERVACIÓN?",
@@ -16,9 +16,15 @@ $("button").on("click", function() {
 			  confirmButtonText: 'Aceptar',
 			  cancelButtonText: 'Cancelar'
 			}).then(function () {
-				callAjax("2017-09-29");
-				console.log("FECHA X DIA: " + fecha_x_dia);
-		});
+				$.ajax({
+			    	async: true,
+			        type: "POST",
+			        url: $("#path").val() + "/reservacion/cancelar",
+			        data: {"id": id}
+			    });
+				$("#" + id).css("display", "none");
+				callAjax(fecha_x_dia);
+			});
 	} else {
 		modificar($(this).val());		
 	}

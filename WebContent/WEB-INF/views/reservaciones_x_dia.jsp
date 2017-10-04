@@ -17,7 +17,7 @@
             </c:if>
             <c:if test="${lst_reservaciones.size() > 0}">
             	<c:forEach var="temp" items="${lst_reservaciones}">
-                	<div class="card_personalizada">
+                	<div class="card_personalizada" id="${temp.id}">
                     	<p class="p_card_personalizada">${temp.horas_entity_id_horaini.getHora()} - ${temp.horas_entity_id_horafin.getHora()}</p>
                     	<p class="p_card_personalizada">${temp.recursos_entity.getNombre()}</p>
                     	<p class="p_card_personalizada">${temp.acomodos_entity.getAcomodos()} ${temp.no_participantes}</p>
@@ -42,3 +42,13 @@
         <script type="text/javascript" src='<c:url value="/res/js/reservaciones_x_dia.js" />' ></script>
     </body>
 </html>
+
+
+<!--
+<p class="header">HORA: </p>
+<p class="header">RECURSO: </p>
+<p class="header">ACOMODO: </p>
+<p class="header">EVENTO: </p>
+<p class="header">REQUERIMIENTOS: </p>
+<p class="header">RESPONSABLE:</p>
+-->

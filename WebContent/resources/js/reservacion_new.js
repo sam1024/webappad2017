@@ -29,7 +29,6 @@ $("#fecha_creacion").val(date.getFullYear() + "-" + monthLessTen((date.getMonth(
 
 /***************** ESTE EVENTO ES PARA EL ARCHIVO DE MODIFICAR UNA RESEREVACIÓN ****************************/
 $("#btn_cancel").on("click", function() {
-	console.log("FECHA: " + $("#fecha").val());
 	callAjax($("#fecha").val());
 });
 /***************** FIN EVENTO PARA EL ARCHIVO DE MODIFICAR UNA RESEREVACIÓN ****************************/

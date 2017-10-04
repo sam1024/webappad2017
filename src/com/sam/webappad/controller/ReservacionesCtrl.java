@@ -1,8 +1,10 @@
 package com.sam.webappad.controller;
 
 import java.sql.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sam.webappad.entity.ReservacionesEntity;
+import com.sam.webappad.entity.UsuariosEntity;
 import com.sam.webappad.service.AcomodosService;
 import com.sam.webappad.service.HorasService;
 import com.sam.webappad.service.RecursosService;
@@ -71,47 +74,51 @@ public class ReservacionesCtrl {
     							 @ModelAttribute("id_acomodo") int id_acomodo, @ModelAttribute("hora_inicio") int id_hora_ini,
     							 @ModelAttribute("hora_fin") int id_hora_fin, @ModelAttribute("no_participantes") String no_participantes, Model model,
     							 RedirectAttributes redirect_attributes, @ModelAttribute("fechas") String fechas) {
-    	String pagina = "", res;
+    	String pagina = "", res, fecha_reservacion = String.valueOf(reservaciones_entity.getFecha());
     	int id_reservacion = reservaciones_entity.getId();
+    	UsuariosEntity usuarios_entity = usuarios_service.findByUsuario(user_name);
     	reservaciones_entity.setRecursos_entity(recursos_service.findById(id_recurso));
-    	reservaciones_entity.setUsuarios_entity(usuarios_service.findByUsuario(user_name));
+    	reservaciones_entity.setUsuarios_entity(usuarios_entity);
     	reservaciones_entity.setHoras_entity_id_horaini(horas_service.findById(id_hora_ini));
     	reservaciones_entity.setHoras_entity_id_horafin(horas_service.findById(id_hora_fin));
     	reservaciones_entity.setAcomodos_entity(acomodos_service.findById(id_acomodo));
     	res = reservaciones_service.save(reservaciones_entity, fechas);
-    	System.out.println("DESPUES DE LOS SETTER A LA RESERVACION: " + reservaciones_entity);
     	if(res.equals("")) {
-    		System.out.println("HECHA!!!");
+    		/**************************************** ENVIAR CORREO ******************************************************/
     		if(id_reservacion == 0) {
-    			System.out.println("ENTRO AL IF ID_RESERVACION == 0 ID: " + reservaciones_entity.getId());
-    			/**** ENVIAR CORREO ****/
-    			//    		SimpleMailMessage simple_mail_message = new SimpleMailMessage();
-    			//    		simple_mail_message.setTo("samuel.arizmendi@loyola.edu.mx");
-    			//    		simple_mail_message.setSubject("Nueva Reservacion");
-    			//    		simple_mail_message.setText("EL USUARIO: " + usuarios_entity.getNombre_completo() + " REALIZO LA RESERVACIÓN:\n" + 
-    			//    				"SALÓN: " + reservaciones_entity.getRecursos_entity().getNombre() + "\n" + "HORA: " +
-    			//    				reservaciones_entity.getHoras_entity_id_horaini().getHora() + "-" + reservaciones_entity.getHoras_entity_id_horafin().getHora() +
-    			//    				"\nACOMODO: " + reservaciones_entity.getAcomodos_entity().getAcomodos() + "\nPARTICIPANTES: " +
-    			//    				"\nEVENTO: " + reservaciones_entity.getEvento());
-    			//    		try {
-    			//    			java_mail_sender.send(simple_mail_message);
-    			//    			System.out.println("ENVIE CORREO");
-    			/**** FIN ENVIAR CORREO ****/
-    			
-    			//    		} catch (Exception e) {
-    			//    				System.out.println("ERROR: " + e);
-    			//    			model.addAttribute("msj", "1$AL INTENTAR ENVIAR EL CORREO A LOS RESPONSABLES SE PRODUJO EL ERROR: " + e + 
-    			//    					"\nFAVOR DE CONTACTAR AL AREA DE APOYO DIDÁCTICO");
-    			//	pagina = "mensajes";
-    			//			}
+    			String[] destinatarios = {"samuel.arizmendi@loyola.edu.mx", "sam.abundis82@gmail.com"};
+    			//String[] destinatarios = {"samuel.hernandez@loyola.edu.mx", "beatriz.tamariz@loyola.edu.mx"};
+    			String msj_mail = usuarios_entity.getNombre_completo() + " REALIZO LA RESERVACIÓN:" + 
+    					   "\nFECHA: " + fecha_reservacion + 
+	    	    		   "\nSALÓN: " + reservaciones_entity.getRecursos_entity().getNombre() + "\n" + "HORA: " +
+	    	    		   reservaciones_entity.getHoras_entity_id_horaini().getHora() + "-" + reservaciones_entity.getHoras_entity_id_horafin().getHora() +
+	    	    		   "\nACOMODO: " + reservaciones_entity.getAcomodos_entity().getAcomodos() + "\nPARTICIPANTES: " + reservaciones_entity.getNo_participantes() +
+	    	    		   "\nEVENTO: " + reservaciones_entity.getEvento() + "\nREQUERIMIENTOS: " + reservaciones_entity.getRequerimientos();
+    			if(!fechas.equals("")) {
+    				String fecha = "";
+    				for(ReservacionesEntity lst_temp : reservaciones_service.findReservacionByIdRepetir(reservaciones_entity.getId_repetir())) {
+    					fecha = fecha + String.valueOf(lst_temp.getFecha());    					
+    				}
+    				msj_mail = msj_mail + "\nLA RESERVACION SE REPITE LAS FECHAS: " + fecha + " ";
+    			}
+    			SimpleMailMessage simple_mail_message = new SimpleMailMessage(); 
+    			simple_mail_message.setTo(destinatarios);
+    			simple_mail_message.setSubject("Nueva Reservación");
+    			simple_mail_message.setText(msj_mail);
+    			try {
+    				java_mail_sender.send(simple_mail_message);
+    			} catch (Exception e) {
+    				model.addAttribute("msj", "1$AL INTENTAR ENVIAR EL CORREO A LOS RESPONSABLES SE PRODUJO EL ERROR: " + e + 
+    			    				   "\nFAVOR DE CONTACTAR AL AREA DE APOYO DIDÁCTICO");
+    				pagina = "mensajes";
+    			}
     			pagina = "reservacion_new";
+    		/************************************* FIN ENVIAR CORREO ******************************************************/
     		} else {
-    			System.out.println("EL ID_RESERVACION NO ES IGUAL A 0, ID: " + reservaciones_entity.getId());
-    			//pagina = "reservaciones";
+    			pagina = "reservaciones";
     		}
     	} else {
     		model.addAttribute("msj", "2$"  + res);
-    		System.out.println("[ReservacionesCtrl]\nERROR!!!\n" + res);
     		pagina = "mensajes";
     	}
     	return "redirect:/" + pagina;
@@ -125,7 +132,7 @@ public class ReservacionesCtrl {
       @RequestMapping(value = "/reservacion/modificar", method = RequestMethod.POST)
       public String Modificar(@ModelAttribute("id") int id, Model model) {
     	  model.addAttribute("reservacion_new", new ReservacionesEntity());/*SI NO SE MANDA UNA INSTACIA DE LA CLASE
-      	  MARCA EL ERROR Neither BindingResult nor plain target object*/    	  
+      	  MARCA EL ERROR Neither BindingResult nor plain target object*/
     	  model.addAttribute("reservacion", reservaciones_service.findReservacionById(id));
     	  model.addAttribute("lst_horas", horas_service.findAll());
           model.addAttribute("lst_recursos", recursos_service.findAll());
@@ -134,9 +141,9 @@ public class ReservacionesCtrl {
       }
       
       @RequestMapping(value = "/reservacion/cancelar", method = RequestMethod.POST)
-      public void cancelar(@ModelAttribute("id") int id) {
-    	  reservaciones_service.findReservacionById(id);
-    	  //return "";
+      public String cancelar(@ModelAttribute("id") int id) {
+    	  reservaciones_service.CancelarReservacion(id);
+    	  return "reservaciones_x_dia";
       }
 }
 

@@ -1,22 +1,21 @@
 package com.sam.webappad.model_impl;
 
-import com.sam.webappad.entity.ReservacionesEntity;
-import com.sam.webappad.entity.ReservacionesEntity_;
-import com.sam.webappad.model.ReservacionesModelInterface;
 import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Root;
 
-import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.sam.webappad.entity.ReservacionesEntity;
+import com.sam.webappad.entity.ReservacionesEntity_;
+import com.sam.webappad.model.ReservacionesModelInterface;
 
 /** @author sam **/
 
@@ -50,6 +49,16 @@ public class ReservacionesModelImpl implements ReservacionesModelInterface {
         ReservacionesEntity reservaciones_entity = getSession().createQuery(criteria_query).uniqueResult();        
         return reservaciones_entity;
     }
+    
+    @Override
+	public List<ReservacionesEntity> findReservacionByIdRepetir(int id_repetir) {
+		CriteriaBuilder criteria_builder = getSession().getCriteriaBuilder();
+		CriteriaQuery<ReservacionesEntity> criteria_query = criteria_builder.createQuery(ReservacionesEntity.class);
+		Root<ReservacionesEntity> root = criteria_query.from(ReservacionesEntity.class);
+		criteria_query.select(root).where(criteria_builder.equal(root.get(ReservacionesEntity_.id_repetir), id_repetir));
+		criteria_query.orderBy(criteria_builder.asc(root.get(ReservacionesEntity_.fecha)));
+		return getSession().createQuery(criteria_query).list();
+	}
 
 	@Override
 	public List<ReservacionesEntity> findReservacionByFecha(Date fecha, int id_reservacion) {
@@ -75,10 +84,12 @@ public class ReservacionesModelImpl implements ReservacionesModelInterface {
         		criteria_builder.equal(root.get(ReservacionesEntity_.fecha), fecha),
         		criteria_builder.and(criteria_builder.equal(root.get(ReservacionesEntity_.tipo), 1)),
         		criteria_builder.and(criteria_builder.equal(root.get(ReservacionesEntity_.cancelada), 0)));
-        criteria_query.orderBy(criteria_builder.asc(root.get(ReservacionesEntity_.horas_entity_id_horaini)));
+        criteria_query.orderBy(criteria_builder.asc(root.get(ReservacionesEntity_.horas_entity_id_horaini))); /*,
+        		criteria_builder.asc(root.get(ReservacionesEntity_.recursos_entity)));*/
+        //criteria_query.orderBy(criteria_builder.asc(root.get(ReservacionesEntity_.recursos_entity.getName())));
         List<ReservacionesEntity> lst_reservaciones_entity = getSession().createQuery(criteria_query).getResultList();        
         return lst_reservaciones_entity;
-	}
+	}	
 
 }
 
