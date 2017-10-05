@@ -26,6 +26,7 @@
         <security:intercept-url pattern="/xdia" access="permitAll" />
         <security:intercept-url pattern="/reservacion/repetir" access="hasAnyRole({'ROLE_ADMIN', 'ROLE_ALMACEN'})" />
         <security:intercept-url pattern="/reservacion/cancelar" access="hasAnyRole({'ROLE_ADMIN', 'ROLE_ALMACEN'})" />
+        <security:intercept-url pattern="/reservacion/search" access="hasAnyRole({'ROLE_ADMIN', 'ROLE_ALMACEN'})" />
         <security:intercept-url pattern="/res/**" access="permitAll" />
         <security:intercept-url pattern="/usuarios/**" access="hasRole('ROLE_ADMIN')" /><!--ESTE ELEMENTO VA A INTERCEPTAR TODAS LAS PETICIONES QUE CONTENGAN /admin/, CON hasRole('ADMIN') ESPECIFICAMOS QUE SOLO LOS USUARIOS CON ROL ADMIN TENGAN PERMISOS-->        
         <security:intercept-url pattern="/**" access="denyAll" /><!--ES UNA BUEN PRACTICA PONER QUE TODAS LAS PETICIONES QUE NO ESTEN CONTEMPLADAS ARRIBA SEAN DENEGADAS, ESTO ES PORQUE DE ESTA MANERA AVITAMOS CIERTO TIPO DE ATAQUES, ADEMAS DE EL NO PONERLA SE CONVIERTE EN UN BUG-->

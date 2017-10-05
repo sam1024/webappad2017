@@ -117,10 +117,17 @@ public class ReservacionesService {
     	return reservaciones_model_interface.findReservacionByIdRepetir(id_repetir);
     }
     
-    public void CancelarReservacion(int id) {
-    	ReservacionesEntity reservacion_entity = findReservacionById(id);    	  
-  	  	reservacion_entity.setCancelada(1);
-    	reservaciones_model_interface.saveOrUpd(reservacion_entity);
+    public void CancelarReservacion(int id, int no_repite) {
+    	ReservacionesEntity reservacion_entity = findReservacionById(id);
+    	if(no_repite == 0) {    		  	  
+  	  		reservacion_entity.setCancelada(1);
+  	  		reservaciones_model_interface.saveOrUpd(reservacion_entity);
+    	} else {
+    		for(ReservacionesEntity reservaciones_temp : findReservacionByIdRepetir(reservacion_entity.getId_repetir())) {
+    			reservaciones_temp.setCancelada(1);
+    			reservaciones_model_interface.saveOrUpd(reservaciones_temp);
+    		}
+    	}
     }
     
     private String validadDisponibilidad(ReservacionesEntity reservaciones_entity) {

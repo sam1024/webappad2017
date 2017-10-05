@@ -1,7 +1,10 @@
 package com.sam.webappad.controller;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -11,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -141,9 +146,27 @@ public class ReservacionesCtrl {
       }
       
       @RequestMapping(value = "/reservacion/cancelar", method = RequestMethod.POST)
-      public String cancelar(@ModelAttribute("id") int id) {
-    	  reservaciones_service.CancelarReservacion(id);
+      public String cancelar(@ModelAttribute("id") int id, @ModelAttribute("no_repite") int no_repite) {    	  
+    	  reservaciones_service.CancelarReservacion(id, no_repite);
     	  return "reservaciones_x_dia";
       }
+      
+/***************************** REGRESA DATOS EN FORMATO JSON *********************************************/
+      @RequestMapping(value = "/reservacion/search", produces = "application/json")/**ES MUY IMPORTANTE QUE LE PONGAMOS application/json
+      PARA QUE EL CONTROLADOR NO NOS RETORNE UNA VISTA O UNA REDIRECCIÓN, PERO SÍ UNA CADENA JSON **/
+      @ResponseBody
+      public Map<String, Object> findReservacionToCancel(@RequestParam("id") int id) {
+    	  Map<String, Object> map = new HashMap<>();
+    	  List<ReservacionesEntity> lst_cancel = reservaciones_service.findReservacionByIdRepetir(id);    	  
+    	  for(int i = 0; i < lst_cancel.size(); i++) {
+    		  ReservacionesEntity reservaciones_entity = lst_cancel.get(i);
+    		  map.put("fecha" + (i + 1), reservaciones_entity.getFecha());
+    	  }
+    	  System.out.println("RESERVACION/SEARCH: " + map.toString());
+    	  return map;
+      }
+/***************************** FIN REGRESA DATOS EN FORMATO JSON *********************************************/
 }
+
+
 

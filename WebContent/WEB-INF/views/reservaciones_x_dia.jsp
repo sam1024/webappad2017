@@ -24,6 +24,7 @@
                     	<p class="p_card_personalizada">${temp.evento}</p>
                     	<p class="p_card_personalizada">${temp.requerimientos}</p>
                     	<p class="p_card_personalizada">${temp.responsable}</p>
+                    	<input type="hidden" id="h${temp.id}" value="${temp.id_repetir}" />
                     	<sec:authorize access="hasAnyRole({'ROLE_ADMIN', 'ROLE_ALMACEN'})">
                     		<button id="btn_edit" value="${temp.id}" class="btns" name="edit">
 								<span id="pencil" title="Modificar" class="fa icon-pencil2 icons"></span>
@@ -36,7 +37,6 @@
             	</c:forEach>
             </c:if>
         </section>
-        <section></section>
         <script type="text/javascript" src='<c:url value="/res/js/jquery-3.2.1.min.js" />' ></script>
         <script type="text/javascript" src='<c:url value="/res/js/sweetalert2.min-6.6.5.js" />' ></script>
         <script type="text/javascript" src='<c:url value="/res/js/reservaciones_x_dia.js" />' ></script>
