@@ -20,7 +20,7 @@ public class InventarioEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "seq_new_reservacion", allocationSize = 1)
+    @SequenceGenerator(name = "seq", sequenceName = "new_register", allocationSize = 1)
     private int id;
     private String articulo;
     private String serie;

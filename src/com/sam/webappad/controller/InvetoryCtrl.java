@@ -31,11 +31,12 @@ public class InvetoryCtrl {
 	
 	@RequestMapping("/inventario")
 	public String invetory(Model model) {
-		model.addAttribute("inventario", new InventarioEntity());/*SI NO SE MANDA UNA INSTACIA DE LA CLASE
+		/*model.addAttribute("inventario", new InventarioEntity());/*SI NO SE MANDA UNA INSTACIA DE LA CLASE
     	MARCA EL ERROR Neither BindingResult nor plain target object*/
 		model.addAttribute("lst_marcas", marcas_service.findAll());
 		model.addAttribute("lst_modelos", modelos_service.findAll());
 		model.addAttribute("lst_recursos", recursos_service.findAll());
+		model.addAttribute("lst_inventario", inventory_service.findAll());
 		return "inventory";
 	}
 	

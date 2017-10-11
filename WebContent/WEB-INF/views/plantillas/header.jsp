@@ -12,6 +12,7 @@
 				<li class="li_menu">
 					<a href="<c:url value='/reservaciones' />"><i class="fa fa-calendar" title="Reservaciones"><p class="p_menu">Reservaciones</p></i></a>
 				</li>
+				<li class="li_menu" id="li_new"></li>
 				<li class="li_menu">
 					<a href="<c:url value='/logout' />"><i class="fa fa-sign-out" title="Salir"><p class="p_menu">Salir</p></i></a>
 				</li>

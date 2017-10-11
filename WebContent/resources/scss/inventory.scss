@@ -11,25 +11,17 @@ body {
     background-color: #111;
 }
 
+/***** SECTION MENU *********/
 #nav_menu {
 	height: 10.5rem !important;
 }
 
 .li_menu {
-	height: 3rem !important;
+	height: 1.3rem !important;
 }
+/***** FIN SECTION MENU *********/
 
-#section_form {
-	position: fixed;
-	z-index: 1025;
-	background-color: rgba(0, 0, 0, .8);
-	border: 1px solid green;
-    margin-top: 3rem;
-    height: 100%;
-    bottom: -33rem;
-    overflow: auto;
-}
-
+/***** ICONO NUEVO REGISTRO *********/
 .icon-plus {
 	position: fixed;
 	bottom: 0rem;
@@ -40,6 +32,38 @@ body {
 
 .icon-plus:hover {
 	color: #A93226;
+}
+/***** FIN ICONO NUEVO REGISTRO *********/
+
+/***** SECTION_SEARCH *********/
+#section_search {
+	margin-top: 3rem;
+}
+/***** FIN SECTION_SEARCH *********/
+
+/***** SECTION SHOW DATOS *********/
+#section_show_datos {
+	/*margin-top: 3.3rem;*/
+	margin-top: -.5rem;
+}
+.card_personalizada {
+	position: relative;
+    background-color: #222;
+    margin-bottom: .7rem !important;
+    padding: .3rem .3rem .5rem .3rem;
+    /*box-shadow: -0.05rem 0.3rem 0.5rem grey;*/
+}
+/***** FIN SECTION SHOW DATOS *********/
+
+/***** SECTION VENTANA MODAL *********/
+#section_form {
+	position: fixed;
+	z-index: 1025;
+	background-color: rgba(0, 0, 0, .8);
+    margin-top: 3rem;
+    height: 100%;
+    bottom: -100%;
+    overflow: auto;
 }
 
 option {
@@ -72,6 +96,6 @@ option {
     font-size: 1.1rem;
     width: 100%;
 }
-
+/***** FIN SECTION VENTANA MODAL *********/
 
 

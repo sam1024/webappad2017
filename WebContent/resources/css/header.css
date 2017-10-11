@@ -25,7 +25,7 @@
           transform: translateX(-105%);
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
-  top: 3.4rem;
+  margin-top: .4rem;
   background-color: #A93226;
   width: 13rem; }
 

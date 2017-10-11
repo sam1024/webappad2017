@@ -21,5 +21,9 @@ public class InventoryService {
 	public List<InventarioEntity> showAll() {
 		return inventory_model_interface.findAll();
 	}
+	
+	public List<InventarioEntity> findAll() {
+		return inventory_model_interface.findAll();
+	}
 
 }
