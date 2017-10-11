@@ -12,12 +12,12 @@
         <section id="section_table">
             <c:if test="${lst_reservaciones.size() == 0}">
             	<div class="card_personalizada">
-            		<p class="p_card_personalizada">NO ENCONTRÉ RESERVACIONES PARA EL </p>
+            		<p class="p_card_personalizada" id="p_no_reservaciones">NO ENCONTRÉ RESERVACIONES PARA EL ${diames}</p>
             	</div>            	
             </c:if>
             <c:if test="${lst_reservaciones.size() > 0}">
             	<c:forEach var="temp" items="${lst_reservaciones}">
-                	<div class="card_personalizada" id="${temp.id}">
+            		<div class="card_personalizada" id="${temp.id}">
                     	<p class="p_card_personalizada">${temp.horas_entity_id_horaini.getHora()} - ${temp.horas_entity_id_horafin.getHora()}</p>
                     	<p class="p_card_personalizada">${temp.recursos_entity.getNombre()}</p>
                     	<p class="p_card_personalizada">${temp.acomodos_entity.getAcomodos()} ${temp.no_participantes}</p>

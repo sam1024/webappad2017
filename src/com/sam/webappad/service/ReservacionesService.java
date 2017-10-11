@@ -20,7 +20,6 @@ public class ReservacionesService {
     
     public String save(ReservacionesEntity reservaciones_entity, String fechas) {
     	String res = "";
-    	//int id_reservacion = reservaciones_entity.getId();
     	if(!fechas.equals("")) {
     	/**** ENTRA A ESTE IF SOLO CUANDO LA RESERVACIÓN SE REPITE ****/
     	    System.out.println("Reservaciones entity: " + reservaciones_entity);
@@ -151,6 +150,7 @@ public class ReservacionesService {
     		lst_reservaciones  = reservaciones_model_interface.findReservacionByFecha(reservaciones_entity.getFecha());
     	}
     	if(lst_reservaciones.isEmpty()) {
+    		System.out.println("LISTA VACIA: " + lst_reservaciones.size());
     		return res;
     	} else {
     		for(ReservacionesEntity lst : lst_reservaciones) {

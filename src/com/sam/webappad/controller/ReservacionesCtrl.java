@@ -58,7 +58,8 @@ public class ReservacionesCtrl {
     
     @RequestMapping(value = "/xdia", method = RequestMethod.POST)
     public String showXDia(Model model, @ModelAttribute("fecha") String fecha) {
-        model.addAttribute("diames", fecha);
+    	String fecha_formateada[] = fecha.split("-");
+    	model.addAttribute("diames", fecha_formateada[2] + "/" + fecha_formateada[1] + "/" + fecha_formateada[0]);
         model.addAttribute("lst_reservaciones", reservaciones_service.findReservacionByFecha(Date.valueOf(fecha)));
         return "reservaciones_x_dia";
     }
@@ -138,10 +139,15 @@ public class ReservacionesCtrl {
       public String Modificar(@ModelAttribute("id") int id, Model model) {
     	  model.addAttribute("reservacion_new", new ReservacionesEntity());/*SI NO SE MANDA UNA INSTACIA DE LA CLASE
       	  MARCA EL ERROR Neither BindingResult nor plain target object*/
-    	  model.addAttribute("reservacion", reservaciones_service.findReservacionById(id));
+    	  ReservacionesEntity reservaciones_entity = reservaciones_service.findReservacionById(id);
+    	  //model.addAttribute("reservacion", reservaciones_service.findReservacionById(id));
+    	  model.addAttribute("reservacion", reservaciones_entity);
     	  model.addAttribute("lst_horas", horas_service.findAll());
           model.addAttribute("lst_recursos", recursos_service.findAll());
           model.addAttribute("lst_acomodos", acomodos_service.findAll());
+          if(reservaciones_entity.getId_repetir() != 0) {
+        	  model.addAttribute("lst_repetidas", reservaciones_service.findReservacionByIdRepetir(reservaciones_entity.getId_repetir())); //@ModelAttribute("id_repetir") int id_repetir,
+          }
     	  return "modificar";
       }
       

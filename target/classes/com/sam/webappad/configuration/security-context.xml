@@ -16,6 +16,7 @@
     <security:http use-expressions="true">
         <security:intercept-url pattern="/" access="permitAll" /><!--ESTE ELEMENTO VA A INTERCEPTAR TODAS LAS PETICIONES QUE CONTENGAN /, CON permitAll ESPECIFICAMOS QUE CUALQUIER USUARIO TENGAN ACCESO-->
         <security:intercept-url pattern="/inventario" access="permitAll" />
+        <security:intercept-url pattern="/inventario/save" access="hasAnyRole({'ROLE_ADMIN', 'ROLE_ALMACEN'})" />
         <security:intercept-url pattern="/login" access="permitAll" />
         <security:intercept-url pattern="/logout" access="permitAll" />
         <security:intercept-url pattern="/mensajes" access="isAuthenticated()" />        

@@ -84,9 +84,7 @@ public class ReservacionesModelImpl implements ReservacionesModelInterface {
         		criteria_builder.equal(root.get(ReservacionesEntity_.fecha), fecha),
         		criteria_builder.and(criteria_builder.equal(root.get(ReservacionesEntity_.tipo), 1)),
         		criteria_builder.and(criteria_builder.equal(root.get(ReservacionesEntity_.cancelada), 0)));
-        criteria_query.orderBy(criteria_builder.asc(root.get(ReservacionesEntity_.horas_entity_id_horaini))); /*,
-        		criteria_builder.asc(root.get(ReservacionesEntity_.recursos_entity)));*/
-        //criteria_query.orderBy(criteria_builder.asc(root.get(ReservacionesEntity_.recursos_entity.getName())));
+        criteria_query.orderBy(criteria_builder.asc(root.get(ReservacionesEntity_.horas_entity_id_horaini)));
         List<ReservacionesEntity> lst_reservaciones_entity = getSession().createQuery(criteria_query).getResultList();        
         return lst_reservaciones_entity;
 	}	

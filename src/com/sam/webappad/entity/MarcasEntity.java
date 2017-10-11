@@ -14,8 +14,7 @@ import javax.persistence.Table;
 public class MarcasEntity {
     
     @Id
-    @Column(name = "id")
-    private int id_marca;
+    private int id;
     private String marca;
     
     @OneToMany(mappedBy = "marcas_entity")
@@ -31,12 +30,12 @@ public class MarcasEntity {
         this.marca = marca;
     }
 
-    public int getId_marca() {
-        return id_marca;
+    public int getId() {
+        return id;
     }
 
-    public void setId_marca(int id_marca) {
-        this.id_marca = id_marca;
+    public void setId(int id_marca) {
+        this.id = id_marca;
     }
 
     public String getMarca() {

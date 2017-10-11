@@ -13,6 +13,7 @@ $("#fecha").pickadate( {
 
 $("#form_new_reservacion").submit(function(e) {
 	validaCampos(e);
+	//repite($("#repeat").val(), e);
 });
 
 $("#btn_repeat").on("click", function(e) {
@@ -107,6 +108,25 @@ function showMsjDialog(id) {
 			"El salon está ocupado a esa hora " + id,
 			"error");
 	}
+	
+}
+
+function repite(id_repetir, e) {
+	var msj;
+	if(id_repetir === "0") {
+		msj = "LA RESERVACION NO SE REPITE";
+		console.log("id repetir: " + id_repetir);
+		e.preventDefault();
+	} else {
+		msj = "LA RESERVACION SE REPITE";
+		console.log("id repetir: " + id_repetir);
+		e.preventDefault();
+	}
+	swal(
+		"AVISO",
+		msj,
+		"info"		
+	)
 	
 }
 

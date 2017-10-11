@@ -51,7 +51,7 @@
                         <textarea class="input_field textarea" name="fechas" id="fechas" placeholder="Se repite"></textarea>
                         
                         <sf:input path="fecha_creacion" type="hidden" name="fecha_creacion" id="fecha_creacion" />
-                        <sf:input path="id_repetir" type="hidden" name="inp_repeat" id="repeat" value="" />
+                        <sf:input path="id_repetir" type="hidden" name="inp_repeat" id="repeat" value="${reservacion.getId_repetir()}" />
                         <sf:input path="cancelada" type="hidden" name="inp_cancelada" id="cancel" value="0" />
                         <sf:input path="tipo" type="hidden" name="inp_tipo" id="tipo" value="1" />
                         
@@ -59,12 +59,19 @@
                         	<sec:authentication property="principal" var="principal" />
                             <c:set var="username" value="${principal}" />
                             <input type="hidden" name="username" id="username" value="${username}" />
-                        </sec:authorize>                        
+                        </sec:authorize>                                           
                         
                         <button type="submit" id="btn_save" class="btns_upd">Guardar</button>
                         <button type="reset" id="btn_cancel" class="btns_upd">Cancelar</button>
                     </diV>
                 </sf:form>
+<%--                 <c:if test="${reservacion.getId_repetir() != 0}"> --%>
+<%--                 	<c:set var="fechas_repe" value="" /> --%>
+<%--                 	<c:forEach var="tmp" items="${lst_repetidas}"> --%>
+<%-- 						<c:set var="fechas_repe" value="${fechas_repe + tmp.getFecha()}" /> --%>
+<%--                 	</c:forEach> --%>
+<%--                 </c:if> --%>
+<!--                 <input id="fechas_se_repite" type="hidden" value="fechas_repe" /> -->
                 <input id="path" type="hidden" value="${pageContext.request.contextPath}" />
             </main>
         </section>
@@ -73,6 +80,7 @@
         <script type="text/javascript" src='<c:url value="/res/js/picker.date.js" />' ></script>
         <script type="text/javascript" src='<c:url value="/res/js/sweetalert2.min-6.6.5.js" />' ></script>
         <script type="text/javascript" src='<c:url value="/res/js/reservacion_new.js" />' ></script>
+<%--         <script type="text/javascript" src='<c:url value="/res/js/modificar.js" />' ></script> --%>
 	</body>
 </html>
 

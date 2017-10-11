@@ -6,6 +6,7 @@ import com.sam.webappad.entity.InventarioEntity;
 
 public interface InventoryModelInterface {
 	
-	public List<InventarioEntity> showAll();
+	public void save(InventarioEntity inventario_entity);
+	public List<InventarioEntity> findAll();
 
 }

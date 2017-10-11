@@ -1,6 +1,7 @@
 package com.sam.webappad.entity;
 
 import javax.annotation.Generated;
+import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
@@ -9,6 +10,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 public abstract class ModelosEntity_ {
 
 	public static volatile SingularAttribute<ModelosEntity, MarcasEntity> marcas_entity_model;
+	public static volatile SetAttribute<ModelosEntity, InventarioEntity> inventario_entity;
 	public static volatile SingularAttribute<ModelosEntity, Integer> id;
 	public static volatile SingularAttribute<ModelosEntity, String> modelo;
 

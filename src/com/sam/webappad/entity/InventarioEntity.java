@@ -3,10 +3,13 @@ package com.sam.webappad.entity;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /** @author sam **/
@@ -16,8 +19,9 @@ import javax.persistence.Table;
 public class InventarioEntity {
     
     @Id
-    @Column(name = "id")
-    private int id_inventario;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+    @SequenceGenerator(name = "seq", sequenceName = "seq_new_reservacion", allocationSize = 1)
+    private int id;
     private String articulo;
     private String serie;
     private int horas;
@@ -26,12 +30,16 @@ public class InventarioEntity {
     private int status;
     
     @ManyToOne
-    @JoinColumn(name = "id_recursos")
+    @JoinColumn(name = "id_recurso", insertable = true, updatable = true)
     private RecursosEntity recursos_entity_inventario;
     
     @ManyToOne
-    @JoinColumn(name = "id_marca")
+    @JoinColumn(name = "id_marca", insertable = true, updatable = true)
     private MarcasEntity marcas_entity;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_modelo", insertable = true, updatable = true)
+    private ModelosEntity modelos_entity;
     
     @OneToMany(mappedBy = "inventario_entity")
     private Set<PrestamoEntity> prestamo_entity;
@@ -49,11 +57,11 @@ public class InventarioEntity {
     }
 
     public int getId() {
-        return id_inventario;
+        return id;
     }
 
     public void setId(int id) {
-        this.id_inventario = id;
+        this.id = id;
     }
 
     public String getArticulo() {
@@ -119,5 +127,30 @@ public class InventarioEntity {
     public void setMarcas_entity(MarcasEntity marcas_entity) {
         this.marcas_entity = marcas_entity;
     }
+
+	public ModelosEntity getModelos_entity() {
+		return modelos_entity;
+	}
+
+	public void setModelos_entity(ModelosEntity modelos_entity) {
+		this.modelos_entity = modelos_entity;
+	}
+
+	public Set<PrestamoEntity> getPrestamo_entity() {
+		return prestamo_entity;
+	}
+
+	public void setPrestamo_entity(Set<PrestamoEntity> prestamo_entity) {
+		this.prestamo_entity = prestamo_entity;
+	}
+
+	@Override
+	public String toString() {
+		return "InventarioEntity [id=" + id + ", articulo=" + articulo + ", serie=" + serie + ", horas=" + horas
+				+ ", condiciones=" + condiciones + ", comentarios=" + comentarios + ", status=" + status
+				+ ", recursos_entity_inventario=" + recursos_entity_inventario + ", marcas_entity=" + marcas_entity
+				+ ", modelos_entity=" + modelos_entity + "]";
+	}
+    
     
 }

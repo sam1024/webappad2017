@@ -14,8 +14,12 @@ public class InventoryService {
 	@Autowired
 	private InventoryModelInterface inventory_model_interface;
 	
+	public void save(InventarioEntity inventario_entity) {
+		inventory_model_interface.save(inventario_entity);
+	}
+	
 	public List<InventarioEntity> showAll() {
-		return inventory_model_interface.showAll();
+		return inventory_model_interface.findAll();
 	}
 
 }

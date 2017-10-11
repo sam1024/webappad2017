@@ -36,8 +36,7 @@ header h1 {
   padding: .4rem; }
 
 #nav_menu #ul_menu li a .icon-home:hover {
-  background-color: #A93226;
-  /*https://www.youtube.com/watch?v=TFfc7XEbFSM*/ }
+  background-color: #A93226; }
 
 #nav_menu #ul_menu li a .icon-home p {
   margin-top: .3rem;

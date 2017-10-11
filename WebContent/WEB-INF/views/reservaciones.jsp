@@ -92,6 +92,7 @@
         <script type="text/javascript" src='<c:url value="/res/js/legacy.js" />' ></script>
         <script type="text/javascript" src='<c:url value="/res/js/reservaciones.js" />' ></script>
         <script type="text/javascript" src='<c:url value="/res/js/reservaciones_x_dia.js" />' ></script>
+<%--         <script type="text/javascript" src='<c:url value="/res/js/reservacion_new.js" />' ></script> --%>
         <script type='text/javascript'>showCalendar()</script>
     </body>
 </html>

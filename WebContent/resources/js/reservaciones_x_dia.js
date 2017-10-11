@@ -1,4 +1,4 @@
-var day;
+var day, id_repetir;
 $("#print").on("click", function() {
     print(); 
 });
@@ -87,11 +87,51 @@ function numDayToName(number_day) {
 }
 
 function modificar(id){
+	/*var fechas_repetidas = "";
+	if($("#h" + id).val() === "0") {
+		/******** ENTRA A ESTE IF CUANDO NO SE REPITE ***********/
+					//cancelar(id, 0);
+	/*} else {
+	$.ajax({
+    	async: true,
+        type: "POST",
+        url: $("#path").val() + "/reservacion/search",
+        data: {"id": $("#h" + id).val()},
+        success: function(data) {
+        	fechas_repetidas = "";
+        	//$("#fechas_repite").empty();
+        	$.each(data, function(index, element) {
+        		f = element.split("-");
+        		fechas_repetidas = fechas_repetidas + f[2] + "/" + f[1] + "/" + f[0] + " " ;
+        	});
+        	swal({
+				title: "Pregunta",
+				text: "La reservación se repite las fechas: " + fechas_repetidas + " ¿quieres modificarlas todas?",
+				type: 'warning',
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				showCancelButton: true,
+				confirmButtonText: "Sí",
+				cancelButtonText: "No"
+			}).then(function() {
+				//cancelar(id, 1);
+			}, function(dismiss) {
+				if(dismiss === 'cancel') {									
+					fechas_repetidas = "";
+					//cancelar(id, 0);
+				}
+			});
+        }
+    });
+	}*/
+	/*id_repetir = $("#h" + id).val();*/
+//	console.log("id_repetir: " + $("#fechas_se_repite").val());
 	$.ajax({
 		async: true,		
 		type: "POST",
 		url: $("#path").val() + "/reservacion/modificar",
-		data: {"id": id,}
+		//data: {"id": id, "id_repetir": id_repetir}
+		data: {"id": id}
 	})
 	.done(function(resers) {
 		success: $("#reservaciones_x_dia").html(resers);

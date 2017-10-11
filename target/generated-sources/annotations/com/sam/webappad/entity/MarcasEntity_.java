@@ -11,7 +11,7 @@ public abstract class MarcasEntity_ {
 
 	public static volatile SingularAttribute<MarcasEntity, String> marca;
 	public static volatile SetAttribute<MarcasEntity, InventarioEntity> inventario_entity;
-	public static volatile SingularAttribute<MarcasEntity, Integer> id_marca;
+	public static volatile SingularAttribute<MarcasEntity, Integer> id;
 	public static volatile SetAttribute<MarcasEntity, ModelosEntity> modelos_entity;
 
 }

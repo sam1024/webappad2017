@@ -14,7 +14,6 @@ import javax.persistence.Table;
 public class RecursosEntity {
     
     @Id
-    @Column(name = "id")
     private Integer id;
     private String nombre;
     private int capacidad;

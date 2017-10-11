@@ -181,8 +181,12 @@ thead {
   background-color: #222;
   margin-bottom: .7rem !important;
   padding: .3rem .3rem .5rem .3rem;
-  font-family: elmessiri;
-  /*box-shadow: -0.05rem 0.3rem 0.5rem grey;*/ }
+  font-family: elmessiri; }
+
+#p_no_reservaciones {
+  font-size: 1.5rem;
+  color: red;
+  text-align: center; }
 
 .btns {
   background-color: transparent;
