@@ -1,10 +1,12 @@
 $("#icon_menu").on("click", function() {
-    $("#nav_menu").toggleClass("abrir_cerrar");
+    hideShowMenu();
 });
 
-$(function() {
-	$("#li_new").append("<a href='javascript:void(0)' id='search'><i class='fa fa-search' title='Buscar'><p class='p_menu'>Buscar</p></i></a>");
-});
+/**** AGREGAR EL MENU BUSCAR, ESTE SE AGREGA CUANDO LA PAGINA SE ABRE ****/
+/*$(function() {
+	$(".search_inputs").css("display", "none");
+});*/
+/**** FIN AGREGAR EL MENU BUSCAR ****/
 
 /*** ABRIR LA VENTANA MODAL ***/
 $("#add_new").on("click", function() {
@@ -18,6 +20,40 @@ $("#btn_cancel").on("click", function() {
     $("#section_show_datos").css("display", "block");
 });
 /*** FIN CERRAR LA VENTANA MODAL ***/
+
+/**** MOSTRA Y OCULTAR EL SUBMENU ****/
+$("#li_new").on("click", function() {
+	$(this).children("ul").slideToggle();	
+});
+/**** MOSTRA Y OCULTAR EL SUBMENU ****/
+
+$("ul").on("click", function(p) {
+	//p.stopPropagation();
+});
+
+$("#search_serie").on("click", function() {
+	hideShowMenu();
+	$("#txt_search").css("display", "block").focus();
+	$("#articulo_find").css("display", "none").focus();
+	$("#recurso_find").css("display", "none").focus();
+	$("#btn_show_all").css("display", "none").focus();
+});
+
+$("#search_articulo").on("click", function() {
+	hideShowMenu();
+	$("#articulo_find").css("display", "block").focus();
+	$("#txt_search").css("display", "none").focus();
+	$("#recurso_find").css("display", "none").focus();
+	$("#btn_show_all").css("display", "none").focus();	
+});
+
+$("#search_area").on("click", function() {
+	hideShowMenu();
+	$("#recurso_find").css("display", "block").focus();
+	$("#articulo_find").css("display", "none").focus();
+	$("#txt_search").css("display", "none").focus();
+	$("#btn_show_all").css("display", "none").focus();
+});
 
 $("#btn_save").on("click", function() {
 	if(validaCampos()) {
@@ -44,7 +80,7 @@ function openModal() {
 function validaCampos() {
 	if($("#articulo").val() === "") {
 		$("#articulo").focus();
-		showAlert("Tienes que introducir el nombre del artículo");
+		showAlert("Tienes que seleccionar el artículo");
 		return false;		
 	} else if($("#marca").val() === "") {
 		$("#marca").focus();
@@ -59,6 +95,7 @@ function validaCampos() {
 		showAlert("Tienes que introducir el numero de serie");
 		return false;
 	} else if($("#recurso").val() === "") {
+		console.log("UBICAION: " + $("#recurso").val());
 		$("#recurso").focus();
 		showAlert("Tienes que seleccionar la ubicación");
 		return false;
@@ -79,8 +116,8 @@ function showAlert(msj) {
 	)
 }
 
-function addMenuElement() {
-		
+function hideShowMenu() {
+	$("#nav_menu").toggleClass("abrir_cerrar");
 }
 
 

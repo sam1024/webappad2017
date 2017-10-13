@@ -9,19 +9,27 @@ body {
   background-color: #111; }
 
 /***** SECTION MENU *********/
-#nav_menu {
-  height: 10.5rem !important; }
-
 .li_menu {
-  height: 1.3rem !important; }
+  padding: 0 .5rem !important; }
+
+#li_new .fa-chevron-down {
+  position: absolute;
+  right: 0.1rem; }
+
+#li_new ul {
+  position: static;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 13rem;
+  margin-left: -.5rem; }
 
 /***** FIN SECTION MENU *********/
 /***** ICONO NUEVO REGISTRO *********/
-.icon-plus {
+.fa-plus-circle {
   position: fixed;
   bottom: 0rem;
   right: 0.1rem;
-  font-size: 3rem;
+  font-size: 3rem !important;
   z-index: 100; }
 
 .icon-plus:hover {
@@ -32,18 +40,23 @@ body {
 #section_search {
   margin-top: 3rem; }
 
+.search_inputs {
+  display: none; }
+
+#btn_show_all:active {
+  -webkit-transform: scale(0.95);
+          transform: scale(0.95); }
+
 /***** FIN SECTION_SEARCH *********/
 /***** SECTION SHOW DATOS *********/
 #section_show_datos {
-  /*margin-top: 3.3rem;*/
   margin-top: -.5rem; }
 
 .card_personalizada {
   position: relative;
   background-color: #222;
   margin-bottom: .7rem !important;
-  padding: .3rem .3rem .5rem .3rem;
-  /*box-shadow: -0.05rem 0.3rem 0.5rem grey;*/ }
+  padding: .3rem .3rem .5rem .3rem; }
 
 /***** FIN SECTION SHOW DATOS *********/
 /***** SECTION VENTANA MODAL *********/
@@ -88,5 +101,24 @@ option {
   width: 100%; }
 
 /***** FIN SECTION VENTANA MODAL *********/
+/************************************************** MEDIA QUERY **********************************************************/
+@media (min-width: 992px) {
+  /**** MENU *******/
+  .fa-chevron-down {
+    display: none !important; }
+
+  #li_new ul {
+    position: absolute;
+    width: 8rem;
+    right: .4rem; }
+
+  #li_new:hover ul {
+    display: block; }
+
+  #li_new ul li a .p_menu {
+    display: block;
+    right: 1rem; }
+
+  /**** FIN MENU *****/ }
 
 /*# sourceMappingURL=inventory.css.map */

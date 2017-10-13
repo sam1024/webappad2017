@@ -15,14 +15,13 @@ import javax.persistence.Table;
 /** @author sam **/
 
 @Entity
-@Table(name = "inventario")
+@Table(name = "inventarios")
 public class InventarioEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @SequenceGenerator(name = "seq", sequenceName = "new_register", allocationSize = 1)
     private int id;
-    private String articulo;
     private String serie;
     private int horas;
     private String condiciones;
@@ -43,12 +42,15 @@ public class InventarioEntity {
     
     @OneToMany(mappedBy = "inventario_entity")
     private Set<PrestamoEntity> prestamo_entity;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_articulo", insertable = true, updatable = true)
+    private ArticulosEntity articulos_entity;
 
     public InventarioEntity() {
     }
 
-    public InventarioEntity(String articulo, String serie, int horas, String condiciones, String comentarios, int status) {
-        this.articulo = articulo;
+    public InventarioEntity(String serie, int horas, String condiciones, String comentarios, int status) {
         this.serie = serie;
         this.horas = horas;
         this.condiciones = condiciones;
@@ -62,14 +64,6 @@ public class InventarioEntity {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getArticulo() {
-        return articulo;
-    }
-
-    public void setArticulo(String articulo) {
-        this.articulo = articulo;
     }
 
     public String getSerie() {
@@ -144,13 +138,20 @@ public class InventarioEntity {
 		this.prestamo_entity = prestamo_entity;
 	}
 
+	public ArticulosEntity getArticulos_entity() {
+		return articulos_entity;
+	}
+
+	public void setArticulos_entity(ArticulosEntity articulos_entity) {
+		this.articulos_entity = articulos_entity;
+	}
+
 	@Override
 	public String toString() {
-		return "InventarioEntity [id=" + id + ", articulo=" + articulo + ", serie=" + serie + ", horas=" + horas
-				+ ", condiciones=" + condiciones + ", comentarios=" + comentarios + ", status=" + status
-				+ ", recursos_entity_inventario=" + recursos_entity_inventario + ", marcas_entity=" + marcas_entity
-				+ ", modelos_entity=" + modelos_entity + "]";
-	}
-    
+		return "InventarioEntity [id=" + id + ", serie=" + serie + ", horas=" + horas + ", condiciones=" + condiciones
+				+ ", comentarios=" + comentarios + ", status=" + status + ", recursos_entity_inventario="
+				+ recursos_entity_inventario + ", marcas_entity=" + marcas_entity + ", modelos_entity=" + modelos_entity
+				+ ", prestamo_entity=" + prestamo_entity + ", articulos_entity=" + articulos_entity + "]";
+	}    
     
 }

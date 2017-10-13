@@ -10,20 +10,26 @@
 		<link rel="icon" type="image/png" href='<c:url value="/res/images/kernel.png" />' />
 		<title>Inventario - WebappAD</title>
 		<link type="text/css" rel="stylesheet" href='<c:url value="/res/css/inventory.css" />' />
-		<link type="text/css" rel="stylesheet" href='<c:url value="/res/css/brankic.css" />' />
 		<link type="text/css" rel="stylesheet" href='<c:url value="/res/css/sweetalert.css" />' />
 	</head>
 	<body>
 		<%@include file="plantillas/header.jsp" %>
-		<span class="icon-plus" id="add_new"></span>
+		<span class="fa fa-plus-circle" id="add_new"></span>
 		<section id="section_search">
-			<input type="text" id="txt_search" class="input_field" placeholder="Buscar por serie..." autofocus />
-			<select name='id_recurso' id="recurso" class="input_field">
+			<input type="text" id="txt_search" class="input_field search_inputs" placeholder="Buscar por serie..." autofocus />
+			<select name='id_recurso_find' id="recurso_find" class="input_field search_inputs">
 				<option value="">UBICACIÓN</option>
 				<c:forEach var="tmp_recursos" items="${lst_recursos}">
 					<option value="${tmp_recursos.id_recursos}">${tmp_recursos.nombre}</option>
 				</c:forEach>
 			</select>
+			<select name='id_articulo_find' id="articulo_find" class="input_field search_inputs">
+				<option value="">ARTÍCULO</option>
+				<c:forEach var="tmp_articulos" items="${lst_articulos}">
+					<option value="${tmp_articulos.id}">${tmp_articulos.nombre}</option>
+				</c:forEach>
+			</select>
+			<button id="btn_show_all" class="btns">TODOS LOS PRODUCTOS</button>
 		</section>
 		<section id="section_show_datos">
 			<div class="container">
@@ -52,7 +58,12 @@
 		</section>
 		<section id="section_form">					
 			<div id="modal">
-					<input name="articulo" id="articulo" type="text" class="input_field" placeholder="Articulo" autofocus />
+					<select name='id_articulo' id="articulo" class="input_field">
+						<option value="">ARTÍCULO</option>
+						<c:forEach var="tmp_articulos" items="${lst_articulos}">
+							<option value="${tmp_articulos.id}">${tmp_articulos.nombre}</option>
+						</c:forEach>
+					</select>
 					<select name='id_marca' id="marca" class="input_field">
 						<option value="">MARCA</option>
 						<c:forEach var="tmp_marcas" items="${lst_marcas}">
