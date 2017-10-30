@@ -25,5 +25,25 @@ public class InventoryService {
 	public List<InventarioEntity> findAll() {
 		return inventory_model_interface.findAll();
 	}
+	
+	public InventarioEntity findBySerie(String serie) {
+		return inventory_model_interface.findBySerie(serie);
+	}
+	
+	public List<InventarioEntity> findByIdArticulo(int id_articulo) {
+		return inventory_model_interface.findByIdArticulo(id_articulo);
+	}
+	
+	public InventarioEntity findById(int id) {
+		return inventory_model_interface.findById(id);
+	}
+	
+	public List<InventarioEntity> findByUbicacion(int id_ubicacion) {
+		return inventory_model_interface.findByUbicacion(id_ubicacion);
+	}
+	
+	public List<InventarioEntity> findArticulosBaja() {
+		return inventory_model_interface.findArticulosBaja();
+	}
 
 }

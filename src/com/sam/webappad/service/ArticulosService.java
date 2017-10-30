@@ -21,5 +21,9 @@ public class ArticulosService {
 	public List<ArticulosEntity> findAll() {
 		return articulos_model_interface.findAll();
 	}
+	
+	public ArticulosEntity findById(int id) {
+		return articulos_model_interface.findById(id);
+	}
 
 }

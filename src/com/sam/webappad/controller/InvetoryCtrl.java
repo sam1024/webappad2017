@@ -1,9 +1,12 @@
 package com.sam.webappad.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,24 +44,67 @@ public class InvetoryCtrl {
 		model.addAttribute("lst_modelos", modelos_service.findAll());
 		model.addAttribute("lst_recursos", recursos_service.findAll());
 		model.addAttribute("lst_articulos", articulos_service.findAll());
-		//model.addAttribute("lst_inventario", inventory_service.findAll());
 		return "inventory";
 	}
 	
 	@RequestMapping(value = "/inventario/save", method = RequestMethod.POST)
-	public String save(@ModelAttribute("articulo") String articulo, @ModelAttribute("marca") int id_marca, @ModelAttribute("modelo") int id_modelo,
+	public String save(@ModelAttribute("articulo") int id_articulo, @ModelAttribute("marca") int id_marca, @ModelAttribute("modelo") int id_modelo,
 					   @ModelAttribute("serie") String serie, @ModelAttribute("recurso") int id_recurso, @ModelAttribute("horas") int horas,
 					   @ModelAttribute("condiciones") String condiciones, @ModelAttribute("comentarios") String comentarios,
 					   @ModelAttribute("status") int status) {
-		System.out.println("Articulo: " + articulo + "\nDI Marca: " + id_marca + "\nID Modelo: " + id_modelo + "\nSerie: " + serie +
-				"\nID Recurso: " + id_recurso + "\nHoras: " + horas + "\nCondiciones: " + condiciones + "\nComentarios: " + comentarios + "\nStatus: " + status);
+		
 		InventarioEntity inventario_entity = new InventarioEntity(serie, horas, condiciones, comentarios, status);
-		inventario_entity.setRecursos_entity_inventario(recursos_service.findById(id_recurso));
+		
+		inventario_entity.setArticulos_entity(articulos_service.findById(id_articulo));
 		inventario_entity.setMarcas_entity(marcas_service.findById(id_marca));
 		inventario_entity.setModelos_entity(modelos_service.findById(id_modelo));
-		System.out.println("INVENTARIO ENTITY: " + inventario_entity.toString());
+		inventario_entity.setRecursos_entity_inventario(recursos_service.findById(id_recurso));		
+		
 		inventory_service.save(inventario_entity);
 		return "";
+	}
+	
+	@RequestMapping(value = "/inventario/articulos", method = RequestMethod.POST)
+	public String articulos(Model model, @ModelAttribute("serie") String serie, @ModelAttribute("id_articulo") int id_articulo, 
+			@ModelAttribute("id_ubicacion") int id_ubicacion, @ModelAttribute("flag") int flag) {
+		if(!serie.equals("")) {
+			System.out.println("BUSCAR POR SERIE");
+			model.addAttribute("flag", 1);
+			try {
+				model.addAttribute("articulo", inventory_service.findBySerie(serie));
+			} catch(Exception ex) {
+				model.addAttribute("articulo", null);
+			}
+		} else if(id_articulo != 0) {
+			System.out.println("BUSCAR POR articulo");
+			model.addAttribute("flag", 0);
+			model.addAttribute("lst_resultado", inventory_service.findByIdArticulo(id_articulo));
+		} else if(id_ubicacion != 0) {
+			System.out.println("BUSCAR POR ubicacion");
+			model.addAttribute("flag", 0);
+			model.addAttribute("lst_resultado", inventory_service.findByUbicacion(id_ubicacion));
+		} else if(flag == 1){
+			System.out.println("BUSCAR LOS ACTIVOS");
+			model.addAttribute("flag", 0);
+			model.addAttribute("lst_resultado", inventory_service.findAll());
+		} else if(flag == 0){
+			System.out.println("BUSCAR LAS BAJAS");
+			model.addAttribute("flag", 0);
+			model.addAttribute("lst_resultado", inventory_service.findArticulosBaja());
+		}		
+		return "articulos";
+	}
+	
+	@RequestMapping(value = "/inventario/modificar", method = RequestMethod.POST)
+	public String modificar(Model model, @ModelAttribute("id") int id) {
+		System.out.println("METODO: modificar()\n ID: " + id);
+		try {			
+			model.addAttribute("inventario_articulo", inventory_service.findById(id));
+		} catch(Exception ex) {
+			System.out.println("ERROR: " + ex);
+		}
+		model.addAttribute("lst_recursos", recursos_service.findAll());
+		return "modificar_articulo";
 	}
 
 }

@@ -52,7 +52,7 @@ public class InventarioEntity {
 
     public InventarioEntity(String serie, int horas, String condiciones, String comentarios, int status) {
         this.serie = serie;
-        this.horas = horas;
+    	this.horas = horas;
         this.condiciones = condiciones;
         this.comentarios = comentarios;
         this.status = status;
@@ -65,14 +65,14 @@ public class InventarioEntity {
     public void setId(int id) {
         this.id = id;
     }
-
+    
     public String getSerie() {
-        return serie;
-    }
+		return serie;
+	}
 
-    public void setSerie(String serie) {
-        this.serie = serie;
-    }
+	public void setSerie(String serie) {
+		this.serie = serie;
+	}
 
     public int getHoras() {
         return horas;
@@ -148,10 +148,11 @@ public class InventarioEntity {
 
 	@Override
 	public String toString() {
-		return "InventarioEntity [id=" + id + ", serie=" + serie + ", horas=" + horas + ", condiciones=" + condiciones
+		return "InventarioEntity [id=" + id + ", horas=" + horas + ", condiciones=" + condiciones
 				+ ", comentarios=" + comentarios + ", status=" + status + ", recursos_entity_inventario="
 				+ recursos_entity_inventario + ", marcas_entity=" + marcas_entity + ", modelos_entity=" + modelos_entity
 				+ ", prestamo_entity=" + prestamo_entity + ", articulos_entity=" + articulos_entity + "]";
-	}    
+	}
+	 
     
 }

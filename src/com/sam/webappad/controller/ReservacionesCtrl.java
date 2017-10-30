@@ -70,16 +70,15 @@ public class ReservacionesCtrl {
     	MARCA EL ERROR Neither BindingResult nor plain target object*/
         model.addAttribute("lst_horas", horas_service.findAll());
         model.addAttribute("lst_recursos", recursos_service.findAll());
-        model.addAttribute("lst_acomodos", acomodos_service.findAll());
+        //model.addAttribute("lst_acomodos", acomodos_service.findAll());
         return "reservacion_new";
     }
     
     @RequestMapping(value = "/reservacion/save", method = RequestMethod.POST)
     public String HandleUsuarios(@ModelAttribute("reservacion_new") ReservacionesEntity reservaciones_entity,
     							 @ModelAttribute("id_recurso") int id_recurso,@ModelAttribute("username") String user_name,
-    							 @ModelAttribute("id_acomodo") int id_acomodo, @ModelAttribute("hora_inicio") int id_hora_ini,
-    							 @ModelAttribute("hora_fin") int id_hora_fin, @ModelAttribute("no_participantes") String no_participantes, Model model,
-    							 RedirectAttributes redirect_attributes, @ModelAttribute("fechas") String fechas) {
+    							 @ModelAttribute("hora_inicio") int id_hora_ini, @ModelAttribute("hora_fin") int id_hora_fin, 
+    							 Model model, RedirectAttributes redirect_attributes, @ModelAttribute("fechas") String fechas) {
     	String pagina = "", res, fecha_reservacion = String.valueOf(reservaciones_entity.getFecha());
     	int id_reservacion = reservaciones_entity.getId();
     	UsuariosEntity usuarios_entity = usuarios_service.findByUsuario(user_name);
@@ -87,19 +86,19 @@ public class ReservacionesCtrl {
     	reservaciones_entity.setUsuarios_entity(usuarios_entity);
     	reservaciones_entity.setHoras_entity_id_horaini(horas_service.findById(id_hora_ini));
     	reservaciones_entity.setHoras_entity_id_horafin(horas_service.findById(id_hora_fin));
-    	reservaciones_entity.setAcomodos_entity(acomodos_service.findById(id_acomodo));
+    	reservaciones_entity.setAcomodos_entity(acomodos_service.findById(1));
+    	System.out.println("RESERVACION: " + reservaciones_entity);
     	res = reservaciones_service.save(reservaciones_entity, fechas);
     	if(res.equals("")) {
     		/**************************************** ENVIAR CORREO ******************************************************/
     		if(id_reservacion == 0) {
-    			String[] destinatarios = {"samuel.arizmendi@loyola.edu.mx", "sam.abundis82@gmail.com"};
-    			//String[] destinatarios = {"samuel.hernandez@loyola.edu.mx", "beatriz.tamariz@loyola.edu.mx"};
+    			//String[] destinatarios = {"samuel.arizmendi@loyola.edu.mx", "sam.abundis82@gmail.com"};
+    			String[] destinatarios = {"samuel.hernandez@loyola.edu.mx", "beatriz.tamariz@loyola.edu.mx"};
     			String msj_mail = usuarios_entity.getNombre_completo() + " REALIZO LA RESERVACIÓN:" + 
     					   "\nFECHA: " + fecha_reservacion + 
 	    	    		   "\nSALÓN: " + reservaciones_entity.getRecursos_entity().getNombre() + "\n" + "HORA: " +
 	    	    		   reservaciones_entity.getHoras_entity_id_horaini().getHora() + "-" + reservaciones_entity.getHoras_entity_id_horafin().getHora() +
-	    	    		   "\nACOMODO: " + reservaciones_entity.getAcomodos_entity().getAcomodos() + "\nPARTICIPANTES: " + reservaciones_entity.getNo_participantes() +
-	    	    		   "\nEVENTO: " + reservaciones_entity.getEvento() + "\nREQUERIMIENTOS: " + reservaciones_entity.getRequerimientos();
+	    	    		   "\nEVENTO: " + reservaciones_entity.getEvento();
     			if(!fechas.equals("")) {
     				String fecha = "";
     				for(ReservacionesEntity lst_temp : reservaciones_service.findReservacionByIdRepetir(reservaciones_entity.getId_repetir())) {
@@ -144,7 +143,7 @@ public class ReservacionesCtrl {
     	  model.addAttribute("reservacion", reservaciones_entity);
     	  model.addAttribute("lst_horas", horas_service.findAll());
           model.addAttribute("lst_recursos", recursos_service.findAll());
-          model.addAttribute("lst_acomodos", acomodos_service.findAll());
+          //model.addAttribute("lst_acomodos", acomodos_service.findAll());
           if(reservaciones_entity.getId_repetir() != 0) {
         	  model.addAttribute("lst_repetidas", reservaciones_service.findReservacionByIdRepetir(reservaciones_entity.getId_repetir())); //@ModelAttribute("id_repetir") int id_repetir,
           }

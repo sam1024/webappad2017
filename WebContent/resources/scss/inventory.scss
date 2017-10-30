@@ -11,6 +11,90 @@ body {
     background-color: #111;
 }
 
+/******** SECTION HEADER **************/
+#section_header header {
+    position: fixed;
+    height: 2.5rem;
+    background: #212121;
+    width: 100%;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1024;
+    padding-bottom: .5rem;
+}
+
+#section_header header h1 {
+    font-size: 2.2rem;
+    margin: .5rem auto auto auto;
+    width: 10.5rem;
+}
+
+/******** MENU RESPONSIVO *************/
+.abrir_cerrar {
+    transform: translateX(0%) !important;
+}
+
+#nav_menu {
+    transform: translateX(-105%);
+    transition: all 0.3s;
+    margin-top: .4rem;
+    background-color: #A93226;
+    width: 13rem;
+}
+
+#icon_menu {
+    display: block;
+    position: absolute;
+    top: .2rem;
+    right: .2rem;
+    border: .1rem solid #d0d3d4;
+    padding: .4rem 1.1rem;
+    border-radius: .2rem;
+    background-color: transparent;
+    font-size: 1.5rem;
+}
+
+#icon_menu:active {
+    background-color: #424242;
+}
+
+.li_menu {
+    padding: .5rem .5rem;    
+}
+
+#ul_menu .li_menu a {
+    font-size: 1.5rem;
+}
+
+#ul_menu .li_menu a .fa {
+    margin: 0 .1rem 0 0;
+    padding: .3rem;
+    border-radius: 50%;
+}
+
+#ul_menu .li_menu a .fa:hover {
+    background-color: #A93226;
+}
+
+#ul_menu .li_menu a .fa-home, #ul_menu .li_menu a .fa-calendar {
+    margin-right: -.7rem;    
+}
+
+#ul_menu .li_menu a .fa-sign-out {
+    margin-right: .5rem;    
+}
+
+.p_menu {
+	display: inline;
+	margin-left: .3rem;
+	font-size: 1.3rem;
+}
+/******** FIN MENU RESPONSIVO *********/
+
+/******** FIN SECTION HEADER **********/
+
+
 /***** SECTION MENU *********/
 .li_menu {
 	 padding: 0 .5rem !important;
@@ -48,7 +132,7 @@ body {
 
 /***** SECTION_SEARCH *********/
 #section_search {
-	margin-top: 3rem;
+	margin-top: 3.7rem;
 }
 
 .search_inputs {
@@ -70,6 +154,51 @@ body {
     margin-bottom: .7rem !important;
     padding: .3rem .3rem .5rem .3rem;
 }
+
+.p_titulo {
+	width: auto;
+    display: inline;
+    color: red;
+}
+
+.btns_art {
+	position: absolute;
+    bottom: .1rem;
+    border: none  !important;  
+    height: 2.3rem !important;
+    width: 2.3rem !important;
+}
+
+#btn_edit {
+	right: 2.5rem;
+}
+
+#btn_del {
+	right: .1rem;
+}
+
+.icons {
+	font-size: 1.5rem !important;
+}
+
+.fa-trash {
+	margin-left: -.3rem;
+}
+
+/******************* ESTILOS ARCHIVO MODIFICAR_ARTICULO ***************/
+#div_modificar {
+	margin-top: 4rem;
+}
+
+#btn_save_upd {
+	margin: 1rem 0 .3rem 0;
+}
+
+.btns_upd {
+	width: 100% !important;
+    height: auto !important;
+}
+/******************* FIN ESTILOS ARCHIVO MODIFICAR_ARTICULO ***********/
 /***** FIN SECTION SHOW DATOS *********/
 
 /***** SECTION VENTANA MODAL *********/
@@ -105,18 +234,48 @@ option {
 }
 
 .btns {
-    padding: .5rem .7rem;
     background-color: transparent;
     border: .1rem solid #d0d3d4;
     border-radius: .3rem;
     color: #d0d3d4;
     font-size: 1.1rem;
-    width: 100%;
+    width: auto;
+    display: block;
+    padding: 1rem 0 0 0;
+    text-align: center;
+    height: 2rem;
+}
+
+#btn_save {
+	margin: -1rem 0 .3rem 0;
 }
 /***** FIN SECTION VENTANA MODAL *********/
 
 /************************************************** MEDIA QUERY **********************************************************/
 @media(min-width: 992px) {
+	/************** MENU RESPONSIVO     ******************/
+    #icon_menu {
+        display: none;
+    }
+    
+    #nav_menu { 
+    	position: absolute;  	
+    	top: 0;
+    	right: -7.5rem;    	
+        background-color: transparent;
+        width: 7rem;
+    }
+    
+    #ul_menu {
+        display: flex;
+        justify-content: flex-end;
+    }
+    
+    .p_menu {
+    	display: none;
+    }    
+    /************** FIN MENU RESPONSIVO ******************/
+	
 	/**** MENU *******/
 	.fa-chevron-down {
 		display: none !important;

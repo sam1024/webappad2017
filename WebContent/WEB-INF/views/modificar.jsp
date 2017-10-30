@@ -35,17 +35,17 @@
                                 <option value="${salon.id_recursos}">${salon.nombre}</option>
                             </c:forEach>
                         </select>
-                        <select class="input_field" name="id_acomodo" id="acomodo">
-                            <option value="${reservacion.getAcomodos_entity().getId()}">${reservacion.getAcomodos_entity().getAcomodos()}</option>
-                            <c:forEach var="acomodo" items="${lst_acomodos}">
-                                <option value="${acomodo.id}">${acomodo.acomodos}</option>
-                            </c:forEach>
-                        </select>
-                        <input class="input_field" type="text" name="no_participantes" id="no_participantes" placeholder="No. Participantes" value="${reservacion.getNo_participantes()}" />
+<!--                         <select class="input_field" name="id_acomodo" id="acomodo"> -->
+<%--                             <option value="${reservacion.getAcomodos_entity().getId()}">${reservacion.getAcomodos_entity().getAcomodos()}</option> --%>
+<%--                             <c:forEach var="acomodo" items="${lst_acomodos}"> --%>
+<%--                                 <option value="${acomodo.id}">${acomodo.acomodos}</option> --%>
+<%--                             </c:forEach> --%>
+<!--                         </select> -->
+<%--                         <input class="input_field" type="text" name="no_participantes" id="no_participantes" placeholder="No. Participantes" value="${reservacion.getNo_participantes()}" /> --%>
 <%--                         <sf:textarea path="evento" value="" name="evento" id="evento" placeholder="Evento" class="input_field textarea">${reservacion.getEvento()}</sf:textarea> --%>
 						<textarea name="evento" id="evento" placeholder="Evento" class="input_field textarea">${reservacion.getEvento()}</textarea>
 <%--                         <sf:textarea path="requerimientos" name="requerimientos" id="requerimientos" placeholder="Requerimientos (Mesa para coffee, microfono, podium, galletas, etc.)" class="input_field textarea"></sf:textarea> --%>
-						<textarea path="requerimientos" name="requerimientos" id="requerimientos" placeholder="Requerimientos (Mesa para coffee, microfono, podium, galletas, etc.)" class="input_field textarea">${reservacion.getRequerimientos()}</textarea>
+<%-- 						<textarea path="requerimientos" name="requerimientos" id="requerimientos" placeholder="Requerimientos (Mesa para coffee, microfono, podium, galletas, etc.)" class="input_field textarea">${reservacion.getRequerimientos()}</textarea> --%>
                         <sf:input path="responsable" value="${reservacion.getResponsable()}" type="text" name="responsable" id="responsable" class="input_field" placeholder="Responsable"/>
                         
                         <textarea class="input_field textarea" name="fechas" id="fechas" placeholder="Se repite"></textarea>

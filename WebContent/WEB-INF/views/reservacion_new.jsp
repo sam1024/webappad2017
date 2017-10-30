@@ -61,15 +61,15 @@
                                 <option value="${salon.id_recursos}">${salon.nombre}</option>
                             </c:forEach>
                         </select>
-                        <select class="input_field acomodo_participantes" name="id_acomodo" id="acomodo">
-                            <option value="">Acomodo</option>
-                            <c:forEach var="acomodo" items="${lst_acomodos}">
-                                <option value="${acomodo.id}">${acomodo.acomodos}</option>
-                            </c:forEach>
-                        </select>
-                        <sf:input path="no_participantes" type="text" name="no_participantes" id="no_participantes" placeholder="No. Participantes" class="input_field acomodo_participantes" />
+<!--                         <select class="input_field acomodo_participantes" name="id_acomodo" id="acomodo"> -->
+<!--                             <option value="">Acomodo</option> -->
+<%--                             <c:forEach var="acomodo" items="${lst_acomodos}"> --%>
+<%--                                 <option value="${acomodo.id}">${acomodo.acomodos}</option> --%>
+<%--                             </c:forEach> --%>
+<!--                         </select> -->
+<%--                         <sf:input path="no_participantes" type="text" name="no_participantes" id="no_participantes" placeholder="No. Participantes" class="input_field acomodo_participantes" /> --%>
                         <sf:textarea path="evento" name="evento" id="evento" placeholder="Evento (Reunion, Proyeccion de pelicula, Toma de protesta, etc.)" class="input_field textarea"></sf:textarea>
-                        <sf:textarea path="requerimientos" name="requerimientos" id="requerimientos" placeholder="Requerimientos (Mesa para coffee, microfono, podium, galletas, etc.)" class="input_field textarea"></sf:textarea>
+<%--                         <sf:textarea path="requerimientos" name="requerimientos" id="requerimientos" placeholder="Requerimientos (Mesa para coffee, microfono, podium, galletas, etc.)" class="input_field textarea"></sf:textarea> --%>
                         <sf:input path="responsable" type="text" name="responsable" id="responsable" class="input_field" placeholder="Responsable"/>
                         
                         <textarea class="input_field textarea" name="fechas" id="fechas" placeholder="Se repite"></textarea>

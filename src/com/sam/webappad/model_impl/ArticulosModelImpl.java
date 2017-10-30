@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.sam.webappad.entity.ArticulosEntity;
+import com.sam.webappad.entity.ArticulosEntity_;
 import com.sam.webappad.model.ArticulosModelInterface;
 
 @Transactional
@@ -42,8 +43,11 @@ public class ArticulosModelImpl implements ArticulosModelInterface {
 
 	@Override
 	public ArticulosEntity findById(int id) {
-		
-		return null;
+		CriteriaBuilder criteria_builder = getSession().getCriteriaBuilder();
+		CriteriaQuery<ArticulosEntity> criteria_query = criteria_builder.createQuery(ArticulosEntity.class);
+		Root<ArticulosEntity> root = criteria_query.from(ArticulosEntity.class);
+		criteria_query.select(root).where(criteria_builder.equal(root.get(ArticulosEntity_.id), id));
+		return getSession().createQuery(criteria_query).getSingleResult();
 	}
 
 }

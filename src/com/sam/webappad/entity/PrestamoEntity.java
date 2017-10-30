@@ -2,6 +2,7 @@ package com.sam.webappad.entity;
 
 import java.sql.Date;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,7 +20,7 @@ public class PrestamoEntity {
     private Date fecha;
     private int status;
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_inventario")
     private InventarioEntity inventario_entity;
 

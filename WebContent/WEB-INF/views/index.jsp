@@ -57,13 +57,11 @@
                 <a id="link_cerrar" href="javascript:void(0)"><span class="fa fa-window-close-o" /></a>
                 <div id="img_menus">
                     <sec:authorize access="!isAuthenticated()">
-                        <!--div class="div_menu"-->
                             <a id="link_sign_in"  href="<c:url value='/login' />">
                                 <span class="fa fa-sign-in sign_in">
                                     <p id="p_sign_in" class="sign_in">Iniciar sesión</p>
                                 </span>
                             </a>
-                        <!--/div-->
                     </sec:authorize>                    
                     <div class="div_menu">
                         <a class="link_menu" href='<c:url value="/reservaciones" />' title="Reservaciones">

@@ -11,93 +11,115 @@
 		<title>Inventario - WebappAD</title>
 		<link type="text/css" rel="stylesheet" href='<c:url value="/res/css/inventory.css" />' />
 		<link type="text/css" rel="stylesheet" href='<c:url value="/res/css/sweetalert.css" />' />
+		<link type="text/css" rel="stylesheet" href='<c:url value="/res/css/font-awesome.min.css" />' />
 	</head>
 	<body>
-		<%@include file="plantillas/header.jsp" %>
-		<span class="fa fa-plus-circle" id="add_new"></span>
+		<section id="section_header">
+			<header>
+				<h1>WebappAD</h1>
+				<span id="icon_menu" class="fa fa-ellipsis-v"></span>
+				<nav id="nav_menu">
+					<ul id="ul_menu">
+						<li class="li_menu">
+							<a href="<c:url value='/' />"><i class="fa fa-home" title="Inicio"><p class="p_menu">Inicio</p></i></a>
+                		</li>
+						<li class="li_menu">
+							<a href="<c:url value='/reservaciones' />"><i class="fa fa-calendar" title="Reservaciones"><p class="p_menu">Reservaciones</p></i></a>
+						</li>
+						<li class="li_menu" id="li_new">
+							<a href='javascript:void(0)' id='search'><i class='fa fa-list-alt' title='Articulos'><p class='p_menu'>Artículos</p></i><span class='fa fa-chevron-down'></span></a> 
+			        		<ul id='submenu'>
+			        			<li><a href='javascript:void(0)' id='search_serie'><p class='p_menu'>Por Serie</p></a></li>
+			            		<li><a href='javascript:void(0)' id='search_articulo'><p class='p_menu'>Por Artículo</p></a></li>
+			            		<li><a href='javascript:void(0)' id='search_area'><p class='p_menu'>Por Área</p></a></li>
+			            		<li><a href='javascript:void(0)' id='search_activos'><p class='p_menu'>Activos</p></a></li>
+			            		<li><a href='javascript:void(0)' id='search_bajas'><p class='p_menu'>Baja</p></a></li>
+			        		</ul>
+			    		</li>
+			    		<sec:authorize access="!isAuthenticated()">
+			    			<li class="li_menu">
+								<a href="<c:url value='/login' />"><i class="fa fa-sign-in" title="Iniciar Sesión"><p class="p_menu">Iniciar Sesión</p></i></a>
+							</li>
+			    		</sec:authorize>
+			    		<sec:authorize access="isAuthenticated()">
+			    			<li class="li_menu">
+								<a href="<c:url value='/logout' />"><i class="fa fa-sign-out" title="Salir"><p class="p_menu">Salir</p></i></a>
+							</li>
+			    		</sec:authorize>
+					</ul>
+				</nav>
+			</header>
+		</section>
+		<sec:authorize access="isAuthenticated()">
+			<span class="fa fa-plus-circle" id="add_new"></span>
+		</sec:authorize>
 		<section id="section_search">
-			<input type="text" id="txt_search" class="input_field search_inputs" placeholder="Buscar por serie..." autofocus />
-			<select name='id_recurso_find' id="recurso_find" class="input_field search_inputs">
+			<input type="text" id="serie_find" class="input_field search_inputs hide" placeholder="Buscar por serie..." autofocus />
+			<select name='id_recurso_find' id="recurso_find" class="input_field hide" onchange="showArticulos('', 0, $(this).val(), -1, $(this).attr('id'))">
 				<option value="">UBICACIÓN</option>
 				<c:forEach var="tmp_recursos" items="${lst_recursos}">
 					<option value="${tmp_recursos.id_recursos}">${tmp_recursos.nombre}</option>
 				</c:forEach>
 			</select>
-			<select name='id_articulo_find' id="articulo_find" class="input_field search_inputs">
+			<select name='id_articulo_find' id="articulo_find" class="input_field search_inputs hide" onchange="showArticulos('', $(this).val(), 0, -1, $(this).attr('id'))">
 				<option value="">ARTÍCULO</option>
 				<c:forEach var="tmp_articulos" items="${lst_articulos}">
 					<option value="${tmp_articulos.id}">${tmp_articulos.nombre}</option>
 				</c:forEach>
 			</select>
-			<button id="btn_show_all" class="btns">TODOS LOS PRODUCTOS</button>
 		</section>
+		
+<!-- 		EN ESTE SECTION ES DONDE SE CARGA LA INFORMACION DE LOS ARTÍCULOS, SE HACE CON AJAX -->
 		<section id="section_show_datos">
-			<div class="container">
-<%-- 				<c:forEach var="tmp_inventario" items="${lst_inventario}"> --%>
-<%-- 					<div class="card_personalizada" id="${tmp_inventario.id}"> --%>
-<%-- 						<p class="p_card_personalizada">${tmp_inventario.articulo}</p> --%>
-<%--                     	<p class="p_card_personalizada">${tmp_inventario.getMarcas_entity().marca}</p> --%>
-<%--                     	<p class="p_card_personalizada">${tmp_inventario.getModelos_entity().modelo}</p> --%>
-<%--                     	<p class="p_card_personalizada">${tmp_inventario.serie}</p> --%>
-<%--                     	<p class="p_card_personalizada">${tmp_inventario.horas}</p> --%>
-<%--                     	<p class="p_card_personalizada">${tmp_inventario.getRecursos_entity_inventario().nombre}</p> --%>
-<%--                     	<p class="p_card_personalizada">${tmp_inventario.condiciones}</p> --%>
-<%--                     	<p class="p_card_personalizada">${tmp_inventario.comentarios}</p> --%>
-<%--                     	<input type="hidden" id="h${tmp_inventario.id}" value="${}" /> --%>
-<%--                    	<sec:authorize access="hasAnyRole({'ROLE_ADMIN', 'ROLE_ALMACEN'})"> --%>
-<%--                     		<button id="btn_edit" value="${tmp_inventario.id}" class="btns" name="edit"> --%>
-<!-- 								<span id="pencil" title="Modificar" class="fa icon-pencil2 icons"></span> -->
-	<!-- 						</button> -->
-	<%-- 						<button id="btn_del" value="${tmp_inventario.id}" class="btns" name="del"> --%>
-<!--	 							<span id="trash" title="Cancelar" class="icon-bin2 icons"></span> -->
-<!-- 							</button> -->
-<%--        	             </sec:authorize>					 --%>
-<!--                 	</div> -->
-<%-- 				</c:forEach>				 --%>
-			</div>
+			<div class="container" id="div_articulos"></div>
 		</section>
+<!-- 		FIN SECTION DONDE SE CARGA LA INFORMACION DE LOS ARTÍCULOS, SE HACE CON AJAX -->
+
 		<section id="section_form">					
 			<div id="modal">
-					<select name='id_articulo' id="articulo" class="input_field">
+					<select name='id_articulo' id="articulo" class="input_field clean">
 						<option value="">ARTÍCULO</option>
 						<c:forEach var="tmp_articulos" items="${lst_articulos}">
 							<option value="${tmp_articulos.id}">${tmp_articulos.nombre}</option>
 						</c:forEach>
 					</select>
-					<select name='id_marca' id="marca" class="input_field">
+					<select name='id_marca' id="marca" class="input_field clean">
 						<option value="">MARCA</option>
 						<c:forEach var="tmp_marcas" items="${lst_marcas}">
 							<option value="${tmp_marcas.id}">${tmp_marcas.marca}</option>
 						</c:forEach>
 					</select>					
-					<select name='id_modelo' id="modelo" class="input_field">
+					<select name='id_modelo' id="modelo" class="input_field clean">
 						<option value="">MODELO</option>
 						<c:forEach var="tmp_modelos" items="${lst_modelos}">
 							<option value="${tmp_modelos.id}">${tmp_modelos.modelo}</option>
 						</c:forEach>
 					</select>
-					<input name="serie" id="serie" type="text" class="input_field" placeholder="Serie"/>
-					<select name='id_recurso' id="recurso" class="input_field">
+					<input name="serie" id="serie" type="text" class="input_field clean" placeholder="Serie"/>
+					<select name='id_recurso' id="recurso" class="input_field clean">
 						<option value="">UBICACIÓN</option>
 						<c:forEach var="tmp_recursos" items="${lst_recursos}">
 							<option value="${tmp_recursos.id_recursos}">${tmp_recursos.nombre}</option>
 						</c:forEach>
 					</select>
-					<input name="horas" id="horas" type="text" class="input_field" placeholder="Horas"/>
-					<textarea name="condiciones" id="condiciones" class="input_field" placeholder="Condiciones"></textarea>
-					<textarea name="comentarios" id="comentarios" class="input_field" placeholder="Comentarios"></textarea>
+					<input name="horas" id="horas" type="text" class="input_field clean" placeholder="Horas"/>
+					<textarea name="condiciones" id="condiciones" class="input_field clean" placeholder="Condiciones"></textarea>
+					<textarea name="comentarios" id="comentarios" class="input_field clean" placeholder="Comentarios"></textarea>
 					<select name='id_status' id="status" class="input_field">						
 						<option value="1">ACTIVO</option>
 						<option value="0">BAJA</option>						
 					</select>
 					<input type="hidden" id="path" value="${pageContext.request.contextPath}" />
-					<button class="btns" id="btn_save">Guardar</button>
-					<button class="btns" id="btn_cancel">Cancelar</button>			
+					<a href="javascript:void(0)" class="btns" id="btn_save">Guardar</a>
+					<a href="javascript:void(0)" class="btns" id="btn_cancel">Cancelar</a>
+<!-- 					<button class="btns" id="btn_save">Guardar</button> -->
+<!-- 					<button class="btns" id="btn_cancel">Cancelar</button>		 -->
 			</div>
 		</section>
 		<script type="text/javascript" src='<c:url value="/res/js/jquery-3.2.1.min.js" />' ></script>
 		<script type="text/javascript" src="<c:url value='/res/js/sweetalert2.min-6.6.5.js' />" ></script>
-		<script type="text/javascript" src='<c:url value="/res/js/inventory.js" />' ></script>
+		<script type="text/javascript" src='<c:url value="/res/js/cookie.js" />' ></script>
+		<script type="text/javascript" src='<c:url value="/res/js/inventory.js" />' ></script>		
 	</body>
 </html>
 
