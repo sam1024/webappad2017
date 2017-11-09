@@ -9,15 +9,28 @@
 	<body>
 		<c:if test="${inventario_articulo != null}">
 			<div id="div_modificar">
-				<input type="hidden" id="id_articulo" name="id_articulo" value="${inventario_articulo.id}">
-				<input type="hidden" id="id_marca" name="id_marca" value="${inventario_articulo.getMarcas_entity().id}">
-				<input type="hidden" id="id_modelo" name="id_modelo" value="${inventario_articulo.getModelos_entity().id}">
+				<input type="hidden" id="id_inventario" name="id_inventario" value="${inventario_articulo.id}">
+				<input type="hidden" id="id_articulo" name="id_articulo" value="${inventario_articulo.getArticulos_entity().id}">
+<%-- 				<input type="hidden" id="id_marca" name="id_marca" value="${inventario_articulo.getMarcas_entity().id}"> --%>
+<%-- 				<input type="hidden" id="id_modelo" name="id_modelo" value="${inventario_articulo.getModelos_entity().id}"> --%>
 				<input type="hidden" id="status" name="status" value="${inventario_articulo.status}">
 				<input type="hidden" id="horas" name="horas" value="${inventario_articulo.horas}">
 				
 				<input type="text" name="articulo" class="input_field" value="${inventario_articulo.getArticulos_entity().nombre}" disabled>
-				<input type="text" name="marca" class="input_field" value="${inventario_articulo.getMarcas_entity().marca}" disabled>
-				<input type="text" name ="modelo" class="input_field" value="${inventario_articulo.getModelos_entity().modelo}" disabled>
+<%-- 				<input type="text" name="marca" class="input_field" value="${inventario_articulo.getMarcas_entity().marca}" disabled> --%>
+				<select name="marca" id="id_marca" class="input_field">
+					<option value="${inventario_articulo.getMarcas_entity().id}">${inventario_articulo.getMarcas_entity().marca}</option>
+					<c:forEach var="tmp_marca" items="${lst_marcas}">
+						<option value="${tmp_marca.id}">${tmp_marca.marca}</option>
+					</c:forEach>
+				</select>
+				<select name="modelo" id="id_modelo" class="input_field">
+					<option value="${inventario_articulo.getModelos_entity().id}">${inventario_articulo.getModelos_entity().modelo}</option>
+					<c:forEach var="tmp_modelo" items="${lst_modelos}">
+						<option value="${tmp_modelo.id}">${tmp_modelo.modelo}</option>
+					</c:forEach>
+				</select>
+<%-- 				<input type="text" name ="modelo" class="input_field" value="${inventario_articulo.getModelos_entity().modelo}" disabled> --%>
 				<input type="text" id="serie"class="input_field" name="serie" value="${inventario_articulo.serie}">
 				<c:if test="${inventario_articulo.horas == 0}">
                 	<input type="text" class="input_field" name="horas" value="${inventario_articulo.horas}" disabled>

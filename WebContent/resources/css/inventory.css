@@ -8,6 +8,12 @@ html * {
 body {
   background-color: #111; }
 
+li {
+  padding: .3rem; }
+
+li:hover {
+  background-color: #A93226; }
+
 /******** SECTION HEADER **************/
 #section_header header {
   position: fixed;
@@ -53,19 +59,15 @@ body {
 #icon_menu:active {
   background-color: #424242; }
 
-.li_menu {
-  padding: .5rem .5rem; }
-
+/*.li_menu {
+    padding: .5rem .5rem;    
+}*/
 #ul_menu .li_menu a {
   font-size: 1.5rem; }
 
 #ul_menu .li_menu a .fa {
   margin: 0 .1rem 0 0;
-  padding: .3rem;
-  border-radius: 50%; }
-
-#ul_menu .li_menu a .fa:hover {
-  background-color: #A93226; }
+  padding: .3rem; }
 
 #ul_menu .li_menu a .fa-home, #ul_menu .li_menu a .fa-calendar {
   margin-right: -.7rem; }
@@ -78,22 +80,39 @@ body {
   margin-left: .3rem;
   font-size: 1.3rem; }
 
+#link_search > .fa-chevron-down {
+  position: relative !important;
+  margin: 0 0 0 6.3rem !important;
+  padding: 0 !important; }
+
 /******** FIN MENU RESPONSIVO *********/
 /******** FIN SECTION HEADER **********/
 /***** SECTION MENU *********/
-.li_menu {
-  padding: 0 .5rem !important; }
-
+/*.li_menu {
+	 padding: 0 .5rem !important;
+}*/
 #li_new .fa-chevron-down {
   position: absolute;
   right: 0.1rem; }
+
+#li_new .fa-chevron-right {
+  display: none; }
 
 #li_new ul {
   position: static;
   display: none;
   background-color: rgba(0, 0, 0, 0.6);
-  width: 13rem;
+  width: 13.2rem;
   margin-left: -.5rem; }
+
+#submenu_anidado {
+  width: 13.4rem !important; }
+
+.li_submenu_anidado {
+  margin: 0 0 0 .8rem; }
+
+#chevron-right-anidado {
+  display: none; }
 
 /***** FIN SECTION MENU *********/
 /***** ICONO NUEVO REGISTRO *********/
@@ -217,45 +236,76 @@ option {
 /***** FIN SECTION VENTANA MODAL *********/
 /************************************************** MEDIA QUERY **********************************************************/
 @media (min-width: 992px) {
-  /************** MENU RESPONSIVO     ******************/
+  /************** MENU RESPONSIVO ******************/
   #icon_menu {
     display: none; }
 
   #nav_menu {
     position: absolute;
-    top: 0;
-    right: -7.5rem;
-    background-color: transparent;
-    width: 7rem; }
+    top: 2.5rem;
+    left: 13rem;
+    background-color: #212121;
+    height: 100rem; }
 
   #ul_menu {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: flex-end; }
+    display: block; }
 
-  .p_menu {
-    display: none; }
+  .abrir_cerrar {
+    -webkit-transform: translateX(-105%) !important;
+            transform: translateX(-105%) !important; }
 
   /************** FIN MENU RESPONSIVO ******************/
   /**** MENU *******/
   .fa-chevron-down {
     display: none !important; }
 
+  #li_new .fa-chevron-right {
+    display: inline;
+    position: absolute;
+    right: 0;
+    padding-top: .4rem !important; }
+
   #li_new ul {
     position: absolute;
     width: 8rem;
-    right: .4rem; }
+    right: -8rem;
+    top: 5.6rem;
+    background-color: #212121; }
 
-  #li_new:hover ul {
-    display: block; }
-
+    /*#li_new:hover #submenu {
+		display: block; 
+	}*/
   #li_new ul li a .p_menu {
     display: block;
     right: 1rem; }
 
-  /**** FIN MENU *****/ }
+  .li_submenu {
+    padding: .5rem; }
+
+  #li_search a > .fa-chevron-right {
+    bottom: 0;
+    padding-bottom: .4rem !important; }
+
+  /*#li_search:hover #submenu_anidado {
+  	display: block;
+  }*/
+  #submenu_anidado {
+    top: 2.2rem !important;
+    width: 10rem !important;
+    right: -10rem !important; }
+
+  .li_submenu_anidado {
+    padding: .3rem .3rem .3rem .3rem;
+    margin: 0; }
+
+  /**** FIN MENU *****/
+  #section_search {
+    position: relative;
+    margin: 3.7rem .5rem 0 13rem; }
+
+  #section_show_datos {
+    position: relative;
+    height: auto;
+    margin: 1rem .5rem 0 13rem; } }
 
 /*# sourceMappingURL=inventory.css.map */

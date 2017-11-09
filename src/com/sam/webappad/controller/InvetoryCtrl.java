@@ -48,18 +48,23 @@ public class InvetoryCtrl {
 	}
 	
 	@RequestMapping(value = "/inventario/save", method = RequestMethod.POST)
-	public String save(@ModelAttribute("articulo") int id_articulo, @ModelAttribute("marca") int id_marca, @ModelAttribute("modelo") int id_modelo,
+	public String save(@ModelAttribute("id_inventario") int id_inventario, @ModelAttribute("articulo") int id_articulo, @ModelAttribute("marca") int id_marca, @ModelAttribute("modelo") int id_modelo,
 					   @ModelAttribute("serie") String serie, @ModelAttribute("recurso") int id_recurso, @ModelAttribute("horas") int horas,
 					   @ModelAttribute("condiciones") String condiciones, @ModelAttribute("comentarios") String comentarios,
 					   @ModelAttribute("status") int status) {
 		
 		InventarioEntity inventario_entity = new InventarioEntity(serie, horas, condiciones, comentarios, status);
-		
+		System.out.println(inventario_entity);
+		//System.out.println("id inventario: " + id_inventario);
+		if(id_inventario != 0) {
+			inventario_entity.setId(id_inventario);
+		}
 		inventario_entity.setArticulos_entity(articulos_service.findById(id_articulo));
 		inventario_entity.setMarcas_entity(marcas_service.findById(id_marca));
 		inventario_entity.setModelos_entity(modelos_service.findById(id_modelo));
 		inventario_entity.setRecursos_entity_inventario(recursos_service.findById(id_recurso));		
 		
+		System.out.println(inventario_entity);
 		inventory_service.save(inventario_entity);
 		return "";
 	}
@@ -103,6 +108,8 @@ public class InvetoryCtrl {
 		} catch(Exception ex) {
 			System.out.println("ERROR: " + ex);
 		}
+		model.addAttribute("lst_marcas", marcas_service.findAll());
+		model.addAttribute("lst_modelos", modelos_service.findAll());
 		model.addAttribute("lst_recursos", recursos_service.findAll());
 		return "modificar_articulo";
 	}

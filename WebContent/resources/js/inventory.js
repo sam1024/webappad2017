@@ -1,12 +1,18 @@
 var horas;
 $("#icon_menu").on("click", function() {
-	console.log("MENU");
-    hideShowMenu();
+	hideShowMenu();
+	/*$("#submenu").css("display", "none");
+	$("#submenu_anidado").css("display", "none");*/
 });
 
 /*** ABRIR LA VENTANA MODAL ***/
 $("#add_new").on("click", function() {
-   openModal();     
+	openModal();     
+});
+
+$("#link_add_new").on("click", function() {
+	hideShowMenu();
+	openModal();     
 });
 /*** FIN ABRIR LA VENTANA MODAL ***/
 
@@ -19,8 +25,14 @@ $("#btn_cancel").on("click", function() {
 
 /**** MOSTRA Y OCULTAR EL SUBMENU ****/
 $("#li_new").on("click", function() {
-	$(this).children("ul").slideToggle();	
+	$(this).children("ul").slideToggle();
 });
+
+$("#li_search").on("click", function(e) {
+	console.log("buscar");
+	$(this).children("ul").slideToggle();
+	e.stopPropagation();
+})
 /**** MOSTRA Y OCULTAR EL SUBMENU ****/
 
 $("#search_serie").on("click", function() {
@@ -30,6 +42,7 @@ $("#search_serie").on("click", function() {
 	$("#recurso_find").css("display", "none").focus();
 	$("#btn_show_all").css("display", "none").focus();
 	$("#div_articulos").empty();
+	$("#submenu").css("display", "none");
 });
 
 $("#search_articulo").on("click", function() {
@@ -39,6 +52,7 @@ $("#search_articulo").on("click", function() {
 	$("#recurso_find").css("display", "none").focus();
 	$("#btn_show_all").css("display", "none").focus();
 	$("#div_articulos").empty();
+	$("#submenu").css("display", "none");
 });
 
 $("#search_area").on("click", function() {
@@ -48,18 +62,21 @@ $("#search_area").on("click", function() {
 	$("#serie_find").css("display", "none").focus();
 	$("#btn_show_all").css("display", "none").focus();
 	$("#div_articulos").empty();
+	$("#submenu").css("display", "none");
 });
 
 $("#search_activos").on("click", function() {
 	hideShowMenu();
 	showArticulos("", 0, 0, 1, "");
 	hideInputsSearch();
+	$("#submenu").css("display", "none");
 });
 
 $("#search_bajas").on("click", function() {
 	hideShowMenu();
 	showArticulos("", 0, 0, 0, "");
 	hideInputsSearch();
+	$("#submenu").css("display", "none");
 });
 
 $("#serie_find").keypress(function(e) {
@@ -78,7 +95,7 @@ $("#btn_save").on("click", function() {
 		$.ajax( {
 			type: "POST",
 			url: $("#path").val() + "/inventario/save",
-			data: {"articulo": $("#articulo").val(), "marca": $("#marca").val(), "modelo": $("#modelo").val(), "serie": $("#serie").val().toUpperCase(),
+			data: {"id_inventario": 0, "articulo": $("#articulo").val(), "marca": $("#marca").val(), "modelo": $("#modelo").val(), "serie": $("#serie").val().toUpperCase(),
 				   "recurso": $("#recurso").val(), "horas": horas, "condiciones": $("#condiciones").val().toUpperCase(),
 				   "comentarios": $("#comentarios").val().toUpperCase(), "status": $("#status").val() }
 		});
@@ -89,30 +106,6 @@ $("#btn_save").on("click", function() {
 		console.log("GUARDE!!!")
 	}
 });
-
-/************** MODIFICAR ARTÍCULO **********************/
-$("button").on("click", function() {
-	$("#recurso_find").css("display", "none");
-	$("#articulo_find").css("display", "none");
-	$("#serie_find").css("display", "none");
-	$("#btn_show_all").css("display", "none");
-	$("#add_new").css("display", "none");
-	$("#div_articulos").empty();
-	if($(this).attr("name") === "edit") {
-		$.ajax({
-			type: 'POST',
-			url: $("#path").val() + "/inventario/modificar",
-			data: {"id": $(this).val()},
-			success: function(modificar) {
-	        	$("#div_articulos").html(modificar);
-	        } 
-		});
-	} else {
-		console.log("dar de baja");
-	}
-	
-});
-/************ FIN MODIFICAR ARTÍCULO ********************/
 
 function openModal() {
 	$("#articulo").focus();
@@ -161,6 +154,7 @@ function showAlert(msj) {
 
 function hideShowMenu() {
 	$("#nav_menu").toggleClass("abrir_cerrar");
+	//$("#submenu").css("display", "none");
 }
 
 function showArticulos(valor_serie, valor_articulo, valor_ubicacion, flag, name_control) {
@@ -187,6 +181,7 @@ function createCookie(valor_serie, valor_articulo, valor_ubicacion, flag, name_c
 			                     "flag": flag, "name_control": name_control};
 	my_json = JSON.stringify(datos_cookie);
 	Cookies.set('ubicacion', my_json);
+	console.log("JSON: " + my_json);
 }
 
 

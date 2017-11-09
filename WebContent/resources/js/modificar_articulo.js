@@ -1,25 +1,30 @@
+var id_inventario;
+
 $("#btn_save_upd").on("click", function() {
-	console.log("GUARDAR!!")
+	if($("#id_inventario").val() === "") {
+		id_inventario = 0;
+	} else {
+		id_inventario = $("#id_inventario").val();
+	}
+	console.log(id_inventario);
 	$.ajax({
 		type: "POST",
-		url: $("#path") + "/inventario/save",
-		data:{"articulo": $("#id_articulo").val(), "marca": $("#id_marca").val(), "modelo": $("#id_modelo").val(),
-			"serie": $("#serie").val(), "recurso": $("#ubicacion").val(), "horas": $("#horas").val(), "condiciones": $("#condiciones").val(),
-			"comentarios": $("#comentarios").val(), "status": $("#status").val()}
+		url: $("#path").val() + "/inventario/save",
+		data:{"id_inventario": id_inventario, "articulo": $("#id_articulo").val(), "marca": $("#id_marca").val(), "modelo": $("#id_modelo").val(),
+			"serie": $("#serie").val().toUpperCase(), "recurso": $("#ubicacion").val(), "horas": $("#horas").val(), "condiciones": $("#condiciones").val().toUpperCase(),
+			"comentarios": $("#comentarios").val().toUpperCase(), "status": $("#status").val()}
 	});
+	backToPage();
 });
 
 $("#btn_cancel_upd").on("click", function() {
-	j = Cookies.get('ubicacion');
-	console.log("CANCELAR!!ss");
-	if(j["name_control"] !== "") {
-		$("#" + j["name_control"]).css("display", "block");
-	}		
-	console.log("SERIE: " + j["serie"]);
-	console.log("ID ARTICULO: " + j["id_articulo"]);
-	console.log("ID UBICACION: " + j["id_ubicacion"]);
-	console.log("FLAG: " + j["flag"]);
-	console.log("CONTROL: " + j["name_control"]);
-	showArticulos(j["serie"], j["id_articulo"], j["id_ubicacion"], j["flag"], "");	
+	backToPage();
 });
 
+function backToPage() {
+	j = Cookies.get('ubicacion');
+	if(j["name_control"] !== "") {
+		$("#" + j["name_control"]).css("display", "block");
+	}
+	showArticulos(j["serie"], j["id_articulo"], j["id_ubicacion"], j["flag"], "");
+}

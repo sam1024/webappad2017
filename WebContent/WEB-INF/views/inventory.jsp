@@ -24,16 +24,34 @@
 							<a href="<c:url value='/' />"><i class="fa fa-home" title="Inicio"><p class="p_menu">Inicio</p></i></a>
                 		</li>
 						<li class="li_menu">
-							<a href="<c:url value='/reservaciones' />"><i class="fa fa-calendar" title="Reservaciones"><p class="p_menu">Reservaciones</p></i></a>
+							<a href="<c:url value='/reservaciones' />">
+								<i class="fa fa-calendar" title="Reservaciones">
+									<p class="p_menu">Reservaciones</p>
+								</i>
+							</a>
 						</li>
 						<li class="li_menu" id="li_new">
-							<a href='javascript:void(0)' id='search'><i class='fa fa-list-alt' title='Articulos'><p class='p_menu'>Artículos</p></i><span class='fa fa-chevron-down'></span></a> 
-			        		<ul id='submenu'>
-			        			<li><a href='javascript:void(0)' id='search_serie'><p class='p_menu'>Por Serie</p></a></li>
-			            		<li><a href='javascript:void(0)' id='search_articulo'><p class='p_menu'>Por Artículo</p></a></li>
-			            		<li><a href='javascript:void(0)' id='search_area'><p class='p_menu'>Por Área</p></a></li>
-			            		<li><a href='javascript:void(0)' id='search_activos'><p class='p_menu'>Activos</p></a></li>
-			            		<li><a href='javascript:void(0)' id='search_bajas'><p class='p_menu'>Baja</p></a></li>
+							<a href='javascript:void(0)' id='search'>
+								<i class='fa fa-list-alt' title='Articulos'><p class='p_menu'>Artículos</p></i>
+								<span class='fa fa-chevron-down'></span>
+								<span class='fa fa-chevron-right'></span>
+							</a> 
+			        		<ul id='submenu' class="level_1">
+			        			<li class="li_submenu"><a href='javascript:void(0)' id='link_add_new'><p class='p_menu'>Nuevo</p></a></li>
+			        			<li id="li_search" class="li_submenu">
+			        				<a href='javascript:void(0)' id='link_search'>
+			        					<p class='p_menu'>Buscar</p>
+			        					<span class='fa fa-chevron-down'></span>
+			        					<span class='fa fa-chevron-right' id="chevron-right-anidado"></span>
+			        				</a>
+			        				<ul id="submenu_anidado">
+			        					<li class="li_submenu_anidado"><a href='javascript:void(0)' id='search_serie'><p class='p_menu'>Por Serie</p></a></li>
+			            				<li class="li_submenu_anidado"><a href='javascript:void(0)' id='search_articulo'><p class='p_menu'>Por Artículo</p></a></li>
+			            				<li class="li_submenu_anidado"><a href='javascript:void(0)' id='search_area'><p class='p_menu'>Por Área</p></a></li>
+			            				<li class="li_submenu_anidado"><a href='javascript:void(0)' id='search_activos'><p class='p_menu'>Activos</p></a></li>
+			            				<li class="li_submenu_anidado"><a href='javascript:void(0)' id='search_bajas'><p class='p_menu'>Baja</p></a></li>
+			        				</ul>
+			        			</li>			        			
 			        		</ul>
 			    		</li>
 			    		<sec:authorize access="!isAuthenticated()">

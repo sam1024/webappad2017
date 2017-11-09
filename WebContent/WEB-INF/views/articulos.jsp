@@ -28,7 +28,7 @@
                 	</c:if>
                 	<p class="p_card_personalizada"><p class="p_titulo">UBICACIÓN:</p> ${tmp_lst_resultado.getRecursos_entity_inventario().nombre}</p>
                 	<p class="p_card_personalizada"><p class="p_titulo">CONDICIONES:</p> ${tmp_lst_resultado.condiciones}</p>
-                	<p class="p_card_personalizada"><p class="p_titulo">COMENTARIS:</p> ${tmp_lst_resultado.comentarios}</p>
+                	<p class="p_card_personalizada"><p class="p_titulo">COMENTARIOS:</p> ${tmp_lst_resultado.comentarios}</p>
 					<c:if test="${tmp_lst_resultado.status == 0}">
                 		<p class="p_card_personalizada"><p class="p_titulo">ESTADO:</p> BAJA</p>
                 	</c:if>
@@ -64,7 +64,7 @@
                 </c:if>
 				<p class="p_card_personalizada"><p class="p_titulo">UBICACIÓN:</p> ${articulo.getRecursos_entity_inventario().nombre}</p>
 				<p class="p_card_personalizada"><p class="p_titulo">CONDICIONES:</p> ${articulo.condiciones}</p>
-				<p class="p_card_personalizada"><p class="p_titulo">COMENTARIS:</p> ${articulo.comentarios}</p>
+				<p class="p_card_personalizada"><p class="p_titulo">COMENTARIOS:</p> ${articulo.comentarios}</p>
 				<c:if test="${articulo.status == 0}">
                 	<p class="p_card_personalizada"><p class="p_titulo">ESTADO:</p> BAJA</p>
                 </c:if>
@@ -89,7 +89,7 @@
 	</c:if>
 <!--********* 	FIN RESULTADO DE METODO BUSCAR POR SERIE **************-->
 
-	<script type="text/javascript" src='<c:url value="/res/js/inventory.js" />' ></script>	
+	<script type="text/javascript" src='<c:url value="/res/js/articulos.js" />' ></script>	
 	</body>
 </html>
 
